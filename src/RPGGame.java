@@ -30,7 +30,7 @@ public class RPGGame {
             for (Player curPlayer : curTeam.getPlayers()) {
                 curPos = this.board.getRandomInitialPosition();
                 curPlayer.setPos(curPos);
-                this.board.addMoveable(curPos, curPlayer);
+                this.board.addHero(curPos, curPlayer);
             }
         }
     }

@@ -78,7 +78,7 @@ public class Cell {
         return heroObject;
     }
 
-    public void setMovableObject(Movable movealbeObject) {
-        this.heroObject = movealbeObject;
+    public void setHeroObject(Movable heroObject) {
+        this.heroObject = heroObject;
     }
 }
