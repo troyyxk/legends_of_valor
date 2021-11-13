@@ -19,8 +19,12 @@ public class Board {
         getRandomMap();
     }
 
-    public void addMoveable(int[] pos, Movable movable) {
-        this.cells[pos[0]][pos[1]].setMovableObject(movable);
+    public void addHero(int[] pos, Movable hero) {
+        this.cells[pos[0]][pos[1]].setHeroObject(hero);
+    }
+
+    public void addMonster(int[] pos, Movable monster) {
+        this.cells[pos[0]][pos[1]].setHeroObject(monster);
     }
 
     public int[] getRandomInitialPosition() {
@@ -101,7 +105,7 @@ public class Board {
 
     public void moveMovable(Movable movable, int[] oldPos, int[] newPos) {
         this.cells[oldPos[0]][oldPos[1]].removeMovable();
-        this.cells[newPos[0]][newPos[1]].setMovableObject(movable);
+        this.cells[newPos[0]][newPos[1]].setHeroObject(movable);
         movable.setPos(newPos);
     }
 
