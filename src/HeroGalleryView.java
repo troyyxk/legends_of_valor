@@ -34,7 +34,7 @@ public class HeroGalleryView {
 
     }
 
-    private void printHeroHeader()  {
+    private void printHeroHeader() {
         System.out.print("        ");
         System.out.println("Name/mana/strength/agility/dexterity/starting money/starting experience");
     }

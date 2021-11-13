@@ -8,8 +8,8 @@ public class MarketCell implements Placeable {
         this.hostile = false;
     }
 
-    public boolean isAccessible(){
-            return accessible;
+    public boolean isAccessible() {
+        return accessible;
     }
 
     public boolean isHostile() {

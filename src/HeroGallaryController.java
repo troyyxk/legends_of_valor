@@ -22,15 +22,13 @@ public class HeroGallaryController {
             System.out.println("Which hero would you pick in Paladin? Enter the index");
             int playerInput1 = Utils.takeIntInput(0, curHeroModels.size() - 1);
             return curHeroModels.get(playerInput1);
-        }
-        else if (playerInput == 1) {
+        } else if (playerInput == 1) {
             ArrayList<Sorcerer> curHeroModels;
             curHeroModels = heroGalleryModel.getSorcerers();
             System.out.println("Which hero would you pick in Sorcerer? Enter the index");
             int playerInput1 = Utils.takeIntInput(0, curHeroModels.size() - 1);
             return curHeroModels.get(playerInput1);
-        }
-        else {
+        } else {
             ArrayList<Warrior> curHeroModels;
             curHeroModels = heroGalleryModel.getWarriors();
             System.out.println("Which hero would you pick in Sorcerer? Enter the index");

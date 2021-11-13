@@ -8,7 +8,7 @@ public class NonAccessibleCell implements Placeable {
         this.hostile = true;
     }
 
-    public boolean isAccessible(){
+    public boolean isAccessible() {
         return accessible;
     }
 

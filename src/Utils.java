@@ -44,7 +44,6 @@ public class Utils {
         }
     }
 
-
     public static String takeName() {
         String input = null;
         System.out.println("Please enter Player name:");
@@ -109,11 +108,9 @@ public class Utils {
             String input = Utils.takeInput();
             if (input.equalsIgnoreCase("Yes")) {
                 return true;
-            }
-            else if (input.equalsIgnoreCase("No")) {
+            } else if (input.equalsIgnoreCase("No")) {
                 return false;
-            }
-            else {
+            } else {
                 System.out.println("Invalid input! Try again! ");
             }
         }
@@ -223,7 +220,7 @@ public class Utils {
         System.out.println("");
     }
 
-    public static void printWeaponHeader()  {
+    public static void printWeaponHeader() {
         System.out.print("        ");
         System.out.println("Name/cost/level/damage/required hands");
     }

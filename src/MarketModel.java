@@ -32,11 +32,9 @@ public class MarketModel {
         ArrayList<ArrayList<String>> allWeapons = Utils.takeAttributeFromFile(filePath);
         for (ArrayList<String> curWeapon : allWeapons) {
             assert curWeapon.size() == 5;
-            this.weapons.add(new Weapon(curWeapon.get(0),
-                    Integer.parseInt(curWeapon.get(1)),
-                    Integer.parseInt(curWeapon.get(2)),
-                    Integer.parseInt(curWeapon.get(3)),
-                    Integer.parseInt(curWeapon.get(4))));
+            this.weapons.add(
+                    new Weapon(curWeapon.get(0), Integer.parseInt(curWeapon.get(1)), Integer.parseInt(curWeapon.get(2)),
+                            Integer.parseInt(curWeapon.get(3)), Integer.parseInt(curWeapon.get(4))));
         }
     }
 
@@ -45,10 +43,8 @@ public class MarketModel {
         ArrayList<ArrayList<String>> allPotions = Utils.takeAttributeFromFile(filePath);
         for (ArrayList<String> curPotion : allPotions) {
             assert curPotion.size() >= 5;
-            this.potions.add(new Potion(curPotion.get(0),
-                    Integer.parseInt(curPotion.get(1)),
-                    Integer.parseInt(curPotion.get(2)),
-                    Integer.parseInt(curPotion.get(3)),
+            this.potions.add(new Potion(curPotion.get(0), Integer.parseInt(curPotion.get(1)),
+                    Integer.parseInt(curPotion.get(2)), Integer.parseInt(curPotion.get(3)),
                     new ArrayList<String>(curPotion.subList(4, curPotion.size()))));
         }
     }
@@ -58,10 +54,8 @@ public class MarketModel {
         ArrayList<ArrayList<String>> allArmory = Utils.takeAttributeFromFile(filePath);
         for (ArrayList<String> curArmory : allArmory) {
             assert curArmory.size() == 4;
-            this.armories.add(new Armory(curArmory.get(0),
-                    Integer.parseInt(curArmory.get(1)),
-                    Integer.parseInt(curArmory.get(2)),
-                    Integer.parseInt(curArmory.get(3))));
+            this.armories.add(new Armory(curArmory.get(0), Integer.parseInt(curArmory.get(1)),
+                    Integer.parseInt(curArmory.get(2)), Integer.parseInt(curArmory.get(3))));
         }
     }
 
@@ -70,10 +64,8 @@ public class MarketModel {
         ArrayList<ArrayList<String>> allFireSpells = Utils.takeAttributeFromFile(filePath);
         for (ArrayList<String> curFireSpell : allFireSpells) {
             assert curFireSpell.size() == 5;
-            this.fireSpells.add(new FireSpell(curFireSpell.get(0),
-                    Integer.parseInt(curFireSpell.get(1)),
-                    Integer.parseInt(curFireSpell.get(2)),
-                    Integer.parseInt(curFireSpell.get(3)),
+            this.fireSpells.add(new FireSpell(curFireSpell.get(0), Integer.parseInt(curFireSpell.get(1)),
+                    Integer.parseInt(curFireSpell.get(2)), Integer.parseInt(curFireSpell.get(3)),
                     Integer.parseInt(curFireSpell.get(4))));
         }
     }
@@ -83,10 +75,8 @@ public class MarketModel {
         ArrayList<ArrayList<String>> allIceSpells = Utils.takeAttributeFromFile(filePath);
         for (ArrayList<String> curIceSpell : allIceSpells) {
             assert curIceSpell.size() == 5;
-            this.iceSpells.add(new IceSpell(curIceSpell.get(0),
-                    Integer.parseInt(curIceSpell.get(1)),
-                    Integer.parseInt(curIceSpell.get(2)),
-                    Integer.parseInt(curIceSpell.get(3)),
+            this.iceSpells.add(new IceSpell(curIceSpell.get(0), Integer.parseInt(curIceSpell.get(1)),
+                    Integer.parseInt(curIceSpell.get(2)), Integer.parseInt(curIceSpell.get(3)),
                     Integer.parseInt(curIceSpell.get(4))));
         }
     }
@@ -97,10 +87,8 @@ public class MarketModel {
         for (ArrayList<String> curLightningSpell : allLightningSpells) {
             assert curLightningSpell.size() == 5;
             this.lightningSpells.add(new LightningSpell(curLightningSpell.get(0),
-                    Integer.parseInt(curLightningSpell.get(1)),
-                    Integer.parseInt(curLightningSpell.get(2)),
-                    Integer.parseInt(curLightningSpell.get(3)),
-                    Integer.parseInt(curLightningSpell.get(4))));
+                    Integer.parseInt(curLightningSpell.get(1)), Integer.parseInt(curLightningSpell.get(2)),
+                    Integer.parseInt(curLightningSpell.get(3)), Integer.parseInt(curLightningSpell.get(4))));
         }
     }
 

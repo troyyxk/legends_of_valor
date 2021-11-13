@@ -5,7 +5,7 @@ import java.util.Scanner;
 // this is the class for the errants before and after running the game
 // it say hello to player, keep track of win records and say goodbye to player
 public class GameRunner {
-    public void run(){
+    public void run() {
         System.out.println("Welcome to Legends: Monsters and Heroes!");
         Scanner in = new Scanner(System.in);
 
@@ -33,14 +33,14 @@ public class GameRunner {
         }
 
         // if all games played result in draw, it will return the following message
-        if (winHistory.size() == 0){
+        if (winHistory.size() == 0) {
             System.out.println("No winning games, all ties.");
         }
 
         // check winner
         ArrayList<Integer> winTeams = new ArrayList<Integer>();
         for (Integer w : winHistory) {
-            if (!winTeams.contains(w)){
+            if (!winTeams.contains(w)) {
                 winTeams.add(w);
             }
         }

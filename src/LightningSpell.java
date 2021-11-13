@@ -1,4 +1,4 @@
-public class LightningSpell extends Spell{
+public class LightningSpell extends Spell {
 
     private String type;
 

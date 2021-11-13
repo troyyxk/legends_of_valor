@@ -1,5 +1,6 @@
 public class Warrior extends HeroModel {
-    public Warrior(String name, int mana, int strength, int agility, int dexterity, int startingMoney, int startingExperience) {
+    public Warrior(String name, int mana, int strength, int agility, int dexterity, int startingMoney,
+            int startingExperience) {
         super(name, mana, strength, agility, dexterity, startingMoney, startingExperience);
     }
 

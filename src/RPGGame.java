@@ -45,7 +45,7 @@ public class RPGGame {
     }
 
     // board is scalable to set to different width and length
-    public void setBoard(){
+    public void setBoard() {
         this.board = new Board(this.boardWidth, this.boardHeight);
     }
 
@@ -103,7 +103,6 @@ public class RPGGame {
     public int getCurPlayerIdx() {
         return this.getCurTeam().getCurPlayerIndex();
     }
-
 
     public void moveTONextPlayer() {
         this.teams.get(this.curTeamIdx).moveToNextPlayer();

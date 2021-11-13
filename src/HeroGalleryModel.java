@@ -21,15 +21,10 @@ public class HeroGalleryModel {
         ArrayList<ArrayList<String>> allWarriors = Utils.takeAttributeFromFile(filePath);
         for (ArrayList<String> curWarrior : allWarriors) {
             assert curWarrior.size() == 7;
-            this.warriors.add(new Warrior(curWarrior.get(0),
-                            Integer.parseInt(curWarrior.get(1)),
-                            Integer.parseInt(curWarrior.get(2)),
-                            Integer.parseInt(curWarrior.get(3)),
-                            Integer.parseInt(curWarrior.get(4)),
-                            Integer.parseInt(curWarrior.get(5)),
-                            Integer.parseInt(curWarrior.get(6))
-                    )
-            );
+            this.warriors.add(new Warrior(curWarrior.get(0), Integer.parseInt(curWarrior.get(1)),
+                    Integer.parseInt(curWarrior.get(2)), Integer.parseInt(curWarrior.get(3)),
+                    Integer.parseInt(curWarrior.get(4)), Integer.parseInt(curWarrior.get(5)),
+                    Integer.parseInt(curWarrior.get(6))));
         }
     }
 
@@ -37,15 +32,10 @@ public class HeroGalleryModel {
         ArrayList<ArrayList<String>> allPaladins = Utils.takeAttributeFromFile(filePath);
         for (ArrayList<String> curPaladin : allPaladins) {
             assert curPaladin.size() == 7;
-            this.paladins.add(new Paladin(curPaladin.get(0),
-                    Integer.parseInt(curPaladin.get(1)),
-                    Integer.parseInt(curPaladin.get(2)),
-                    Integer.parseInt(curPaladin.get(3)),
-                    Integer.parseInt(curPaladin.get(4)),
-                    Integer.parseInt(curPaladin.get(5)),
-                    Integer.parseInt(curPaladin.get(6))
-                    )
-            );
+            this.paladins.add(new Paladin(curPaladin.get(0), Integer.parseInt(curPaladin.get(1)),
+                    Integer.parseInt(curPaladin.get(2)), Integer.parseInt(curPaladin.get(3)),
+                    Integer.parseInt(curPaladin.get(4)), Integer.parseInt(curPaladin.get(5)),
+                    Integer.parseInt(curPaladin.get(6))));
         }
     }
 
@@ -53,15 +43,10 @@ public class HeroGalleryModel {
         ArrayList<ArrayList<String>> allSorcerers = Utils.takeAttributeFromFile(filePath);
         for (ArrayList<String> curSorcerer : allSorcerers) {
             assert curSorcerer.size() == 7;
-            this.sorcerers.add(new Sorcerer(curSorcerer.get(0),
-                            Integer.parseInt(curSorcerer.get(1)),
-                            Integer.parseInt(curSorcerer.get(2)),
-                            Integer.parseInt(curSorcerer.get(3)),
-                            Integer.parseInt(curSorcerer.get(4)),
-                            Integer.parseInt(curSorcerer.get(5)),
-                            Integer.parseInt(curSorcerer.get(6))
-                    )
-            );
+            this.sorcerers.add(new Sorcerer(curSorcerer.get(0), Integer.parseInt(curSorcerer.get(1)),
+                    Integer.parseInt(curSorcerer.get(2)), Integer.parseInt(curSorcerer.get(3)),
+                    Integer.parseInt(curSorcerer.get(4)), Integer.parseInt(curSorcerer.get(5)),
+                    Integer.parseInt(curSorcerer.get(6))));
         }
     }
 

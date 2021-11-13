@@ -1,4 +1,4 @@
-public class FireSpell extends Spell{
+public class FireSpell extends Spell {
 
     private String type;
 

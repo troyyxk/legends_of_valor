@@ -3,7 +3,8 @@ public abstract class HeroModel {
     private String name;
     private int mana, strength, agility, dexterity, startingMoney, startingExperience;
 
-    public HeroModel(String name, int mana, int strength, int agility, int dexterity, int startingMoney, int startingExperience) {
+    public HeroModel(String name, int mana, int strength, int agility, int dexterity, int startingMoney,
+            int startingExperience) {
         this.name = name;
         this.mana = mana;
         this.strength = strength;
@@ -14,7 +15,9 @@ public abstract class HeroModel {
     }
 
     public abstract boolean isPaladin();
+
     public abstract boolean isSorcerer();
+
     public abstract boolean isWarrior();
 
     // getter

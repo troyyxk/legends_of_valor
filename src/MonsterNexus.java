@@ -8,7 +8,7 @@ public class MonsterNexus implements Placeable {
         this.hostile = false;
     }
 
-    public boolean isAccessible(){
+    public boolean isAccessible() {
         return accessible;
     }
 

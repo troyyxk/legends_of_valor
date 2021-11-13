@@ -33,7 +33,6 @@ public class MarketController {
             System.out.println("    [S]: Sell Item");
             System.out.println("    [Q]: Quit Shopping");
 
-
             ArrayList<Character> options = new ArrayList<Character>();
             options.add('I');
             options.add('B');
@@ -60,7 +59,6 @@ public class MarketController {
                 System.out.println("Stop shopping!");
                 return;
             }
-
 
         }
     }
@@ -139,12 +137,10 @@ public class MarketController {
             if (curWeapon.isPurchasable(heroObject)) {
                 System.out.println("Successfully purchased item!");
                 heroObject.purchaseWeapon(curWeapon);
-            }
-            else {
+            } else {
                 System.out.println("Unable to purchase due level or money");
             }
-        }
-        else if (playerInput == 1) {
+        } else if (playerInput == 1) {
             ArrayList<Armory> curProducts;
             curProducts = marketModel.getArmories();
             System.out.println("Which armory do you want to buy? Enter the index");
@@ -153,12 +149,10 @@ public class MarketController {
             if (curArmory.isPurchasable(heroObject)) {
                 System.out.println("Successfully purchased item!");
                 heroObject.purchaseArmory(curArmory);
-            }
-            else {
+            } else {
                 System.out.println("Unable to purchase due level or money");
             }
-        }
-        else if (playerInput == 2) {
+        } else if (playerInput == 2) {
             ArrayList<Potion> curProducts;
             curProducts = marketModel.getPotions();
             System.out.println("Which potion do you want to buy? Enter the index");
@@ -167,12 +161,10 @@ public class MarketController {
             if (curPotion.isPurchasable(heroObject)) {
                 System.out.println("Successfully purchased item!");
                 heroObject.purchasePotion(curPotion);
-            }
-            else {
+            } else {
                 System.out.println("Unable to purchase due level or money");
             }
-        }
-        else if (playerInput == 3) {
+        } else if (playerInput == 3) {
             ArrayList<FireSpell> curProducts;
             curProducts = marketModel.getFireSpells();
             System.out.println("Which fire spell do you want to buy? Enter the index");
@@ -181,12 +173,10 @@ public class MarketController {
             if (curSpell.isPurchasable(heroObject)) {
                 System.out.println("Successfully purchased item!");
                 heroObject.purchaseSpell(curSpell);
-            }
-            else {
+            } else {
                 System.out.println("Unable to purchase due level or money");
             }
-        }
-        else if (playerInput == 4) {
+        } else if (playerInput == 4) {
             ArrayList<IceSpell> curProducts;
             curProducts = marketModel.getIceSpells();
             System.out.println("Which ice spell do you want to buy? Enter the index");
@@ -195,12 +185,10 @@ public class MarketController {
             if (curSpell.isPurchasable(heroObject)) {
                 System.out.println("Successfully purchased item!");
                 heroObject.purchaseSpell(curSpell);
-            }
-            else {
+            } else {
                 System.out.println("Unable to purchase due level or money");
             }
-        }
-        else if (playerInput == 5) {
+        } else if (playerInput == 5) {
             ArrayList<LightningSpell> curProducts;
             curProducts = marketModel.getLightningSpells();
             System.out.println("Which lightning spell do you want to buy? Enter the index");
@@ -209,8 +197,7 @@ public class MarketController {
             if (curSpell.isPurchasable(heroObject)) {
                 System.out.println("Successfully purchased item!");
                 heroObject.purchaseSpell(curSpell);
-            }
-            else {
+            } else {
                 System.out.println("Unable to purchase due level or money");
             }
         }

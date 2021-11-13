@@ -14,16 +14,14 @@ public class HeroObjectView {
         System.out.print("Equipped Weapon: ");
         if (heroObject.getCurEquippedWeapon() == null) {
             System.out.println(" ");
-        }
-        else {
+        } else {
             System.out.println(heroObject.getCurEquippedWeapon().getName());
         }
 
         System.out.print("Equipped Armory: ");
         if (heroObject.getCurEquippedArmory() == null) {
             System.out.println(" ");
-        }
-        else {
+        } else {
             System.out.println(heroObject.getCurEquippedArmory().getName());
         }
 

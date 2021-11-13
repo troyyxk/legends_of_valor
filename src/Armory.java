@@ -24,6 +24,8 @@
  *          
  *                  boolean isPurchasable( HeroObject heroObject):
  * 
+ *                                              return true if "heroObject" 's money and level are qualified for a Purchase
+ * 
  *                  String getName():
  * 
  *                  void setName(String name):

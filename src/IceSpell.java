@@ -1,4 +1,4 @@
-public class IceSpell extends Spell{
+public class IceSpell extends Spell {
 
     private String type;
 

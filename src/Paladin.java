@@ -1,5 +1,6 @@
 public class Paladin extends HeroModel {
-    public Paladin(String name, int mana, int strength, int agility, int dexterity, int startingMoney, int startingExperience) {
+    public Paladin(String name, int mana, int strength, int agility, int dexterity, int startingMoney,
+            int startingExperience) {
         super(name, mana, strength, agility, dexterity, startingMoney, startingExperience);
     }
 

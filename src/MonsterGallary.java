@@ -25,13 +25,9 @@ public class MonsterGallary {
         ArrayList<ArrayList<String>> allDragonAttributes = Utils.takeAttributeFromFile(filePath);
         for (ArrayList<String> curDragon : allDragonAttributes) {
             assert curDragon.size() == 5;
-            this.allDragons.add(new Dragon(curDragon.get(0),
-                            Integer.parseInt(curDragon.get(1)),
-                            Integer.parseInt(curDragon.get(2)),
-                            Integer.parseInt(curDragon.get(3)),
-                            Integer.parseInt(curDragon.get(4))
-                    )
-            );
+            this.allDragons.add(
+                    new Dragon(curDragon.get(0), Integer.parseInt(curDragon.get(1)), Integer.parseInt(curDragon.get(2)),
+                            Integer.parseInt(curDragon.get(3)), Integer.parseInt(curDragon.get(4))));
         }
     }
 
@@ -39,13 +35,9 @@ public class MonsterGallary {
         ArrayList<ArrayList<String>> allExoskeletonAttributes = Utils.takeAttributeFromFile(filePath);
         for (ArrayList<String> curExoskeleton : allExoskeletonAttributes) {
             assert curExoskeleton.size() == 5;
-            this.allExoskeletons.add(new Exoskeleton(curExoskeleton.get(0),
-                            Integer.parseInt(curExoskeleton.get(1)),
-                            Integer.parseInt(curExoskeleton.get(2)),
-                            Integer.parseInt(curExoskeleton.get(3)),
-                            Integer.parseInt(curExoskeleton.get(4))
-                    )
-            );
+            this.allExoskeletons.add(new Exoskeleton(curExoskeleton.get(0), Integer.parseInt(curExoskeleton.get(1)),
+                    Integer.parseInt(curExoskeleton.get(2)), Integer.parseInt(curExoskeleton.get(3)),
+                    Integer.parseInt(curExoskeleton.get(4))));
         }
     }
 
@@ -53,13 +45,9 @@ public class MonsterGallary {
         ArrayList<ArrayList<String>> allSpiritAttributes = Utils.takeAttributeFromFile(filePath);
         for (ArrayList<String> curSpirit : allSpiritAttributes) {
             assert curSpirit.size() == 5;
-            this.allSpirits.add(new Spirit(curSpirit.get(0),
-                            Integer.parseInt(curSpirit.get(1)),
-                            Integer.parseInt(curSpirit.get(2)),
-                            Integer.parseInt(curSpirit.get(3)),
-                            Integer.parseInt(curSpirit.get(4))
-                    )
-            );
+            this.allSpirits.add(
+                    new Spirit(curSpirit.get(0), Integer.parseInt(curSpirit.get(1)), Integer.parseInt(curSpirit.get(2)),
+                            Integer.parseInt(curSpirit.get(3)), Integer.parseInt(curSpirit.get(4))));
         }
     }
 

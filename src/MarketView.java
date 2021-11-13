@@ -173,7 +173,7 @@ public class MarketView {
         System.out.println("");
     }
 
-    private void printWeaponHeader()  {
+    private void printWeaponHeader() {
         System.out.print("        ");
         System.out.println("Name/cost/level/damage/required hands");
     }

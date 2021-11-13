@@ -1,4 +1,54 @@
-public class Weapon implements Purchasable{
+/**
+ * Predefined Interface Purchasable:
+ * 
+ *              abstract boolean isPurchasable(HeroObject heroObject)
+ * 
+ * Class Weapon :
+ * 
+ *  Variables:
+ * 
+ *              String name :
+ *              
+ *              int cost:
+ * 
+ *              int level:
+ * 
+ *              int damage:
+ * 
+ *              int requireHands:
+ * 
+ *  Constructor:
+ *              
+ *              Weapon(tring name, int cost, int level, int damage, int requiredHands):
+ * 
+ *  Methods:
+ * 
+ *              boolean isPurchasable(HeroObject heroObject):
+ * 
+ *                              return true if "heroObject" 's money and level are qualified for a Purchase
+ *        
+ *              String getName():
+ * 
+ *              void setName(String name):
+ * 
+ *              int getCost():
+ * 
+ *              void setCost(int cost):
+ * 
+ *              int getLevel()
+ * 
+ *              void setLevel(int level) :
+ * 
+ *              int getDamage():
+ * 
+ *              void setDamage(int damage): 
+ * 
+ *              int getRequiredHands():
+ * 
+ *              void setRequiredHands(int requiredHands):
+ */
+
+public class Weapon implements Purchasable {
     private String name;
     private int cost;
     private int level;

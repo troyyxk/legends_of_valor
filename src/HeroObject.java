@@ -82,7 +82,6 @@ public class HeroObject {
         this.getStockPotion().remove(potionIdx);
     }
 
-
     public void addMoney(int amount) {
         this.money += amount;
     }
@@ -385,7 +384,7 @@ public class HeroObject {
         Spell curSpell = this.stockSpell.get(playerSpellInput);
         this.stockSpell.remove(playerSpellInput);
         this.mana -= curSpell.getManaCost();
-        return curSpell.getDamage() + (dexterity/10000) * curSpell.getDamage();
+        return curSpell.getDamage() + (dexterity / 10000) * curSpell.getDamage();
     }
 
 }

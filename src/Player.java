@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Player implements Movable{
+public class Player implements Movable {
 
     private String name;
     private char marker;
@@ -78,7 +78,7 @@ public class Player implements Movable{
         return name;
     }
 
-    public char getMarker(){
+    public char getMarker() {
         return this.marker;
     }
 
