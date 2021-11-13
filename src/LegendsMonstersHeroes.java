@@ -60,7 +60,7 @@ public class LegendsMonstersHeroes extends RPGGame {
             System.out.println("    [M]: Show Map");
             System.out.println("    [E]: Equip Weapon");
             System.out.println("    [R]: Equip Armory");
-            System.out.println("    [T]: Use Portion");
+            System.out.println("    [T]: Use Potion");
             if (this.getBoard().getCell(curPlayerPos).isMarket()) {
                 System.out.println("    [P]: Purchase");
             }
@@ -81,6 +81,7 @@ public class LegendsMonstersHeroes extends RPGGame {
             }
 
             char userInput = Utils.takeOptionInput(options);
+            userInput = Character.toUpperCase(userInput);
             if (userInput == 'W') {
                 newPos[0] = curPlayerPos[0] - 1;
                 newPos[1] = curPlayerPos[1];
@@ -142,7 +143,7 @@ public class LegendsMonstersHeroes extends RPGGame {
                     System.out.println("Hero number " + i + ", " + heroObject.getName() + ", Which weapon do you want to equip?");
                     int playerWeaponInput = Utils.takeIntInput(0, heroObject.getStockWeapons().size() - 1);
                     heroObject.putOnWeapon(playerWeaponInput);
-                    System.out.println("Weapon successfully equiped!");
+                    System.out.println("Weapon successfully equipped!");
                     i++;
                 }
                 continue;
@@ -157,7 +158,7 @@ public class LegendsMonstersHeroes extends RPGGame {
                     System.out.println("Which armory do you want to equip?");
                     int playerArmoryInput = Utils.takeIntInput(0, heroObject.getStockArmory().size() - 1);
                     heroObject.putOnArmory(playerArmoryInput);
-                    System.out.println("Armory successfully equiped!");
+                    System.out.println("Armory successfully equipped!");
                 }
                 continue;
             }
