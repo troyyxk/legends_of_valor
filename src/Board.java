@@ -1,6 +1,68 @@
 import java.lang.reflect.Array;
 import java.util.*;
 
+/**
+ * class Board :
+ * 
+ *  Variables:
+ *          
+ *              int width:
+ * 
+ *              int height:
+ * 
+ *              Cell[][] cells:
+ * 
+ *              PlaceableFactory placeableFactory:  a class with only one method
+ *          
+ *                                                  Pleacable getPlaceable(String placeableType):
+ *                                          
+ *                                                              return a cell/Pleacable object speficed by "placeableType"
+ *  Constructor:
+ * 
+ *              Board(int width , int height):
+ * 
+ *  Methods:
+ *              void addMoveable( int [] pos, Movable movable):
+ * 
+ *                                  put player /"movable" at  this.cells[pos[0]][pos[1]]               
+ * 
+ *              int[] getRandomInitialPosition():
+ * 
+ *                                  return random x, y 
+ * 
+ *              void getRandomMap() :
+ * 
+ *                                  set this.cells to different types of cells
+ *              
+ *              boolean containPosition(HashMap<Integer, ArrayList<Integer>> builtCells, int x, int y) :
+ * 
+ *  
+ *              void getBlankCells():
+ *      
+ *                                  set this.cells to the default type of cell
+ * 
+ *              Cell[][] getCells() :
+ * 
+ *                                  return this.cells
+ * 
+ *              void moveMovable(Movable movable, int[] oldPos, int[] newPos) :
+ * 
+ *                                  move player/Movable from "oldPos" to "newPos"
+ * 
+ *              ArrayList<char[]> getBlankBoard():
+ * 
+ *              
+ *              void drawBoard():
+ * 
+ *              int getWidth():
+ * 
+ *                                  return this.width
+ * 
+ *              int getHeight():
+ * 
+ *                                  return this.height
+ */
+
 // this is class for keep width and height of board and provide an empty board
 public class Board {
     private int width, height;
@@ -8,7 +70,7 @@ public class Board {
     private PlaceableFactory placeableFactory;
 
     public Board(int width, int height) {
-        if (width < 0 || height < 0){
+        if (width < 0 || height < 0) {
             throw new Error("In board, width or height cannot be negative!");
         }
         this.width = width;
@@ -56,7 +118,6 @@ public class Board {
             if (!containPosition(nonAccessibleCells, x, y)) {
                 this.cells[y][x].setStaticObject(placeableFactory.getPlaceable("NonAccessibleCell"));
             }
-
             if (!nonAccessibleCells.containsKey(y)) {
                 nonAccessibleCells.put(y, new ArrayList<Integer>());
             }
@@ -110,7 +171,7 @@ public class Board {
 
         // horizontal grid
         StringBuilder pseudoHGrid = new StringBuilder();
-        for (int i = 0; i < this.width; i++){
+        for (int i = 0; i < this.width; i++) {
             pseudoHGrid.append("+--");
         }
         pseudoHGrid.append("+");
@@ -118,7 +179,7 @@ public class Board {
 
         // horizontal content
         StringBuilder pseudoHContent = new StringBuilder();
-        for (int i = 0; i < this.width; i++){
+        for (int i = 0; i < this.width; i++) {
             pseudoHContent.append("|  ");
         }
         pseudoHContent.append("|");
@@ -143,11 +204,11 @@ public class Board {
         for (int i = 0; i < this.getHeight(); i++) {
             for (int j = 0; j < this.width; j++) {
                 curSymbol = this.cells[i][j].getMarker();
-                Array.setChar(curBoard.get(2*i + 1), 3*j + 1, curSymbol);
+                Array.setChar(curBoard.get(2 * i + 1), 3 * j + 1, curSymbol);
             }
         }
 
-        for (char[] line : curBoard){
+        for (char[] line : curBoard) {
             System.out.println(new String(line));
         }
     }

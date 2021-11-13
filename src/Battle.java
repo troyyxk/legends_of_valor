@@ -2,6 +2,59 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
 
+/**
+ * class Battle:
+ * 
+ *  Variables:
+ *          
+ *              ArrayList<HeroObject> heroObjects: consists of n hero objects
+ *  
+ *              ArrayList<MonsterModel> allMonsterModels: a collection of all kinds of Monsters 
+ * 
+ *              HashMap<Integer, ArrayList<MonsterModel>> levelMonsterMap: 
+ * 
+ *              ArrayList<int[]> hpManaBeforeBattle:  stores the HP and Mana of each hero before the Battle into an int[]. for each int [] , int [0] is HP, int [1] is Mana
+ * 
+ *              ArrayList<MonsterObject> monsterObjects: consists of n monster objects
+ *              
+ *  Constructor:
+ * 
+ *              Battle(ArrayList<HeroObject> heroObjects, ArrayList<MonsterModel> allMonsterModels) :
+ * 
+ *  Methods:
+ *              ArrayList<MonsterObject> getMonsterTeam():  
+ *              
+ *                                      for each hero in "this.heroObjects", randomly select a same level monster from "this.levelMonsterMap" . return an ArrayList<MonsterObject> which stores all the selected monsters
+ *              
+ *              HashMap<Integer, ArrayList<MonsterModel>> getLevelMonsterMap():
+ *      
+ *                                      sorted all the monsters from "this.allMonsterModels" in to a map , and return the map <level ,  ArrayList<MonsterModel> > 
+ * 
+ *              boolean heroWin() :
+ *  
+ *                                      iterate through  "this.monsterObjects", return true if all the monsters dead, otherwise false
+ * 
+ *              boolean monsterWin(): 
+ * 
+ *                                      iterate through  "this.heroObjects", return true if all the heroes dead, otherwise false
+ *              
+ *              MonsterObject getTargetMonster(int heroIndex):
+ *                  
+ *                                      return the monster at index "heroIndex" of "this.monsterObjects" if it is not fainted, otherwise iterate through "this.monsterObjects"  and return the first not fainted monster
+ *                                      
+ *              HeroObject getTargetHero(int monsterIndex):
+ * 
+ *                                       return the monster at index "monsterIndex" of "this.heroObjects" if it is not fainted, otherwise iterate through "this.heroObjects"  and return the first not fainted hero
+ *              void start() :
+ *                          
+ *                                       start a battle until one side wins, and for each fainted hero give back 1/2 HP and Mana
+ * 
+ *              boolean startBattle():
+ * 
+ *                                       while loop of a battle between monsters and heroes, return true if player win , otherwise false
+ *                         
+ */
+
 public class Battle {
     private ArrayList<HeroObject> heroObjects;
     private ArrayList<MonsterModel> allMonsterModels;
@@ -125,14 +178,14 @@ public class Battle {
             int i = 0;
             for (HeroObject heroObject : this.heroObjects) {
                 if (!heroObject.isFainted()) {
-                    System.out.println("Hero " + i + ", " + heroObject.getName() + ", receives " + heroObject.getLevel() * 100 + " gold, " + 2 + " experience.");
+                    System.out.println("Hero " + i + ", " + heroObject.getName() + ", receives "
+                            + heroObject.getLevel() * 100 + " gold, " + 2 + " experience.");
                     heroObject.addMoney(heroObject.getLevel() * 100);
                     heroObject.addExp(2);
                 }
                 i++;
             }
-        }
-        else {
+        } else {
             System.out.println("Monsters Win!");
         }
 
@@ -164,8 +217,10 @@ public class Battle {
             }
 
             // exit conditions
-            if (heroWin()) return true;
-            if (monsterWin()) return false;
+            if (heroWin())
+                return true;
+            if (monsterWin())
+                return false;
 
             // print current condition
 
@@ -174,8 +229,10 @@ public class Battle {
             int i = 0;
             for (HeroObject heroObject : this.heroObjects) {
                 // exit conditions
-                if (heroWin()) return true;
-                if (monsterWin()) return false;
+                if (heroWin())
+                    return true;
+                if (monsterWin())
+                    return false;
 
                 // get the target monster
                 targetMonster = getTargetMonster(i);
@@ -237,11 +294,9 @@ public class Battle {
                             int playerSpellInput = Utils.takeIntInput(0, heroObject.getStockSpell().size() - 1);
                             if (heroObject.getMana() < heroObject.getStockSpell().get(playerSpellInput).getManaCost()) {
                                 System.out.println("Not enough mana");
-                            }
-                            else if (Utils.getDodged(targetMonster.getDodgePossiblity())) {
+                            } else if (Utils.getDodged(targetMonster.getDodgePossiblity())) {
                                 System.out.println("Hero dodges successfully!");
-                            }
-                            else {
+                            } else {
                                 System.out.println("Spell successfully used!");
                                 if (heroObject.getStockSpell().get(playerSpellInput).isFireSpell()) {
                                     targetMonster.setDefense((int) (targetMonster.getDefense() * 0.9));
@@ -255,7 +310,8 @@ public class Battle {
                                 }
                                 int damage = heroObject.useSpell(playerSpellInput);
                                 targetMonster.takeHit(damage);
-                                System.out.println("Monster take damage: " + damage + ", remaining HP: " + targetMonster.getHP());
+                                System.out.println(
+                                        "Monster take damage: " + damage + ", remaining HP: " + targetMonster.getHP());
                                 if (targetMonster.isFainted()) {
                                     System.out.println("Monster faints!");
                                 }
@@ -272,7 +328,8 @@ public class Battle {
                             else {
                                 int damage = heroObject.getAttackDamage() - targetMonster.getDamageReduction();
                                 targetMonster.takeHit(damage);
-                                System.out.println("Monster take damage: " + damage + ", remaining HP: " + targetMonster.getHP());
+                                System.out.println(
+                                        "Monster take damage: " + damage + ", remaining HP: " + targetMonster.getHP());
                                 if (targetMonster.isFainted()) {
                                     System.out.println("Monster faints!");
                                 }
@@ -295,8 +352,10 @@ public class Battle {
             int j = 0;
             for (MonsterObject monsterObject : this.monsterObjects) {
                 // exit conditions
-                if (heroWin()) return true;
-                if (monsterWin()) return false;
+                if (heroWin())
+                    return true;
+                if (monsterWin())
+                    return false;
 
                 // get the target hero
                 targetHero = getTargetHero(j);

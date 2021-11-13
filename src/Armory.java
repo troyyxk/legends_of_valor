@@ -1,4 +1,46 @@
-public class Armory implements Purchasable{
+/**
+ * Predefined Interface Purchasable:
+ *  
+ *                  abstract boolean isPurchasable(HeroObject heroObject)
+ * 
+ * 
+ * Armory class 
+ * 
+ *      Variables:
+ * 
+ *                  String name : 
+ *          
+ *                  int cost:
+ * 
+ *                  int requiredLevel:
+ * 
+ *                  int damageReduction:
+ * 
+ *      Constructors:
+ *              
+ *                  Armory(String name, int cost, int requiredLevel, int damageReduction) :
+ *          
+ *      Methods:
+ *          
+ *                  boolean isPurchasable( HeroObject heroObject):
+ * 
+ *                  String getName():
+ * 
+ *                  void setName(String name):
+ * 
+ *                  int getCost():
+ *                              
+ *                  setCost(int cost) :
+ * 
+ *                  int getRequiredLevel():
+ * 
+ *                  void setRequiredLevel(int requiredLevel):
+ * 
+ *                  int getDamageReduction() :
+ * 
+ *                  void setDamageReduction(int damageReduction):
+ */
+public class Armory implements Purchasable {
     String name;
     int cost;
     int requiredLevel;

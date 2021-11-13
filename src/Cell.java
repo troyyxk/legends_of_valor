@@ -1,3 +1,59 @@
+/**
+ * class Cell
+ * 
+ *  Variables:
+ * 
+ *          Placeable staticObject:  HostileEmptyCell / NonAccessibleCell /....
+ * 
+ *          Movable movalbeObject:  Player object
+ * 
+ *          PlaceableFactory placeableFactory: 
+*                                                  Pleacable getPlaceable(String placeableType):
+ *                                          
+ *                                                              return a cell/Pleacable object speficed by "placeableType"
+ * 
+ *  Constructor:
+ * 
+ *          Cell():
+ * 
+ *          Cell(Placeable newObject):
+ * 
+ *  Methods:
+ *  
+ *          boolean isOccupied():
+ * 
+ *          boolean isAccessible():
+ * 
+ *          boolean isAvailable():
+ * 
+ *          boolean isMarket():
+ * 
+ *          boolean isHostile() :
+ * 
+ *          void removeMovable():
+ *                  
+ *                                      set this.movalbeObject   = null
+ * 
+ *          char getMarker():
+ *                      
+ *                                      return the player's marker
+ * 
+ *          Placeable getStaticObject():
+ * 
+ *                                      return a HostileEmptyCell object / NonAccessibleCell object /  ....
+ * 
+ *          void setStaticObject(Placeable newObject):
+ * 
+ *                                      set this.staticObject to "newObject"
+ *          
+ *          Movable getMovableObject():
+ * 
+ * 
+ *          void setMovableObject(Movable movealbeObject):
+ * 
+ *                                      set this.movableObject to "movealbeObject"
+ *     
+ */
 public class Cell {
     private Placeable staticObject;
     private Movable movalbeObject;
