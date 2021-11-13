@@ -195,16 +195,90 @@ public class Board {
         return blankBoard;
     }
 
+    public static final String SANE = "\u001B[0m";
+
+    public static final String HIGH_INTENSITY = "\u001B[1m";
+    public static final String LOW_INTENSITY = "\u001B[2m";
+
+    public static final String ITALIC = "\u001B[3m";
+    public static final String UNDERLINE = "\u001B[4m";
+    public static final String BLINK = "\u001B[5m";
+    public static final String RAPID_BLINK = "\u001B[6m";
+    public static final String REVERSE_VIDEO = "\u001B[7m";
+    public static final String INVISIBLE_TEXT = "\u001B[8m";
+
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
+
+    public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
+    public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
+    public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
+    public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
+    public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
+    public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
+    public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
+    public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
+
     public void drawBoard() {
-        System.out.println("M for market");
-        System.out.println("X for inaccessible");
-        ArrayList<char[]> curBoard = this.getBlankBoard();
+
         char curSymbol;
 
         for (int i = 0; i < this.getHeight(); i++) {
+            System.out.println();
             for (int j = 0; j < this.width; j++) {
-                curSymbol = this.cells[i][j].getMarker();
-                Array.setChar(curBoard.get(2 * i + 1), 3 * j + 1, curSymbol);
+                curCell = this.cells[i][j];
+
+                //isAccessible
+                if (curCell.isAccessible()) {
+                    System.out.print(ANSI_BLACK_BACKGROUND);
+
+                }
+                //isMarket
+                else if (curCell.isMarket()) {
+                    System.out.print(ANSI_YELLOW_BACKGROUND);
+                }
+
+                //isPlain
+                else if (curCell.isPlain()) {
+                    System.out.print(ANSI_WHITE_BACKGROUND);
+                }
+                //isBush
+                else if (curCell.isBush()) {
+                    System.out.print(ANSI_GREEN_BACKGROUND);
+                }
+                //isCave
+                else if (curCell.isCave()) {
+                    System.out.print(ANSI_PURPLE_BACKGROUND);
+                }
+                //isKoulou
+                else if (curCell.isKoulou()) {
+                    System.out.print(ANSI_CYAN_BACKGROUND);
+                }
+
+                //H
+                if (curCell.hasHero()) {
+                    System.out.print("H");
+
+                } else {
+                    System.out.print(" ");
+                }
+
+                //M
+                if (curCell.hasMonster()) {
+                    System.out.print("M");
+
+                } else {
+                    System.out.print(" ");
+                }
+                //reset color
+                System.out.print(ANSI_RESET);
             }
         }
 

@@ -29,20 +29,20 @@ public class Team {
         String teamSize;
         for (;;) {
             teamSize = in.nextLine();
-            if (teamSize.matches("[1-9]")){
+            if (teamSize.matches("[1-9]")) {
                 return Integer.parseInt(teamSize);
             }
             System.out.println("Invalid Input. Try again:");
         }
     }
 
-    public void moveToNextPlayer(){
+    public void moveToNextPlayer() {
         this.curPlayerIndex = (this.curPlayerIndex + 1) % this.numOfPlayers;
     }
 
     // getter and setter
 
-    public int getCurPlayerIndex(){
+    public int getCurPlayerIndex() {
         return this.curPlayerIndex;
     }
 
@@ -53,7 +53,5 @@ public class Team {
     public ArrayList<Player> getPlayers() {
         return players;
     }
-
-
 
 }

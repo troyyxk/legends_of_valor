@@ -7,7 +7,8 @@ public class Potion implements Purchasable {
     int attributeIncrease;
     ArrayList<String> attributeAffected;
 
-    public Potion(String name, int cost, int requiredLevel, int attributeIncrease, ArrayList<String> attributeAffected) {
+    public Potion(String name, int cost, int requiredLevel, int attributeIncrease,
+            ArrayList<String> attributeAffected) {
         this.name = name;
         this.cost = cost;
         this.requiredLevel = requiredLevel;
@@ -84,6 +85,5 @@ public class Potion implements Purchasable {
     public void setAttributeAffected(ArrayList<String> attributeAffected) {
         this.attributeAffected = attributeAffected;
     }
-
 
 }

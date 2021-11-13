@@ -28,7 +28,8 @@ public class LegendsMonstersHeroes extends RPGGame {
             // check if meet monster, escape first time
             if (!firstTime) {
                 if (this.getBoard().getCell(curPos).isHostile() && Utils.getRandomBollean(battleChance)) {
-                    battle = new Battle(this.getCurPlayer().getHeroObjects(), this.monsterGallary.getAllMonsterModels());
+                    battle = new Battle(this.getCurPlayer().getHeroObjects(),
+                            this.monsterGallary.getAllMonsterModels());
                     battle.start();
                 }
             }
@@ -38,12 +39,10 @@ public class LegendsMonstersHeroes extends RPGGame {
             // other options
             takeNormalOptions();
 
-
             this.moveTONextPlayer();
         }
         return -1;
     }
-
 
     public void takeNormalOptions() {
         int[] curPlayerPos = this.getCurPlayer().getPos();
@@ -140,7 +139,8 @@ public class LegendsMonstersHeroes extends RPGGame {
                         continue;
                     }
                     heroObject.getHeroObjectView().printWeapon(heroObject);
-                    System.out.println("Hero number " + i + ", " + heroObject.getName() + ", Which weapon do you want to equip?");
+                    System.out.println(
+                            "Hero number " + i + ", " + heroObject.getName() + ", Which weapon do you want to equip?");
                     int playerWeaponInput = Utils.takeIntInput(0, heroObject.getStockWeapons().size() - 1);
                     heroObject.putOnWeapon(playerWeaponInput);
                     System.out.println("Weapon successfully equipped!");
