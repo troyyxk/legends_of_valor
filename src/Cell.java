@@ -56,14 +56,17 @@
  */
 public class Cell {
     private Placeable staticObject;
-    private Movable movalbeObject;
+    private Movable heroObject, monsterObject;
     private PlaceableFactory placeableFactory;
+    private boolean isExplored;
 
     // empty initializer
     public Cell() {
         this.placeableFactory = new PlaceableFactory();
         this.staticObject = placeableFactory.getPlaceable("HostileEmptyCell");
-        this.movalbeObject = null;
+        this.heroObject = null;
+        this.monsterObject = null;
+        this.isExplored = false;
     }
 
     // initialize with an object
@@ -72,7 +75,7 @@ public class Cell {
     }
 
     public boolean isOccupied() {
-        return !(this.movalbeObject == null);
+        return !(this.heroObject == null);
     }
 
     public boolean isAccessible() {
@@ -84,27 +87,55 @@ public class Cell {
     }
 
     public boolean isMarket() {
-        return this.staticObject.isMarket();
+        return this.staticObject.isNexus();
     }
 
     public boolean isHostile() {
         return this.staticObject.isHostile();
     }
 
+    public boolean isPlain() {
+        return this.staticObject.isPlain();
+    }
+
+    public boolean isBush() {
+        return this.staticObject.isBush();
+    }
+
+    public boolean isCave() {
+        return this.staticObject.isCave();
+    }
+
+    public boolean isKoulou() {
+        return this.staticObject.isKoulou();
+    }
+
     public void removeMovable() {
-        this.movalbeObject = null;
+        this.heroObject = null;
     }
 
     public char getMarker() {
         if (this.isOccupied()) {
-            return this.movalbeObject.getMarker();
+            return this.heroObject.getMarker();
         }
         return this.staticObject.getMarker();
+    }
+
+    public void getVisited() {
+        setExplored(true);
     }
 
     // getters and setters
     public Placeable getStaticObject() {
         return staticObject;
+    }
+
+    public boolean isExplored() {
+        return isExplored;
+    }
+
+    public void setExplored(boolean explored) {
+        isExplored = explored;
     }
 
     public void setStaticObject(Placeable newObject) {
@@ -116,10 +147,10 @@ public class Cell {
     }
 
     public Movable getMovableObject() {
-        return movalbeObject;
+        return heroObject;
     }
 
-    public void setMovableObject(Movable movealbeObject) {
-        this.movalbeObject = movealbeObject;
+    public void setHeroObject(Movable heroObject) {
+        this.heroObject = heroObject;
     }
 }

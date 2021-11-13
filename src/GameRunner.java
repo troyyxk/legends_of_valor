@@ -2,6 +2,16 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Scanner;
 
+/**
+ * Class GameRunner:
+ * 
+ * Methods:
+ * 
+ *          run(): 
+ * 
+ *          
+ * 
+ */
 // this is the class for the errants before and after running the game
 // it say hello to player, keep track of win records and say goodbye to player
 public class GameRunner {
