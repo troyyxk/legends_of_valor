@@ -16,7 +16,27 @@ public class HostileEmptyCell implements Placeable {
         return this.hostile;
     }
 
-    public boolean isMarket() {
+    public boolean isNexus() {
+        return false;
+    }
+
+    @Override
+    public boolean isPlain() {
+        return false;
+    }
+
+    @Override
+    public boolean isBush() {
+        return false;
+    }
+
+    @Override
+    public boolean isCave() {
+        return false;
+    }
+
+    @Override
+    public boolean isKoulou() {
         return false;
     }
 

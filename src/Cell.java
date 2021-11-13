@@ -31,7 +31,7 @@ public class Cell {
     }
 
     public boolean isMarket() {
-        return this.staticObject.isMarket();
+        return this.staticObject.isNexus();
     }
 
     public boolean isHostile() {
