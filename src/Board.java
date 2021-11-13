@@ -56,6 +56,7 @@ public class Board {
             if (!containPosition(nonAccessibleCells, x, y)) {
                 this.cells[y][x].setStaticObject(placeableFactory.getPlaceable("NonAccessibleCell"));
             }
+
             if (!nonAccessibleCells.containsKey(y)) {
                 nonAccessibleCells.put(y, new ArrayList<Integer>());
             }

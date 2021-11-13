@@ -7,11 +7,17 @@ public class PlaceableFactory {
         }
         if(placeableType.equalsIgnoreCase("HostileEmptyCell")){
             return new HostileEmptyCell();
-
-        } else if(placeableType.equalsIgnoreCase("NonAccessibleCell")){
+        }
+        else if(placeableType.equalsIgnoreCase("NonAccessibleCell")){
             return new NonAccessibleCell();
-
-        } else if(placeableType.equalsIgnoreCase("MarketCell")){
+        }
+        else if(placeableType.equalsIgnoreCase("HeroNexus")) {
+            return new HeroNexus();
+        }
+        else if(placeableType.equalsIgnoreCase("MonsterNexus")) {
+            return new MonsterNexus();
+        }
+        else if(placeableType.equalsIgnoreCase("MarketCell")){
             return new MarketCell();
         }
         System.out.println("In PlaceableFactory.java, placeableType has no matches cell type!");
