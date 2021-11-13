@@ -38,6 +38,22 @@ public class Cell {
         return this.staticObject.isHostile();
     }
 
+    public boolean isPlain() {
+        return this.staticObject.isPlain();
+    }
+
+    public boolean isBush() {
+        return this.staticObject.isBush();
+    }
+
+    public boolean isCave() {
+        return this.staticObject.isCave();
+    }
+
+    public boolean isKoulou() {
+        return this.staticObject.isKoulou();
+    }
+
     public void removeMovable() {
         this.heroObject = null;
     }
