@@ -64,6 +64,8 @@ public class LegendsMonstersHeroes extends RPGGame {
             if (this.getBoard().getCell(curPlayerPos).isMarket()) {
                 System.out.println("    [P]: Purchase");
             }
+            System.out.println("    [V]: Teleport");
+            System.out.println("    [B]: Back to Nexus");
 
             ArrayList<Character> options = new ArrayList<Character>();
             options.add('W');
@@ -76,6 +78,8 @@ public class LegendsMonstersHeroes extends RPGGame {
             options.add('E');
             options.add('R');
             options.add('T');
+            options.add('V');
+            options.add('B');
             if (this.getBoard().getCell(curPlayerPos).isMarket()) {
                 options.add('P');
             }
@@ -91,7 +95,7 @@ public class LegendsMonstersHeroes extends RPGGame {
                 }
                 this.getBoard().moveMovable(this.getCurPlayer(), curPlayerPos, newPos);
             }
-            if (userInput == 'A') {
+            if (userInput == 'A') { //move left
                 newPos[0] = curPlayerPos[0];
                 newPos[1] = curPlayerPos[1] - 1;
                 if (curPlayerPos[1] == 0 || !this.getBoard().getCell(newPos).isAvailable()) {
@@ -100,7 +104,7 @@ public class LegendsMonstersHeroes extends RPGGame {
                 }
                 this.getBoard().moveMovable(this.getCurPlayer(), curPlayerPos, newPos);
             }
-            if (userInput == 'S') {
+            if (userInput == 'S') { //move down
                 newPos[0] = curPlayerPos[0] + 1;
                 newPos[1] = curPlayerPos[1];
                 if (curPlayerPos[0] == this.getBoardHeight() - 1 || !this.getBoard().getCell(newPos).isAvailable()) {
@@ -109,7 +113,7 @@ public class LegendsMonstersHeroes extends RPGGame {
                 }
                 this.getBoard().moveMovable(this.getCurPlayer(), curPlayerPos, newPos);
             }
-            if (userInput == 'D') {
+            if (userInput == 'D') { //move right
                 newPos[0] = curPlayerPos[0];
                 newPos[1] = curPlayerPos[1] + 1;
                 if (curPlayerPos[0] == this.getBoardWidth() || !this.getBoard().getCell(newPos).isAvailable()) {
@@ -118,21 +122,21 @@ public class LegendsMonstersHeroes extends RPGGame {
                 }
                 this.getBoard().moveMovable(this.getCurPlayer(), curPlayerPos, newPos);
             }
-            if (userInput == 'Q') {
+            if (userInput == 'Q') { //quit
                 System.out.println("Quit gaming!");
                 continueGaming = false;
             }
-            if (userInput == 'I') {
+            if (userInput == 'I') { //info
                 System.out.println("Show info!");
                 this.getCurPlayer().printInfo();
                 continue;
             }
-            if (userInput == 'M') {
+            if (userInput == 'M') { //map
                 System.out.println("Show map!");
                 this.drawBoard();
                 continue;
             }
-            if (userInput == 'E') {
+            if (userInput == 'E') { //equip weapon
                 int i = 0;
                 for (HeroObject heroObject : this.getCurPlayer().getHeroObjects()) {
                     if (heroObject.getStockWeapons().size() == 0) {
@@ -148,7 +152,7 @@ public class LegendsMonstersHeroes extends RPGGame {
                 }
                 continue;
             }
-            if (userInput == 'R') {
+            if (userInput == 'R') { //equip armor
                 for (HeroObject heroObject : this.getCurPlayer().getHeroObjects()) {
                     if (heroObject.getStockArmory().size() == 0) {
                         System.out.println("No stocked armory.");
@@ -162,7 +166,7 @@ public class LegendsMonstersHeroes extends RPGGame {
                 }
                 continue;
             }
-            if (userInput == 'T') {
+            if (userInput == 'T') { //drink potion
                 for (HeroObject heroObject : this.getCurPlayer().getHeroObjects()) {
                     if (heroObject.getStockPotion().size() == 0) {
                         System.out.println("No stocked potion.");
@@ -176,11 +180,28 @@ public class LegendsMonstersHeroes extends RPGGame {
                 }
                 continue;
             }
-            if (userInput == 'P') {
+            if (userInput == 'P') { //go to market
                 System.out.println("Start Shopping!");
                 for (HeroObject heroObject : this.getCurPlayer().getHeroObjects()) {
                     this.getMarketController().startShopping(heroObject);
                 }
+                continue;
+            }
+            if (userInput == 'V') { //teleport
+                System.out.println("Where do you want to teleport to? (X,Y)");
+                newPos = Utils.takeCoordFromInput(); //gets a coord input that is within board range but not checked for other validities
+                Cell tp = this.getBoard().getCell(newPos);
+                if (!tp.isExplored() || !tp.isAccessible()) { //not a valid tp destination
+                    System.out.println("Invalid access, enter a new option!");
+                    continue;
+                }
+                this.getBoard().moveMovable(this.getCurPlayer(), curPlayerPos, newPos);
+                continue;
+            }
+            if (userInput == 'B') { //back to nexus
+                newPos[0] = 7;
+                newPos[1] = curPlayerPos[1];
+                this.getBoard().moveMovable(this.getCurPlayer(), curPlayerPos, newPos);
             }
             return;
         }
