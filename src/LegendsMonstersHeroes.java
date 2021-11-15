@@ -191,7 +191,7 @@ public class LegendsMonstersHeroes extends RPGGame {
                 System.out.println("Where do you want to teleport to? (X,Y)");
                 newPos = Utils.takeCoordFromInput(); //gets a coord input that is within board range but not checked for other validities
                 Cell tp = this.getBoard().getCell(newPos);
-                if (!tp.isExplored() || !tp.isAccessible()) { //not a valid tp destination
+                if (!tp.isExplored() || !tp.isAccessible() || !tp.isOccupied()) { //not a valid tp destination
                     System.out.println("Invalid access, enter a new option!");
                     continue;
                 }
