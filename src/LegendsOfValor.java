@@ -208,12 +208,14 @@ public class LegendsOfValor extends RPGGame {
                     continue;
                 }
                 this.getBoard().moveMovable(this.getCurPlayer(), curPlayerPos, newPos);
+                System.out.println("Teleport successful!");
                 continue;
             }
             if (userInput == 'B') { //back to nexus
                 newPos[0] = this.getBoardHeight()-1;
                 newPos[1] = curPlayerPos[1];
                 this.getBoard().moveMovable(this.getCurPlayer(), curPlayerPos, newPos);
+                System.out.println("You are back to your Nexus!");
             }
             return;
         }
