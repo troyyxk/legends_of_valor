@@ -7,7 +7,7 @@ public class Cell {
     // empty initializer
     public Cell() {
         this.placeableFactory = new PlaceableFactory();
-        this.staticObject = placeableFactory.getPlaceable("HostileEmptyCell");
+        this.staticObject = placeableFactory.getPlaceable("Plain");
         this.heroObject = null;
         this.monsterObject = null;
         this.isExplored = false;

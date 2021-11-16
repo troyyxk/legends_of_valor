@@ -17,7 +17,7 @@ public class GameRunner {
         while (continuePlay) {
             continuePlay = false;
 
-            LegendsMonstersHeroes LMHgame = new LegendsMonstersHeroes();
+            LegendsOfValor LMHgame = new LegendsOfValor();
             int winner = LMHgame.play();
             assert winner >= -1;
             if (winner != -1) {

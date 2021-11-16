@@ -16,7 +16,7 @@ public class Board {
         this.placeableFactory = new PlaceableFactory();
         this.cells = new Cell[height][width];
         getBlankCells();
-        getRandomMap();
+        // getRandomMap();
     }
 
     public void addHero(int[] pos, Movable hero) {
@@ -45,6 +45,9 @@ public class Board {
         return position;
     }
 
+
+
+    // for legends and monsters
     private void getRandomMap() {
         Random random = new Random();
         double nonAccessiblePercent = 0.2;
@@ -162,5 +165,45 @@ public class Board {
 
     public int getHeight() {
         return this.height;
+    }
+
+    public void getLoVStandardBoard() {
+        // add enermy nexus
+        for (int i = 0; i< this.width; i++) {
+            this.cells[0][i].setStaticObject(placeableFactory.getPlaceable("EnermyNexus"));
+        }
+
+        // add own nexus
+        for (int i = 0; i< this.width; i++) {
+            this.cells[this.height - 1][i].setStaticObject(placeableFactory.getPlaceable("HeroNexus"));
+        }
+
+        // add non accessible
+        for (int i = 0; i< this.height; i++) {
+            this.cells[i][2].setStaticObject(placeableFactory.getPlaceable("NonAccessible"));
+        }
+        for (int i = 0; i< this.height; i++) {
+            this.cells[i][5].setStaticObject(placeableFactory.getPlaceable("NonAccessible"));
+        }
+
+        // add bush
+        this.cells[3][1].setStaticObject(placeableFactory.getPlaceable("Bush"));
+        this.cells[3][3].setStaticObject(placeableFactory.getPlaceable("Bush"));
+        this.cells[4][3].setStaticObject(placeableFactory.getPlaceable("Bush"));
+        this.cells[1][6].setStaticObject(placeableFactory.getPlaceable("Bush"));
+        this.cells[1][7].setStaticObject(placeableFactory.getPlaceable("Bush"));
+        this.cells[4][7].setStaticObject(placeableFactory.getPlaceable("Bush"));
+
+        // add cave
+        this.cells[3][0].setStaticObject(placeableFactory.getPlaceable("Cave"));
+        this.cells[1][3].setStaticObject(placeableFactory.getPlaceable("Cave"));
+
+        // add koulou
+        this.cells[5][0].setStaticObject(placeableFactory.getPlaceable("Koulou"));
+        this.cells[5][1].setStaticObject(placeableFactory.getPlaceable("Koulou"));
+        this.cells[5][3].setStaticObject(placeableFactory.getPlaceable("Koulou"));
+        this.cells[3][4].setStaticObject(placeableFactory.getPlaceable("Koulou"));
+        this.cells[3][6].setStaticObject(placeableFactory.getPlaceable("Koulou"));
+
     }
 }

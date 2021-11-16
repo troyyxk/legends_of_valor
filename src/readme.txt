@@ -103,7 +103,7 @@ IceSpell.java
 - extends Spell
 - a ice spell spell type
 
-LegendsMonstersHeroes.java
+LegendsOfValor.java
 - child class of RPGGame
 - the actual game logic contain that use a lot of logic from RPGGame
 

@@ -13,12 +13,12 @@ public class RPGGame {
         this.boardHeight = 0;
         this.boardWidth = 0;
         this.board = null;
-        this.getBoardHeightWidth();
-        this.setBoard();
+        // this.getBoardHeightWidth();
+        // this.setBoard();
         this.teams = new ArrayList<Team>();
         this.teamCount = 1;
         this.addTeam();
-        initializePlayerPositions();
+        // initializePlayerPositions();
         this.curTeamIdx = 0;
         this.curPlayer = this.teams.get(0).getPlayers().get(0);
         this.marketController = new MarketController();

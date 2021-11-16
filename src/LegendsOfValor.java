@@ -1,17 +1,24 @@
 import java.util.ArrayList;
 
-public class LegendsMonstersHeroes extends RPGGame {
+public class LegendsOfValor extends RPGGame {
 
     private boolean continueGaming;
     private Battle battle;
     private double battleChance;
     private MonsterGallary monsterGallary;
 
-    public LegendsMonstersHeroes() {
+    public LegendsOfValor() {
         super();
         continueGaming = true;
 
         battleChance = 0.2;
+
+        this.setBoardHeight(8);
+        this.setBoardWidth(8);
+        this.setBoard();
+
+        this.getBoard().getLoVStandardBoard();
+        this.getBoard().drawBoard();
 
         this.monsterGallary = new MonsterGallary();
     }
@@ -60,11 +67,12 @@ public class LegendsMonstersHeroes extends RPGGame {
             System.out.println("    [E]: Equip Weapon");
             System.out.println("    [R]: Equip Armory");
             System.out.println("    [T]: Use Potion");
-            if (this.getBoard().getCell(curPlayerPos).isNexus()) {
-                System.out.println("    [P]: Purchase");
-            }
             System.out.println("    [V]: Teleport");
             System.out.println("    [B]: Back to Nexus");
+            if (this.getBoard().getCell(curPlayerPos).isNexus()) {
+                System.out.println("-------In--Nexus---------");
+                System.out.println("    [P]: Purchase");
+            }
 
             ArrayList<Character> options = new ArrayList<Character>();
             options.add('W');
