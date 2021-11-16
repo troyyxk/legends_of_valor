@@ -118,6 +118,38 @@ public class Utils {
             }
         }
     }
+    //check if is number
+    public static boolean isNum(String str) {
+        try {
+            Integer.parseInt(str);
+            return true;
+        } catch(NumberFormatException e){
+            return false;
+        }
+    }
+
+    //check within range
+    public static boolean isValidCoord(int[] coord){
+        return (coord.length == 2 && coord[0] >= 0 && coord[0] < 8 && coord[1] >= 0 && coord[1] < 8);
+    }
+    /**
+     * Take Coordinate from input
+     * assume user treats first row/col as 1 and not 0, shifts later
+     * @return int[] as coordinate
+     */
+
+    public static int[] takeCoordFromInput() {
+        while (true) {
+            String input = Utils.takeInput();
+            if (input.length() == 3 && input.charAt(1) == ',') {
+                if(isNum(input.split(",")[0]) && isNum(input.split(",")[1])){
+                    int[] coord = new int[]{Integer.parseInt(input.split(",")[0])-1,Integer.parseInt(input.split(",")[1])-1};
+                    if(isValidCoord(coord)) return coord;
+                }
+            }
+            System.out.println("Invalid coordinate! Try again! ");
+        }
+    }
 
     // take attributes from file at the specific path
     public static ArrayList<ArrayList<String>> takeAttributeFromFile(String filePath) {
