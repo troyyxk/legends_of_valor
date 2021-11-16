@@ -94,7 +94,6 @@ public class LegendsOfValor extends RPGGame {
             }
 
             char userInput = Utils.takeOptionInput(options);
-            userInput = Character.toUpperCase(userInput);
             if (userInput == 'W') {
                 newPos[0] = curPlayerPos[0] - 1;
                 newPos[1] = curPlayerPos[1];
@@ -208,7 +207,7 @@ public class LegendsOfValor extends RPGGame {
                 continue;
             }
             if (userInput == 'B') { //back to nexus
-                newPos[0] = 7;
+                newPos[0] = this.getBoardHeight()-1;
                 newPos[1] = curPlayerPos[1];
                 this.getBoard().moveMovable(this.getCurPlayer(), curPlayerPos, newPos);
             }

@@ -33,7 +33,7 @@ public class HeroGallaryController {
         else {
             ArrayList<Warrior> curHeroModels;
             curHeroModels = heroGalleryModel.getWarriors();
-            System.out.println("Which hero would you pick in Sorcerer? Enter the index");
+            System.out.println("Which hero would you pick in Warriors? Enter the index");
             int playerInput1 = Utils.takeIntInput(0, curHeroModels.size() - 1);
             return curHeroModels.get(playerInput1);
         }
