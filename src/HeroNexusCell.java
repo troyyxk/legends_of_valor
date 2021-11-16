@@ -1,32 +1,33 @@
-public class HostileEmptyCell implements Placeable {
+public class HeroNexusCell implements Placeable {
     char marker;
     boolean accessible, hostile;
 
-    public HostileEmptyCell() {
-        this.marker = ' ';
-        this.accessible = true;
-        this.hostile = true;
+    public HeroNexusCell() {
+        this.marker = 'H';
+        this.accessible = false;
+        this.hostile = false;
     }
 
-    public boolean isAccessible() {
-        return this.accessible;
+    public boolean isAccessible(){
+        return accessible;
     }
 
     public boolean isHostile() {
-        return this.hostile;
+        return hostile;
     }
 
+    @Override
     public boolean isNexus() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnermyNexus() {
         return false;
     }
 
     @Override
     public boolean isPlain() {
-        return false;
-    }
-
-    @Override
-    public boolean isEnermyNexus() {
         return false;
     }
 
@@ -45,6 +46,10 @@ public class HostileEmptyCell implements Placeable {
         return false;
     }
 
+    public boolean isMarket() {
+        return true;
+    }
+
     // getter and setter
     public char getMarker() {
         return this.marker;
@@ -53,5 +58,4 @@ public class HostileEmptyCell implements Placeable {
     public void setMarker(char newMarker) {
         this.marker = newMarker;
     }
-
 }

@@ -95,7 +95,7 @@ HeroObject.java
 HeroObjectView.java
 - the view for HeroObject
 
-HostileEmptyCell.java
+PlainCell.java
 - implements Placeable
 - the wild part for the map that the player can meet monster
 

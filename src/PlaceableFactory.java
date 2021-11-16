@@ -5,20 +5,26 @@ public class PlaceableFactory {
             System.out.println("In PlaceableFactory.java, placeableType should not be null!");
             System.exit(1);
         }
-        if(placeableType.equalsIgnoreCase("HostileEmptyCell")){
-            return new HostileEmptyCell();
+        if(placeableType.equalsIgnoreCase("Plain")){
+            return new PlainCell();
         }
-        else if(placeableType.equalsIgnoreCase("NonAccessibleCell")){
+        else if(placeableType.equalsIgnoreCase("NonAccessible")){
             return new NonAccessibleCell();
         }
         else if(placeableType.equalsIgnoreCase("HeroNexus")) {
-            return new HeroNexus();
+            return new HeroNexusCell();
         }
-        else if(placeableType.equalsIgnoreCase("MonsterNexus")) {
-            return new MonsterNexus();
+        else if(placeableType.equalsIgnoreCase("EnermyNexus")) {
+            return new EnermyNexusCell();
         }
-        else if(placeableType.equalsIgnoreCase("MarketCell")){
-            return new MarketCell();
+        else if(placeableType.equalsIgnoreCase("Bush")) {
+            return new BushCell();
+        }
+        else if(placeableType.equalsIgnoreCase("Cave")) {
+            return new CaveCell();
+        }
+        else if(placeableType.equalsIgnoreCase("Koulou")) {
+            return new KoulouCell();
         }
         System.out.println("In PlaceableFactory.java, placeableType has no matches cell type!");
         System.exit(1);

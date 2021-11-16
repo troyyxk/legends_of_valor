@@ -1,10 +1,10 @@
-public class HeroNexus implements Placeable {
+public class CaveCell implements Placeable {
     char marker;
     boolean accessible, hostile;
 
-    public HeroNexus() {
-        this.marker = 'H';
-        this.accessible = false;
+    public CaveCell() {
+        this.marker = 'C';
+        this.accessible = true;
         this.hostile = false;
     }
 
@@ -18,7 +18,7 @@ public class HeroNexus implements Placeable {
 
     @Override
     public boolean isNexus() {
-        return true;
+        return false;
     }
 
     @Override
@@ -38,7 +38,7 @@ public class HeroNexus implements Placeable {
 
     @Override
     public boolean isCave() {
-        return false;
+        return true;
     }
 
     @Override
@@ -46,9 +46,6 @@ public class HeroNexus implements Placeable {
         return false;
     }
 
-    public boolean isMarket() {
-        return true;
-    }
 
     // getter and setter
     public char getMarker() {

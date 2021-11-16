@@ -1,10 +1,10 @@
-public class MonsterNexus implements Placeable {
+public class KoulouCell implements Placeable {
     char marker;
     boolean accessible, hostile;
 
-    public MonsterNexus() {
-        this.marker = 'H';
-        this.accessible = false;
+    public KoulouCell() {
+        this.marker = 'K';
+        this.accessible = true;
         this.hostile = false;
     }
 
@@ -18,7 +18,7 @@ public class MonsterNexus implements Placeable {
 
     @Override
     public boolean isNexus() {
-        return true;
+        return false;
     }
 
     @Override
@@ -43,12 +43,9 @@ public class MonsterNexus implements Placeable {
 
     @Override
     public boolean isKoulou() {
-        return false;
-    }
-
-    public boolean isMarket() {
         return true;
     }
+
 
     // getter and setter
     public char getMarker() {
