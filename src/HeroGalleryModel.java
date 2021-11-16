@@ -1,5 +1,15 @@
 import java.util.ArrayList;
 
+/**
+ * class HeroGalleryModel:
+ * 
+ *  Variables:
+ *      ArrayList<Paladin> paladins:
+ * 
+ *      ArrayList<Sorcerer> sorcerers:
+ * 
+ *      ArrayList<Warrior> warriors:
+ */
 public class HeroGalleryModel {
     private ArrayList<Paladin> paladins;
     private ArrayList<Sorcerer> sorcerers;

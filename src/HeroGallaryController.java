@@ -1,5 +1,15 @@
 import java.util.ArrayList;
 
+/**
+ * Class HeroGallaryController
+ * 
+ * Variables:
+ *      HeroGalleryView heroGalleryView:
+ * 
+ *      HeroGalleryModel heroGalleryModel:
+ * 
+ * 
+ */
 public class HeroGallaryController {
     private HeroGalleryView heroGalleryView;
     private HeroGalleryModel heroGalleryModel;
