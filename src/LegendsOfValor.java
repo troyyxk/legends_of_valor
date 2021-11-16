@@ -6,6 +6,7 @@ public class LegendsOfValor extends RPGGame {
     private Battle battle;
     private double battleChance;
     private MonsterGallary monsterGallary;
+    private final int monster_spawn_round = 8;
 
     public LegendsOfValor() {
         super();
@@ -25,6 +26,7 @@ public class LegendsOfValor extends RPGGame {
 
     public int play() {
         boolean firstTime = true;
+        int round_number = 0;
         while (continueGaming) {
             System.out.println("It's Team " + this.getCurTeamIdx() + " Player " + this.getCurPlayerIdx() + ", "
                     + this.getCurPlayer().getName() + "'s turn!");
