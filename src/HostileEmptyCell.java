@@ -26,6 +26,11 @@ public class HostileEmptyCell implements Placeable {
     }
 
     @Override
+    public boolean isEnermyNexus() {
+        return false;
+    }
+
+    @Override
     public boolean isBush() {
         return false;
     }

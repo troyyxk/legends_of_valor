@@ -1,8 +1,8 @@
-public class MonsterNexus implements Placeable {
+public class EnermyNexusCell implements Placeable {
     char marker;
     boolean accessible, hostile;
 
-    public MonsterNexus() {
+    public EnermyNexusCell() {
         this.marker = 'H';
         this.accessible = false;
         this.hostile = false;
@@ -23,7 +23,7 @@ public class MonsterNexus implements Placeable {
 
     @Override
     public boolean isEnermyNexus() {
-        return false;
+        return true;
     }
 
     @Override

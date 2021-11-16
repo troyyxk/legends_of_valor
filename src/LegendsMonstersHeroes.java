@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class LegendsMonstersHeroes extends RPGGame {
 
@@ -61,7 +60,7 @@ public class LegendsMonstersHeroes extends RPGGame {
             System.out.println("    [E]: Equip Weapon");
             System.out.println("    [R]: Equip Armory");
             System.out.println("    [T]: Use Potion");
-            if (this.getBoard().getCell(curPlayerPos).isMarket()) {
+            if (this.getBoard().getCell(curPlayerPos).isNexus()) {
                 System.out.println("    [P]: Purchase");
             }
             System.out.println("    [V]: Teleport");
@@ -80,7 +79,7 @@ public class LegendsMonstersHeroes extends RPGGame {
             options.add('T');
             options.add('V');
             options.add('B');
-            if (this.getBoard().getCell(curPlayerPos).isMarket()) {
+            if (this.getBoard().getCell(curPlayerPos).isNexus()) {
                 options.add('P');
             }
 

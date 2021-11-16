@@ -30,7 +30,7 @@ public class Cell {
         return (this.isAccessible() && !this.isOccupied());
     }
 
-    public boolean isMarket() {
+    public boolean isNexus() {
         return this.staticObject.isNexus();
     }
 

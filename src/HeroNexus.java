@@ -22,6 +22,11 @@ public class HeroNexus implements Placeable {
     }
 
     @Override
+    public boolean isEnermyNexus() {
+        return false;
+    }
+
+    @Override
     public boolean isPlain() {
         return false;
     }
