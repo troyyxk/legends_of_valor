@@ -156,22 +156,202 @@ public class Board {
         return blankBoard;
     }
 
+    public static final String SANE = "\u001B[0m";
+
+    public static final String HIGH_INTENSITY = "\u001B[1m";
+    public static final String LOW_INTENSITY = "\u001B[2m";
+
+    public static final String ITALIC = "\u001B[3m";
+    public static final String UNDERLINE = "\u001B[4m";
+    public static final String BLINK = "\u001B[5m";
+    public static final String RAPID_BLINK = "\u001B[6m";
+    public static final String REVERSE_VIDEO = "\u001B[7m";
+    public static final String INVISIBLE_TEXT = "\u001B[8m";
+
+    public static final String ANSI_RESET = "\u001B[0m";
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
+
+    public static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
+    public static final String ANSI_RED_BACKGROUND = "\u001B[41m";
+    public static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
+    public static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
+    public static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
+    public static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
+    public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
+    public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
+
     public void drawBoard() {
-        System.out.println("M for market");
-        System.out.println("X for inaccessible");
-        ArrayList<char[]> curBoard = this.getBlankBoard();
+
         char curSymbol;
 
         for (int i = 0; i < this.getHeight(); i++) {
+
+            /**
+             *      layer 1 :    N - N - N
+             *      layer 2 :    N H | M N
+             *      layer 3 :    N - N - N
+             */
+            String layer_1and3_Str = "";
+            String layer_2_Str = "";
             for (int j = 0; j < this.width; j++) {
-                curSymbol = this.cells[i][j].getMarker();
-                Array.setChar(curBoard.get(2*i + 1), 3*j + 1, curSymbol);
+                Cell curCell = this.cells[i][j];
+
+                //isAccessible
+                if (!curCell.isAccessible()) {
+
+                    layer_1and3_Str = layer_1and3_Str + ANSI_WHITE + ANSI_BLACK_BACKGROUND + " I - I - I " + ANSI_RESET;
+                    layer_2_Str = layer_2_Str + ANSI_WHITE + ANSI_BLACK_BACKGROUND;
+
+                    //H
+
+                    layer_2_Str = layer_2_Str + " I   ";//" N H | M N"
+
+                    //M
+                    layer_2_Str = layer_2_Str + "    I " + ANSI_RESET;//" N H | M N"
+
+                }
+                //isMarket
+                else if (curCell.isNexus()) {
+
+                    layer_1and3_Str = layer_1and3_Str + LOW_INTENSITY + ANSI_BLACK + ANSI_YELLOW_BACKGROUND
+                            + " N - N - N " + ANSI_RESET;
+                    layer_2_Str = layer_2_Str + ANSI_BLACK + LOW_INTENSITY + ANSI_YELLOW_BACKGROUND;
+
+                    //H
+                    if (curCell.hasHero()) {
+
+                        layer_2_Str = layer_2_Str + " N"  + " H"+curCell.getHeroMarker()+" ";//" N H | M N"
+
+                    } else {
+                        layer_2_Str = layer_2_Str + " N" + "    ";//" N H | M N"
+                    }
+
+                    //M
+                    if (curCell.hasMonster()) {
+
+                        layer_2_Str = layer_2_Str  + "M" +curCell.getMonsterMarker() + ANSI_BLACK + " N " + ANSI_RESET;//" N H | M N"
+
+                    } else {
+                        layer_2_Str = layer_2_Str + "  " + ANSI_BLACK + " N " + ANSI_RESET;//" N H | M N"
+                    }
+                }
+
+                //isPlain
+                else if (curCell.isPlain()) {
+
+                    layer_1and3_Str = layer_1and3_Str + LOW_INTENSITY + ANSI_BLACK + ANSI_WHITE_BACKGROUND
+                            + " P - P - P " + ANSI_RESET;
+                    layer_2_Str = layer_2_Str + LOW_INTENSITY + ANSI_BLACK + ANSI_WHITE_BACKGROUND;
+
+                    //H
+                    if (curCell.hasHero()) {
+
+                        layer_2_Str = layer_2_Str + " P"  + " H"+curCell.getHeroMarker() +" ";//" N H | M N"
+
+                    } else {
+                        layer_2_Str = layer_2_Str + " P" + "    ";//" N H | M N"
+                    }
+
+                    //M
+                    if (curCell.hasMonster()) {
+
+                        layer_2_Str = layer_2_Str + "M" +curCell.getMonsterMarker() + ANSI_BLACK + " P " + ANSI_RESET;//" N H | M N"
+
+                    } else {
+                        layer_2_Str = layer_2_Str + "  " + ANSI_BLACK + " P " + ANSI_RESET;//" N H | M N"
+                    }
+                }
+                //isBush
+                else if (curCell.isBush()) {
+
+                    layer_1and3_Str = layer_1and3_Str + LOW_INTENSITY + ANSI_BLACK + ANSI_GREEN_BACKGROUND
+                            + " B - B - B " + ANSI_RESET;
+                    layer_2_Str = layer_2_Str + ANSI_BLACK + LOW_INTENSITY + ANSI_GREEN_BACKGROUND;
+
+                    //H
+                    if (curCell.hasHero()) {
+
+                        layer_2_Str = layer_2_Str + " B"  + " H"+curCell.getHeroMarker()+" ";//" N H | M N"
+
+                    } else {
+                        layer_2_Str = layer_2_Str + " B" + "    ";//" N H | M N"
+                    }
+
+                    //M
+                    if (curCell.hasMonster()) {
+
+                        layer_2_Str = layer_2_Str  + "M"  +curCell.getMonsterMarker()+ ANSI_BLACK + " B " + ANSI_RESET;//" N H | M N"
+
+                    } else {
+                        layer_2_Str = layer_2_Str + "  " + ANSI_BLACK + " B " + ANSI_RESET;//" N H | M N"
+                    }
+                }
+                //isCave
+                else if (curCell.isCave()) {
+
+                    layer_1and3_Str = layer_1and3_Str + LOW_INTENSITY + ANSI_BLACK + ANSI_CYAN_BACKGROUND
+                            + " C - C - C " + ANSI_RESET;
+                    layer_2_Str = layer_2_Str + ANSI_BLACK + LOW_INTENSITY + ANSI_CYAN_BACKGROUND;
+
+                    //H
+                    if (curCell.hasHero()) {
+
+                        layer_2_Str = layer_2_Str + " C"  + " H"+curCell.getHeroMarker()+" ";//" N H | M N"
+
+                    } else {
+                        layer_2_Str = layer_2_Str + " C" + "    ";//" N H | M N"
+                    }
+
+                    //M
+                    if (curCell.hasMonster()) {
+
+                        layer_2_Str = layer_2_Str + "M" +curCell.getMonsterMarker() + ANSI_BLACK + " C " + ANSI_RESET;//" N H | M N"
+
+                    } else {
+                        layer_2_Str = layer_2_Str + "  " + ANSI_BLACK + " C " + ANSI_RESET;//" N H | M N"
+                    }
+                }
+                //isKoulou
+                else if (curCell.isKoulou()) {
+
+                    layer_1and3_Str = layer_1and3_Str + LOW_INTENSITY + ANSI_BLACK + ANSI_PURPLE_BACKGROUND
+                            + " K - K - K " + ANSI_RESET;
+                    layer_2_Str = layer_2_Str + ANSI_BLACK + LOW_INTENSITY + ANSI_PURPLE_BACKGROUND;
+
+                    //H
+                    if (curCell.hasHero()) {
+
+                        layer_2_Str = layer_2_Str + " K"  + " H"+curCell.getHeroMarker()+" ";//" N H | M N"
+
+                    } else {
+                        layer_2_Str = layer_2_Str + " K" + "    ";//" N H | M N"
+                    }
+
+                    //M
+                    if (curCell.hasMonster()) {
+
+                        layer_2_Str = layer_2_Str + "M" +curCell.getMonsterMarker()+ ANSI_BLACK + " K " + ANSI_RESET;//" N H | M N"
+
+                    } else {
+                        layer_2_Str = layer_2_Str + "  " + ANSI_BLACK + " K " + ANSI_RESET;//" N H | M N"
+                    }
+                }
+
             }
+            //print
+            System.out.println(layer_1and3_Str); // layer 1
+            System.out.println(layer_2_Str); //layer 2
+            System.out.println(layer_1and3_Str);//  layer 3
+
         }
 
-        for (char[] line : curBoard){
-            System.out.println(new String(line));
-        }
     }
 
     public int getWidth() {

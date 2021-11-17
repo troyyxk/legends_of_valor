@@ -22,6 +22,14 @@ public class Cell {
         return !(this.heroObject == null);
     }
 
+    public boolean hasHero()  {
+        return !(this.heroObject == null);
+    }
+    public boolean hasMonster() {
+        return !(this.monsterObject == null);
+    }
+
+
     public boolean isAccessible() {
         return this.staticObject.isAccessible();
     }
@@ -61,6 +69,22 @@ public class Cell {
     public void removeMonster() {
         this.monsterObject = null;
     }
+
+    public char getHeroMarker() {
+        if (this.heroObject != null) {
+            return this.heroObject.getMarker();
+        }
+        return ' ';
+    }
+
+    public char getMonsterMarker() {
+        if (this.monsterObject != null) {
+            return this.monsterObject.getMarker();
+        }
+        return ' ';
+    }
+
+
 
     public char getMarker() {
         if (this.heroObject != null) {
