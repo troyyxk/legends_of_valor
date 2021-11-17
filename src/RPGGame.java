@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class RPGGame {
 
     private Board board;
-    private int boardHeight, boardWidth, teamCount, curTeamIdx;
+    private int boardHeight, boardWidth, teamCount, curTeamIdx, curPlayerIndex;
     private ArrayList<Team> teams;
     private Player curPlayer;
     private MarketController marketController;
@@ -20,7 +20,10 @@ public class RPGGame {
         this.addTeam();
         // initializePlayerPositions();
         this.curTeamIdx = 0;
-        this.curPlayer = this.teams.get(0).getPlayers().get(0);
+
+        this.curPlayerIndex = 0;
+
+        this.curPlayer = this.teams.get(0).getPlayers().get(curPlayerIndex);
         this.marketController = new MarketController();
     }
 
@@ -81,7 +84,7 @@ public class RPGGame {
     }
 
     public Player getCurPlayer() {
-        return curPlayer;
+        return teams.get(curTeamIdx).getPlayerAtIndex(curPlayerIndex);
     }
 
     public void setBoardHeight(int boardHeight) {
@@ -116,6 +119,14 @@ public class RPGGame {
 
     public MarketController getMarketController() {
         return marketController;
+    }
+
+    public int getCurPlayerIndex() {
+        return curPlayerIndex;
+    }
+
+    public void setCurPlayerIndex(int curPlayerIndex) {
+        this.curPlayerIndex = curPlayerIndex;
     }
 
 }

@@ -4,15 +4,12 @@ public class LegendsOfValor extends RPGGame {
 
     private boolean continueGaming;
     private Battle battle;
-    private double battleChance;
     private MonsterGallary monsterGallary;
     private final int monster_spawn_round = 8;
 
     public LegendsOfValor() {
         super();
         continueGaming = true;
-
-        battleChance = 0.2;
 
         this.setBoardHeight(8);
         this.setBoardWidth(8);
@@ -22,32 +19,41 @@ public class LegendsOfValor extends RPGGame {
         this.getBoard().drawBoard();
 
         this.monsterGallary = new MonsterGallary();
+        initializePlayerPositions();
+    }
+
+    private void initializePlayerPositions() {
+        // first hero
+        this.getCurTeam().getPlayerAtIndex(0).setPos(new int[]{7, 0});
+        this.getBoard().addHero(new int[]{7, 0}, this.getCurTeam().getPlayerAtIndex(0));
+
+        // second hero
+        this.getCurTeam().getPlayerAtIndex(1).setPos(new int[]{7, 3});
+        this.getBoard().addHero(new int[]{7, 3}, this.getCurTeam().getPlayerAtIndex(1));
+
+        // third hero
+        this.getCurTeam().getPlayerAtIndex(2).setPos(new int[]{7, 6});
+        this.getBoard().addHero(new int[]{7, 6}, this.getCurTeam().getPlayerAtIndex(2));
     }
 
     public int play() {
         boolean firstTime = true;
         int round_number = 0;
         while (continueGaming) {
-            System.out.println("It's Team " + this.getCurTeamIdx() + " Player " + this.getCurPlayerIdx() + ", "
-                    + this.getCurPlayer().getName() + "'s turn!");
-            this.drawBoard();
+            // hero's turn
+            for (int i = 0; i < this.getCurTeam().getPlayerCount(); i++) {
+                this.setCurPlayerIndex(i);
+                System.out.println("It's Hero" + i + "'s turn!");
+                this.drawBoard();
 
-            int[] curPos = this.getCurPlayer().getPos();
-            // check if meet monster, escape first time
-            if (!firstTime) {
-                if (this.getBoard().getCell(curPos).isHostile() && Utils.getRandomBollean(battleChance)) {
-                    battle = new Battle(this.getCurPlayer().getHeroObjects(), this.monsterGallary.getAllMonsterModels());
-                    battle.start();
-                }
+                // other options
+                takeNormalOptions();
+
             }
-            firstTime = false;
-            // check if is market
 
-            // other options
-            takeNormalOptions();
+            // monster's turn
 
-
-            this.moveTONextPlayer();
+            round_number++;
         }
         return -1;
     }

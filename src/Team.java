@@ -7,7 +7,7 @@ public class Team {
 
     public Team(int teamIdx) {
         // this.numOfPlayers = getNumOfPlayers();
-        this.numOfPlayers = 1;
+        this.numOfPlayers = 3;
         this.teamIdx = teamIdx;
 
         this.players = new ArrayList<Player>();
@@ -18,8 +18,8 @@ public class Team {
 
     private void addPlayer() {
         for (int i = 0; i < this.numOfPlayers; i++) {
-            System.out.println("Team: " + teamIdx + " Player: " + i);
-            this.players.add(new Player());
+            System.out.println("Hero " + i + " selection!");
+            this.players.add(new Player(i));
         }
     }
 
@@ -52,6 +52,14 @@ public class Team {
 
     public ArrayList<Player> getPlayers() {
         return players;
+    }
+
+    public int getPlayerCount() {
+        return this.getPlayers().size();
+    }
+
+    public Player getPlayerAtIndex(int index) {
+        return this.players.get(index);
     }
 
 

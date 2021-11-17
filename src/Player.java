@@ -8,14 +8,16 @@ public class Player implements Movable{
     private int heroLevelCap, heroCount;
     private HeroGallaryController heroGallaryController;
     private int posX, posY;
+    private int id;
 
-    public Player() {
-        this.name = Utils.takeName();
-        this.marker = Utils.takeMarker();
+    public Player(int id) {
+        // this.name = Utils.takeName();
+        this.name = "";
+        this.id = id;
+        this.marker = (char) (id + '0');
         this.heroLevelCap = 10;
         this.heroObjects = new ArrayList<HeroObject>();
-        System.out.println("Enter number of hero you want to play: 1-3 inclusive:");
-        this.heroCount = Utils.takeIntInput(1, 3);
+        this.heroCount = 1;
         this.heroGallaryController = new HeroGallaryController();
         addHeroObjects();
     }
