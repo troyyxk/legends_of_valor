@@ -23,6 +23,15 @@ public class Board {
         this.cells[pos[0]][pos[1]].setHeroObject(hero);
     }
 
+    public boolean posHasNoMonster(int[] pos) {
+        return this.cells[pos[0]][pos[1]].getMonsterObject() == null;
+    }
+
+    public void addMonsterObjectToPos(Movable monsterObject, int[] pos) {
+        this.cells[pos[0]][pos[1]].setMonsterObject(monsterObject);
+        monsterObject.setPos(pos);
+    }
+
     public void addMonster(int[] pos, Movable monster) {
         this.cells[pos[0]][pos[1]].setHeroObject(monster);
     }
@@ -106,9 +115,15 @@ public class Board {
         return this.cells[pos[0]][pos[1]];
     }
 
-    public void moveMovable(Movable movable, int[] oldPos, int[] newPos) {
-        this.cells[oldPos[0]][oldPos[1]].removeMovable();
+    public void moveHero(Movable movable, int[] oldPos, int[] newPos) {
+        this.cells[oldPos[0]][oldPos[1]].removeHero();
         this.cells[newPos[0]][newPos[1]].setHeroObject(movable);
+        movable.setPos(newPos);
+    }
+
+    public void moveMonster(Movable movable, int[] oldPos, int[] newPos) {
+        this.cells[oldPos[0]][oldPos[1]].removeMonster();
+        this.cells[newPos[0]][newPos[1]].setMonsterObject(movable);
         movable.setPos(newPos);
     }
 

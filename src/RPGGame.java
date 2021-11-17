@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class RPGGame {
 
@@ -7,6 +8,11 @@ public class RPGGame {
     private ArrayList<Team> teams;
     private Player curPlayer;
     private MarketController marketController;
+
+    private MonsterGallary monsterGallary;
+    private ArrayList<MonsterModel> allMonsterModels;
+    private HashMap<Integer, ArrayList<MonsterModel>> levelMonsterMap;
+    private ArrayList<MonsterObject> monsterObjects;
 
     public RPGGame() {
         // initialize boardHeight and boardWidth, should set by child class
@@ -25,6 +31,12 @@ public class RPGGame {
 
         this.curPlayer = this.teams.get(0).getPlayers().get(curPlayerIndex);
         this.marketController = new MarketController();
+
+        this.monsterGallary = new MonsterGallary();
+        this.allMonsterModels = this.monsterGallary.getAllMonsterModels();
+        this.levelMonsterMap = initializeLevelMonsterMap();
+
+        this.monsterObjects = new ArrayList<MonsterObject>();
     }
 
     private void initializePlayerPositions() {
@@ -60,6 +72,10 @@ public class RPGGame {
         for (int i = 0; i < this.teamCount; i++) {
             this.teams.add(new Team(i));
         }
+    }
+
+    public void addMonsterObject(MonsterObject monsterObject) {
+        this.monsterObjects.add(monsterObject);
     }
 
     // getter and setter
@@ -129,4 +145,42 @@ public class RPGGame {
         this.curPlayerIndex = curPlayerIndex;
     }
 
+    private HashMap<Integer, ArrayList<MonsterModel>> initializeLevelMonsterMap() {
+        HashMap<Integer, ArrayList<MonsterModel>> curLevelMonsterMap = new HashMap<Integer, ArrayList<MonsterModel>>();
+
+        int curLevel;
+        for (MonsterModel monsterModel : this.allMonsterModels) {
+            curLevel = monsterModel.getLevel();
+            if (!curLevelMonsterMap.containsKey(curLevel)) {
+                curLevelMonsterMap.put(curLevel, new ArrayList<MonsterModel>());
+            }
+            curLevelMonsterMap.get(curLevel).add(monsterModel);
+        }
+
+        return curLevelMonsterMap;
+    }
+
+    public ArrayList<MonsterModel> getAllMonsterModels() {
+        return allMonsterModels;
+    }
+
+    public void setAllMonsterModels(ArrayList<MonsterModel> allMonsterModels) {
+        this.allMonsterModels = allMonsterModels;
+    }
+
+    public HashMap<Integer, ArrayList<MonsterModel>> getLevelMonsterMap() {
+        return levelMonsterMap;
+    }
+
+    public void setLevelMonsterMap(HashMap<Integer, ArrayList<MonsterModel>> levelMonsterMap) {
+        this.levelMonsterMap = levelMonsterMap;
+    }
+
+    public ArrayList<MonsterObject> getMonsterObjects() {
+        return monsterObjects;
+    }
+
+    public void setMonsterObjects(ArrayList<MonsterObject> monsterObjects) {
+        this.monsterObjects = monsterObjects;
+    }
 }

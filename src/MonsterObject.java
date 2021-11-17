@@ -1,10 +1,15 @@
-public class MonsterObject {
+public class MonsterObject implements Movable {
     private String name;
     private int level, damage, defense, dodgeChance;
     private MonsterModel monsterModel;
     private int hp;
+    private int posX, posY;
+    private int id;
+    private char marker;
 
-    public MonsterObject(MonsterModel monsterModel) {
+    public MonsterObject(int id, MonsterModel monsterModel) {
+        this.id = id;
+        this.marker = (char) (id + '0');
         this.monsterModel = monsterModel;
         this.name = monsterModel.getName();
         this.level = monsterModel.getLevel();
@@ -40,7 +45,30 @@ public class MonsterObject {
         System.out.println("----------------------");
     }
 
+    public void setPos(int posY, int posX) {
+        this.posY = posY;
+        this.posX = posX;
+    }
+
+    public void setPos(int[] pos) {
+        this.posY = pos[0];
+        this.posX = pos[1];
+    }
+
+    public int[] getPos() {
+        int[] pos = new int[2];
+        pos[0] = this.posY;
+        pos[1] = this.posX;
+        return pos;
+    }
+
     // getter and setter
+
+
+    @Override
+    public char getMarker() {
+        return marker;
+    }
 
     public int getHP() {
         return this.hp;

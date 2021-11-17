@@ -54,13 +54,20 @@ public class Cell {
         return this.staticObject.isKoulou();
     }
 
-    public void removeMovable() {
+    public void removeHero() {
         this.heroObject = null;
     }
 
+    public void removeMonster() {
+        this.monsterObject = null;
+    }
+
     public char getMarker() {
-        if (this.isOccupied()) {
+        if (this.heroObject != null) {
             return this.heroObject.getMarker();
+        }
+        if (this.monsterObject != null) {
+            return this.monsterObject.getMarker();
         }
         return this.staticObject.getMarker();
     }
@@ -97,4 +104,13 @@ public class Cell {
     public void setHeroObject(Movable heroObject) {
         this.heroObject = heroObject;
     }
+
+    public Movable getMonsterObject() {
+        return monsterObject;
+    }
+
+    public void setMonsterObject(Movable monsterObject) {
+        this.monsterObject = monsterObject;
+    }
+
 }
