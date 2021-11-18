@@ -209,7 +209,6 @@ public class LegendsOfValor extends RPGGame {
             }
 
             char userInput = Utils.takeOptionInput(options);
-            userInput = Character.toUpperCase(userInput);
             if (userInput == 'W') {
                 newPos[0] = curPlayerPos[0] - 1;
                 newPos[1] = curPlayerPos[1];
@@ -217,6 +216,7 @@ public class LegendsOfValor extends RPGGame {
                     System.out.println("Invalid access, enter a new option!");
                     continue;
                 }
+                this.getBoard().getCell(newPos).setExplored(true);
                 this.getBoard().moveHero(this.getCurPlayer(), curPlayerPos, newPos);
             }
             if (userInput == 'A') { //move left
@@ -226,6 +226,7 @@ public class LegendsOfValor extends RPGGame {
                     System.out.println("Invalid access, enter a new option!");
                     continue;
                 }
+                this.getBoard().getCell(newPos).setExplored(true);
                 this.getBoard().moveHero(this.getCurPlayer(), curPlayerPos, newPos);
             }
             if (userInput == 'S') { //move down
@@ -235,6 +236,7 @@ public class LegendsOfValor extends RPGGame {
                     System.out.println("Invalid access, enter a new option!");
                     continue;
                 }
+                this.getBoard().getCell(newPos).setExplored(true);
                 this.getBoard().moveHero(this.getCurPlayer(), curPlayerPos, newPos);
             }
             if (userInput == 'D') { //move right
@@ -244,6 +246,7 @@ public class LegendsOfValor extends RPGGame {
                     System.out.println("Invalid access, enter a new option!");
                     continue;
                 }
+                this.getBoard().getCell(newPos).setExplored(true);
                 this.getBoard().moveHero(this.getCurPlayer(), curPlayerPos, newPos);
             }
             if (userInput == 'Q') { //quit
@@ -315,16 +318,18 @@ public class LegendsOfValor extends RPGGame {
                 System.out.println("Where do you want to teleport to? (X,Y)");
                 newPos = Utils.takeCoordFromInput(); //gets a coord input that is within board range but not checked for other validities
                 Cell tp = this.getBoard().getCell(newPos);
-                if (!tp.isExplored() || !tp.isAccessible() || !tp.isOccupied()) { //not a valid tp destination
+                if (!tp.isExplored() || !tp.isAccessible() || tp.isOccupied() || Math.abs(newPos[1]-curPlayerPos[1]) < 2) { //not a valid tp destination
                     System.out.println("Invalid access, enter a new option!");
                     continue;
                 }
+                System.out.println("Teleport successful!");
                 this.getBoard().moveHero(this.getCurPlayer(), curPlayerPos, newPos);
                 continue;
             }
             if (userInput == 'B') { //back to nexus
-                newPos[0] = 7;
+                newPos[0] = this.getBoardHeight()-1;
                 newPos[1] = curPlayerPos[1];
+                System.out.println("You are back to your Nexus!");
                 this.getBoard().moveHero(this.getCurPlayer(), curPlayerPos, newPos);
             }
             return;

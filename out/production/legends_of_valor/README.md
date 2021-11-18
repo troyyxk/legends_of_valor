@@ -95,7 +95,7 @@ HeroObject.java
 HeroObjectView.java
 - the view for HeroObject
 
-HostileEmptyCell.java
+PlainCell.java
 - implements Placeable
 - the wild part for the map that the player can meet monster
 
@@ -103,7 +103,7 @@ IceSpell.java
 - extends Spell
 - a ice spell spell type
 
-LegendsMonstersHeroes.java
+LegendsOfValor.java
 - child class of RPGGame
 - the actual game logic contain that use a lot of logic from RPGGame
 

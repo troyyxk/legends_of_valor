@@ -34,7 +34,7 @@ public class Utils {
                 System.out.println("Please enter a character!");
                 continue;
             }
-            charInput = input.charAt(0);
+            charInput = Character.toUpperCase(input.charAt(0));
             if (!options.contains(charInput)) {
                 System.out.println("Invalid option, please select and enter from provided options!");
                 continue;
