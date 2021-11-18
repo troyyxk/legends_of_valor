@@ -223,7 +223,12 @@ public class LegendsOfValor extends RPGGame {
             options.add('T');
             options.add('V');
             options.add('B');
-            options.add('Y');
+            for(MonsterObject mon: this.getMonsterObjects()){
+                if(inRange(this.getCurPlayer().getPos(), mon.getPos())){
+                    options.add('Y');
+                    break;
+                }
+            }
             if (this.getBoard().getCell(curPlayerPos).isNexus()) {
                 options.add('P');
             }
@@ -367,18 +372,12 @@ public class LegendsOfValor extends RPGGame {
                 this.getCurPlayer().getFirstHeroObject().setHp(this.getCurPlayer().getFirstHeroObject().getMaxHP());
             }
             if (userInput == 'Y') { //hero attack
-                boolean nearMonster = false;
                 MonsterObject monsterTarget = this.getMonsterObjects().get(0); // the target monster involved in the fight
                 for(MonsterObject mon: this.getMonsterObjects()) {
                     if (inRange(this.getCurPlayer().getPos(), mon.getPos())){
-                        nearMonster = true;
                         monsterTarget = mon; //know which monster to attack
                         break;
                     }
-                }
-                if(!nearMonster){
-                    System.out.println("Who you gonna attack when not near a monster?!");
-                    continue;
                 }
                 //attack
                 int damage = this.getCurPlayer().getFirstHeroObject().getAttackDamage() - monsterTarget.getDamageReduction();
