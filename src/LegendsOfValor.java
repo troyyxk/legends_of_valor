@@ -150,8 +150,8 @@ public class LegendsOfValor extends RPGGame {
                             System.out.println("Hero " + player.getId() + " take damage: " + damage + ", remaining HP: " + hero.getHp());
 
                             if(hero.isFainted()){
-                                this.getBoard().moveHero(player, player.getPos(), new int[]{getBoardHeight()-1, player.getPos()[1]});
-                                System.out.println("You fainted! You are back to nexus with full health.");
+                                this.getBoard().moveHero(player, player.getPos(), new int[]{getBoardHeight()-1, player.getId()*3});
+                                System.out.println("You fainted! You are back to your own starting nexus with full health.");
                                 hero.setHp(hero.getMaxHP());
                             }
 
@@ -198,17 +198,13 @@ public class LegendsOfValor extends RPGGame {
             System.out.println("    [T]: Use Potion");
             System.out.println("    [V]: Teleport");
             System.out.println("    [B]: Back to Nexus");
-            // TODO, if monster inRange(), add attack option
             if (this.getBoard().getCell(curPlayerPos).isNexus()) {
                 System.out.println("-------In--Nexus---------");
                 System.out.println("    [P]: Purchase");
             }
-            for(MonsterObject mon: this.getMonsterObjects()){
-                if(inRange(this.getCurPlayer().getPos(), mon.getPos())){
-                    System.out.println("-------In--Range---------");
-                    System.out.println("    [Y]: Attack");
-                    break;
-                }
+            if (playerHasMonsterInRange(this.getCurPlayer())) {
+                System.out.println("------MOnster-In--Range---------");
+                System.out.println("    [Y]: Attack");
             }
 
             ArrayList<Character> options = new ArrayList<Character>();
@@ -224,7 +220,9 @@ public class LegendsOfValor extends RPGGame {
             options.add('T');
             options.add('V');
             options.add('B');
-            options.add('Y');
+            if (playerHasMonsterInRange(this.getCurPlayer())) {
+                options.add('Y');
+            }
             if (this.getBoard().getCell(curPlayerPos).isNexus()) {
                 options.add('P');
             }
@@ -359,7 +357,6 @@ public class LegendsOfValor extends RPGGame {
                 }
                 System.out.println("Teleport successful!");
                 this.getBoard().moveHero(this.getCurPlayer(), curPlayerPos, newPos);
-                continue;
             }
             if (userInput == 'B') { //back to nexus
                 newPos[0] = this.getBoardHeight()-1;
@@ -367,6 +364,26 @@ public class LegendsOfValor extends RPGGame {
                 System.out.println("You are back to your Nexus!");
                 this.getBoard().moveHero(this.getCurPlayer(), curPlayerPos, newPos);
                 this.getCurPlayer().getFirstHeroObject().setHp(this.getCurPlayer().getFirstHeroObject().getMaxHP());
+            }
+            if (userInput == 'Y') { //hero attack
+                MonsterObject monsterTarget = this.getMonsterObjects().get(0); // the target monster involved in the fight
+                for(MonsterObject mon: this.getMonsterObjects()) {
+                    if (inRange(this.getCurPlayer().getPos(), mon.getPos())){
+                        monsterTarget = mon; //know which monster to attack
+                        break;
+                    }
+                }
+                //attack
+                int damage = this.getCurPlayer().getFirstHeroObject().getAttackDamage() - monsterTarget.getDamageReduction();
+                monsterTarget.takeHit(damage);
+                System.out.println("Monster " + monsterTarget.getName() + " take damage: " + damage + ", remaining HP: " + monsterTarget.getHP());
+
+                if(monsterTarget.isFainted()){
+                    System.out.println("Monster fainted!");
+                    //removed if died
+                    this.getBoard().getCell(monsterTarget.getPos()).removeMonster();
+
+                }
             }
             return;
         }
