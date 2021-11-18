@@ -198,7 +198,6 @@ public class LegendsOfValor extends RPGGame {
             System.out.println("    [T]: Use Potion");
             System.out.println("    [V]: Teleport");
             System.out.println("    [B]: Back to Nexus");
-            // TODO, if monster inRange(), add attack option
             if (this.getBoard().getCell(curPlayerPos).isNexus()) {
                 System.out.println("-------In--Nexus---------");
                 System.out.println("    [P]: Purchase");
@@ -367,6 +366,31 @@ public class LegendsOfValor extends RPGGame {
                 System.out.println("You are back to your Nexus!");
                 this.getBoard().moveHero(this.getCurPlayer(), curPlayerPos, newPos);
                 this.getCurPlayer().getFirstHeroObject().setHp(this.getCurPlayer().getFirstHeroObject().getMaxHP());
+                continue;
+            }
+            if (userInput == 'Y') { //hero attack
+                boolean nearMonster = false;
+                MonsterObject monsterTarget = this.getMonsterObjects().get(0); // the target monster involved in the fight
+                for(MonsterObject mon: this.getMonsterObjects()) {
+                    if (inRange(this.getCurPlayer().getPos(), mon.getPos())){
+                        nearMonster = true;
+                        monsterTarget = mon; //know which monster to attack
+                        break;
+                    }
+                }
+                if(!nearMonster){
+                    System.out.println("You can't attack unless you're near a monster.");
+                    continue;
+                }
+                //attack
+                int damage = this.getCurPlayer().getFirstHeroObject().getAttackDamage() - monsterTarget.getDamageReduction();
+                monsterTarget.takeHit(damage);
+                System.out.println("Monster " + monsterTarget.getName() + " take damage: " + damage + ", remaining HP: " + monsterTarget.getHP());
+
+                if(monsterTarget.isFainted()){
+                    System.out.println("Monster fainted!");
+                    //TODO: do monsters get removed or stay on board if fainted
+                }
             }
             return;
         }
