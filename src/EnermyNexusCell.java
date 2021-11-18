@@ -4,7 +4,7 @@ public class EnermyNexusCell implements Placeable {
 
     public EnermyNexusCell() {
         this.marker = 'H';
-        this.accessible = false;
+        this.accessible = true;
         this.hostile = false;
     }
 

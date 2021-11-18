@@ -22,7 +22,7 @@ public class PlainCell implements Placeable {
 
     @Override
     public boolean isPlain() {
-        return false;
+        return true;
     }
 
     @Override

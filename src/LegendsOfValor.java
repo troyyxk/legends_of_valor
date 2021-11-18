@@ -1,18 +1,17 @@
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Random;
 
 public class LegendsOfValor extends RPGGame {
 
     private boolean continueGaming;
     private Battle battle;
-    private double battleChance;
-    private MonsterGallary monsterGallary;
     private final int monster_spawn_round = 8;
+    private Integer monsterId;
 
     public LegendsOfValor() {
         super();
         continueGaming = true;
-
-        battleChance = 0.2;
 
         this.setBoardHeight(8);
         this.setBoardWidth(8);
@@ -21,33 +20,149 @@ public class LegendsOfValor extends RPGGame {
         this.getBoard().getLoVStandardBoard();
         this.getBoard().drawBoard();
 
-        this.monsterGallary = new MonsterGallary();
+        this.monsterId = 0;
+
+        initializePlayerPositions();
     }
+
+    private void initializePlayerPositions() {
+        // first hero
+        this.getCurTeam().getPlayerAtIndex(0).setPos(new int[]{7, 0});
+        this.getBoard().addHero(new int[]{7, 0}, this.getCurTeam().getPlayerAtIndex(0));
+
+        // second hero
+        this.getCurTeam().getPlayerAtIndex(1).setPos(new int[]{7, 3});
+        this.getBoard().addHero(new int[]{7, 3}, this.getCurTeam().getPlayerAtIndex(1));
+
+        // third hero
+        this.getCurTeam().getPlayerAtIndex(2).setPos(new int[]{7, 6});
+        this.getBoard().addHero(new int[]{7, 6}, this.getCurTeam().getPlayerAtIndex(2));
+    }
+
+    private void spawnMonster() {
+        Random randomGenerator = new Random();
+        ArrayList<MonsterModel> levelMonterModels;
+
+        int curLevel;
+        MonsterModel curMonsterModel;
+        ArrayList<int[]> monsterSpawnPos = new ArrayList<int[]>();
+        monsterSpawnPos.add(new int[]{0, 0});
+        monsterSpawnPos.add(new int[]{0, 3});
+        monsterSpawnPos.add(new int[]{0, 6});
+
+        // assume 3 heroes
+        for (int i = 0; i < 3; i++) {
+            int[] curPos = monsterSpawnPos.get(i);
+            if (this.getBoard().posHasNoMonster(curPos)) {
+                Player curPlayer = this.getCurTeam().getPlayers().get(i);
+                HeroObject heroObject = curPlayer.getHeroAtIndex(0);
+                curLevel = heroObject.getLevel();
+                levelMonterModels = this.getLevelMonsterMap().get(curLevel);
+                curMonsterModel = levelMonterModels.get(randomGenerator.nextInt(levelMonterModels.size()));
+
+                MonsterObject curMonsterObject = new MonsterObject(monsterId, curMonsterModel);
+                monsterId++;
+
+                this.getBoard().addMonsterObjectToPos(curMonsterObject, curPos);
+                this.addMonsterObject(curMonsterObject);
+            }
+        }
+    }
+
+    public boolean inRange(int[] aPos, int[] bPos) {
+        int aY = aPos[0];
+        int aX = aPos[1];
+        int bY = bPos[0];
+        int bX = bPos[1];
+
+        if ((aY - 1 == bY || aY + 1 == bY) && (aX == bX)) {
+            return true;
+        }
+        if ((aX - 1 == bX || aX + 1 == bX) && (aY == bY)) {
+            return true;
+        }
+        if ((aX - 1 == bX || aX + 1 == bX) && (aY - 1 == bY || aY + 1 == bY)) {
+            return true;
+        }
+        if ((aY == bY) && (aX == bX)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean playerHasMonsterInRange(Player player) {
+        for (MonsterObject monsterObject : this.getMonsterObjects()) {
+            if (inRange(monsterObject.getPos(), player.getPos())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean mosnterHasPlayerInRange(MonsterObject monsterObject) {
+        for (Player player : this.getCurTeam().getPlayers()) {
+            if (inRange(monsterObject.getPos(), player.getPos())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void moveMosnterAhead(MonsterObject monsterObject) {
+        int[] oldPos = monsterObject.getPos();
+        int[] newPos = new int[]{oldPos[0] + 1, oldPos[1]};
+        monsterObject.setPos(newPos);
+        this.getBoard().moveMonster(monsterObject, oldPos, newPos);
+    }
+
 
     public int play() {
         boolean firstTime = true;
         int round_number = 0;
         while (continueGaming) {
-            System.out.println("It's Team " + this.getCurTeamIdx() + " Player " + this.getCurPlayerIdx() + ", "
-                    + this.getCurPlayer().getName() + "'s turn!");
-            this.drawBoard();
-
-            int[] curPos = this.getCurPlayer().getPos();
-            // check if meet monster, escape first time
-            if (!firstTime) {
-                if (this.getBoard().getCell(curPos).isHostile() && Utils.getRandomBollean(battleChance)) {
-                    battle = new Battle(this.getCurPlayer().getHeroObjects(), this.monsterGallary.getAllMonsterModels());
-                    battle.start();
-                }
+            // if at the monster spurning round, spurn monster
+            if (round_number % monster_spawn_round == 0) {
+                spawnMonster();
             }
-            firstTime = false;
-            // check if is market
 
-            // other options
-            takeNormalOptions();
+            // hero's turn
+            for (int i = 0; i < this.getCurTeam().getPlayerCount(); i++) {
+                this.setCurPlayerIndex(i);
+                System.out.println("It's Hero" + i + "'s turn!");
+                this.drawBoard();
 
+                // other options
+                takeNormalOptions();
 
-            this.moveTONextPlayer();
+            }
+
+            // monster's turn
+            // either attack or move forward and check win
+            for (MonsterObject monsterObject : this.getMonsterObjects()) {
+                // if able to attack
+                if (mosnterHasPlayerInRange(monsterObject)) {
+                    for (Player player : this.getCurTeam().getPlayers()) {
+                        if (inRange(player.getPos(), monsterObject.getPos())) {
+                            // TODO, attack
+                            continue;
+                        }
+                    }
+                }
+                // move the monster
+                else {
+                    moveMosnterAhead(monsterObject);
+                    // if win
+                    if (monsterObject.getPos()[0] >= this.getBoardHeight() - 1) {
+                        this.drawBoard();
+                        System.out.println("You lose!");
+                        return -1;
+                    }
+                }
+
+            }
+
+            round_number++;
         }
         return -1;
     }
@@ -102,7 +217,7 @@ public class LegendsOfValor extends RPGGame {
                     continue;
                 }
                 this.getBoard().getCell(newPos).setExplored(true);
-                this.getBoard().moveMovable(this.getCurPlayer(), curPlayerPos, newPos);
+                this.getBoard().moveHero(this.getCurPlayer(), curPlayerPos, newPos);
             }
             if (userInput == 'A') { //move left
                 newPos[0] = curPlayerPos[0];
@@ -112,7 +227,7 @@ public class LegendsOfValor extends RPGGame {
                     continue;
                 }
                 this.getBoard().getCell(newPos).setExplored(true);
-                this.getBoard().moveMovable(this.getCurPlayer(), curPlayerPos, newPos);
+                this.getBoard().moveHero(this.getCurPlayer(), curPlayerPos, newPos);
             }
             if (userInput == 'S') { //move down
                 newPos[0] = curPlayerPos[0] + 1;
@@ -122,7 +237,7 @@ public class LegendsOfValor extends RPGGame {
                     continue;
                 }
                 this.getBoard().getCell(newPos).setExplored(true);
-                this.getBoard().moveMovable(this.getCurPlayer(), curPlayerPos, newPos);
+                this.getBoard().moveHero(this.getCurPlayer(), curPlayerPos, newPos);
             }
             if (userInput == 'D') { //move right
                 newPos[0] = curPlayerPos[0];
@@ -132,7 +247,7 @@ public class LegendsOfValor extends RPGGame {
                     continue;
                 }
                 this.getBoard().getCell(newPos).setExplored(true);
-                this.getBoard().moveMovable(this.getCurPlayer(), curPlayerPos, newPos);
+                this.getBoard().moveHero(this.getCurPlayer(), curPlayerPos, newPos);
             }
             if (userInput == 'Q') { //quit
                 System.out.println("Quit gaming!");
@@ -207,15 +322,15 @@ public class LegendsOfValor extends RPGGame {
                     System.out.println("Invalid access, enter a new option!");
                     continue;
                 }
-                this.getBoard().moveMovable(this.getCurPlayer(), curPlayerPos, newPos);
                 System.out.println("Teleport successful!");
+                this.getBoard().moveHero(this.getCurPlayer(), curPlayerPos, newPos);
                 continue;
             }
             if (userInput == 'B') { //back to nexus
                 newPos[0] = this.getBoardHeight()-1;
                 newPos[1] = curPlayerPos[1];
-                this.getBoard().moveMovable(this.getCurPlayer(), curPlayerPos, newPos);
                 System.out.println("You are back to your Nexus!");
+                this.getBoard().moveHero(this.getCurPlayer(), curPlayerPos, newPos);
             }
             return;
         }

@@ -41,7 +41,7 @@ public class Battle {
             curLevel = heroObject.getLevel();
             levelMonterModels = this.levelMonsterMap.get(curLevel);
             curMonsterModel = levelMonterModels.get(randomGenerator.nextInt(levelMonterModels.size()));
-            monsterTeam.add(new MonsterObject(curMonsterModel));
+//            monsterTeam.add(new MonsterObject(curMonsterModel));
         }
 
         return monsterTeam;
