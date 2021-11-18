@@ -150,8 +150,8 @@ public class LegendsOfValor extends RPGGame {
                             System.out.println("Hero " + player.getId() + " take damage: " + damage + ", remaining HP: " + hero.getHp());
 
                             if(hero.isFainted()){
-                                this.getBoard().moveHero(player, player.getPos(), new int[]{getBoardHeight()-1, player.getPos()[1]});
-                                System.out.println("You fainted! You are back to nexus with full health.");
+                                this.getBoard().moveHero(player, player.getPos(), new int[]{getBoardHeight()-1, player.getId()*3});
+                                System.out.println("You fainted! You are back to your own starting nexus with full health.");
                                 hero.setHp(hero.getMaxHP());
                             }
 
@@ -358,7 +358,6 @@ public class LegendsOfValor extends RPGGame {
                 }
                 System.out.println("Teleport successful!");
                 this.getBoard().moveHero(this.getCurPlayer(), curPlayerPos, newPos);
-                continue;
             }
             if (userInput == 'B') { //back to nexus
                 newPos[0] = this.getBoardHeight()-1;
@@ -366,7 +365,6 @@ public class LegendsOfValor extends RPGGame {
                 System.out.println("You are back to your Nexus!");
                 this.getBoard().moveHero(this.getCurPlayer(), curPlayerPos, newPos);
                 this.getCurPlayer().getFirstHeroObject().setHp(this.getCurPlayer().getFirstHeroObject().getMaxHP());
-                continue;
             }
             if (userInput == 'Y') { //hero attack
                 boolean nearMonster = false;
@@ -379,7 +377,7 @@ public class LegendsOfValor extends RPGGame {
                     }
                 }
                 if(!nearMonster){
-                    System.out.println("You can't attack unless you're near a monster.");
+                    System.out.println("Who you gonna attack when not near a monster?!");
                     continue;
                 }
                 //attack
@@ -389,7 +387,9 @@ public class LegendsOfValor extends RPGGame {
 
                 if(monsterTarget.isFainted()){
                     System.out.println("Monster fainted!");
-                    //TODO: do monsters get removed or stay on board if fainted
+                    //removed if died
+                    this.getBoard().getCell(monsterTarget.getPos()).removeMonster();
+
                 }
             }
             return;
