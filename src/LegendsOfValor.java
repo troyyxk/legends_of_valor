@@ -144,11 +144,17 @@ public class LegendsOfValor extends RPGGame {
                 if (mosnterHasPlayerInRange(monsterObject)) {
                     for (Player player : this.getCurTeam().getPlayers()) {
                         if (inRange(player.getPos(), monsterObject.getPos())) {
-                            int damage = monsterObject.getDamage() - player.getFirstHeroObject().getDamageReduction();
-                            player.getFirstHeroObject().takeHit(damage);
-                            System.out.println("Hero " + player.getId() + " take damage: " + damage + ", remaining HP: " + player.getFirstHeroObject().getHp());
+                            HeroObject hero = player.getFirstHeroObject();
+                            int damage = monsterObject.getDamage() - hero.getDamageReduction();
+                            hero.takeHit(damage);
+                            System.out.println("Hero " + player.getId() + " take damage: " + damage + ", remaining HP: " + hero.getHp());
 
-                            // TODO, if fainted, go back to nexus at same column
+                            if(hero.isFainted()){
+                                System.out.println(this.getCurPlayer().getPos()+" "+new int[]{getBoardHeight()-1, this.getCurPlayer().getPos()[1]});
+                                this.getBoard().moveHero(this.getCurPlayer(), this.getCurPlayer().getPos(), new int[]{getBoardHeight()-1, this.getCurPlayer().getPos()[1]});
+                                System.out.println("You fainted! You are back to nexus with full health.");
+                                hero.setHp(hero.getMaxHP());
+                            }
 
                             continue;
                         }
@@ -338,6 +344,7 @@ public class LegendsOfValor extends RPGGame {
                 newPos[1] = curPlayerPos[1];
                 System.out.println("You are back to your Nexus!");
                 this.getBoard().moveHero(this.getCurPlayer(), curPlayerPos, newPos);
+                this.getCurPlayer().getFirstHeroObject().setHp(this.getCurPlayer().getFirstHeroObject().getMaxHP());
             }
             return;
         }
