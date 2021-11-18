@@ -150,13 +150,12 @@ public class LegendsOfValor extends RPGGame {
                             System.out.println("Hero " + player.getId() + " take damage: " + damage + ", remaining HP: " + hero.getHp());
 
                             if(hero.isFainted()){
-                                System.out.println(this.getCurPlayer().getPos()+" "+new int[]{getBoardHeight()-1, this.getCurPlayer().getPos()[1]});
-                                this.getBoard().moveHero(this.getCurPlayer(), this.getCurPlayer().getPos(), new int[]{getBoardHeight()-1, this.getCurPlayer().getPos()[1]});
+                                this.getBoard().moveHero(player, player.getPos(), new int[]{getBoardHeight()-1, player.getPos()[1]});
                                 System.out.println("You fainted! You are back to nexus with full health.");
                                 hero.setHp(hero.getMaxHP());
                             }
 
-                            continue;
+                            break;
                         }
                     }
                 }
