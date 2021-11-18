@@ -144,7 +144,12 @@ public class LegendsOfValor extends RPGGame {
                 if (mosnterHasPlayerInRange(monsterObject)) {
                     for (Player player : this.getCurTeam().getPlayers()) {
                         if (inRange(player.getPos(), monsterObject.getPos())) {
-                            // TODO, attack
+                            int damage = monsterObject.getDamage() - player.getFirstHeroObject().getDamageReduction();
+                            player.getFirstHeroObject().takeHit(damage);
+                            System.out.println("Hero " + player.getId() + " take damage: " + damage + ", remaining HP: " + player.getFirstHeroObject().getHp());
+
+                            // TODO, if fainted, tp back
+
                             continue;
                         }
                     }

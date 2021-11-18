@@ -46,6 +46,12 @@ public class Player implements Movable{
         this.posX = pos[1];
     }
 
+
+    // get first hero object
+    public HeroObject getFirstHeroObject() {
+        return this.heroObjects.get(0);
+    }
+
     private void addHeroObjects() {
         HeroModel curHeroModel;
         for (int i = 0; i < this.heroCount; i++) {
@@ -97,6 +103,10 @@ public class Player implements Movable{
         pos[0] = this.posY;
         pos[1] = this.posX;
         return pos;
+    }
+
+    public int getId() {
+        return id;
     }
 
 }
