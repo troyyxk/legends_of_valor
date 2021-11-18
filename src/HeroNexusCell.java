@@ -6,6 +6,7 @@ public class HeroNexusCell implements Placeable {
         this.marker = 'H';
         this.accessible = true;
         this.hostile = false;
+
     }
 
     public boolean isAccessible(){
