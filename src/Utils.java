@@ -143,7 +143,7 @@ public class Utils {
             String input = Utils.takeInput();
             if (input.length() == 3 && input.charAt(1) == ',') {
                 if(isNum(input.split(",")[0]) && isNum(input.split(",")[1])){
-                    int[] coord = new int[]{Integer.parseInt(input.split(",")[0])-1,Integer.parseInt(input.split(",")[1])-1};
+                    int[] coord = new int[]{Integer.parseInt(input.split(",")[0]),Integer.parseInt(input.split(",")[1])};
                     if(isValidCoord(coord)) return coord;
                 }
             }
