@@ -185,6 +185,7 @@ public class LegendsOfValor extends RPGGame {
         while (true) {
             System.out.println("Options: ");
             // TODO, if monster inRange() and the in range monster at same line, cannot use W, move foward
+
             System.out.println("    [W]: Move Up");
             System.out.println("    [A]: Move Left");
             System.out.println("    [S]: Move Down");
@@ -202,6 +203,13 @@ public class LegendsOfValor extends RPGGame {
                 System.out.println("-------In--Nexus---------");
                 System.out.println("    [P]: Purchase");
             }
+            for(MonsterObject mon: this.getMonsterObjects()){
+                if(inRange(this.getCurPlayer().getPos(), mon.getPos())){
+                    System.out.println("-------In--Range---------");
+                    System.out.println("    [Y]: Attack");
+                    break;
+                }
+            }
 
             ArrayList<Character> options = new ArrayList<Character>();
             options.add('W');
@@ -216,6 +224,7 @@ public class LegendsOfValor extends RPGGame {
             options.add('T');
             options.add('V');
             options.add('B');
+            options.add('Y');
             if (this.getBoard().getCell(curPlayerPos).isNexus()) {
                 options.add('P');
             }
@@ -228,8 +237,22 @@ public class LegendsOfValor extends RPGGame {
                     System.out.println("Invalid access, enter a new option!");
                     continue;
                 }
-                this.getBoard().getCell(newPos).setExplored(true);
-                this.getBoard().moveHero(this.getCurPlayer(), curPlayerPos, newPos);
+                boolean hasMonsterNearBy = false;
+                for(MonsterObject mon: this.getMonsterObjects()){
+                    if(inRange(this.getCurPlayer().getPos(), mon.getPos())){
+                        System.out.println("You cannot move forward near a monster!");
+                        hasMonsterNearBy = true;
+                        continue;
+                    }
+                }
+
+                if (!hasMonsterNearBy) {
+                    this.getBoard().getCell(newPos).setExplored(true);
+                    this.getBoard().moveHero(this.getCurPlayer(), curPlayerPos, newPos);
+                }
+                else {
+                    continue;
+                }
             }
             if (userInput == 'A') { //move left
                 newPos[0] = curPlayerPos[0];
