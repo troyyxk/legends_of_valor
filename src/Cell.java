@@ -115,10 +115,16 @@ public class Cell {
 
     public void setStaticObject(Placeable newObject) {
         this.staticObject = newObject;
+        if ((this.staticObject.isNexus()) && (!this.staticObject.isHostile())) {
+            this.setExplored(true);
+        }
     }
 
     public void setStaticObject(String placeableType) {
         this.staticObject = this.placeableFactory.getPlaceable(placeableType);
+        if ((this.staticObject.isNexus()) && (!this.staticObject.isHostile())) {
+            this.setExplored(true);
+        }
     }
 
     public Movable getMovableObject() {
