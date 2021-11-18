@@ -185,6 +185,8 @@ public class LegendsOfValor extends RPGGame {
         while (true) {
             System.out.println("Options: ");
             // TODO, if monster inRange() and the in range monster at same line, cannot use W, move foward
+            if (inRange(this.getCurPlayer().getPos(), this.getMonsterObjects().get(this.getCurPlayerIndex()).getPos()))
+                System.out.println("    [Y]: Attack");
             System.out.println("    [W]: Move Up");
             System.out.println("    [A]: Move Left");
             System.out.println("    [S]: Move Down");
@@ -216,6 +218,7 @@ public class LegendsOfValor extends RPGGame {
             options.add('T');
             options.add('V');
             options.add('B');
+            options.add('Y');
             if (this.getBoard().getCell(curPlayerPos).isNexus()) {
                 options.add('P');
             }
@@ -226,6 +229,10 @@ public class LegendsOfValor extends RPGGame {
                 newPos[1] = curPlayerPos[1];
                 if (curPlayerPos[0] == 0 || !this.getBoard().getCell(newPos).isAvailable()) {
                     System.out.println("Invalid access, enter a new option!");
+                    continue;
+                }
+                if(inRange(this.getCurPlayer().getPos(), this.getMonsterObjects().get(this.getCurPlayerIndex()).getPos())){
+                    System.out.println("You cannot move forward near a monster!");
                     continue;
                 }
                 this.getBoard().getCell(newPos).setExplored(true);
