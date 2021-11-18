@@ -185,6 +185,7 @@ public class HeroObject {
         return heroModel;
     }
 
+    // TODO, when hero get to own nexus, will set hp to max hp with this method
     public int getMaxHP() {
         return this.getLevel() * 100;
     }

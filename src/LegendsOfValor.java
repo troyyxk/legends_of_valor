@@ -148,7 +148,7 @@ public class LegendsOfValor extends RPGGame {
                             player.getFirstHeroObject().takeHit(damage);
                             System.out.println("Hero " + player.getId() + " take damage: " + damage + ", remaining HP: " + player.getFirstHeroObject().getHp());
 
-                            // TODO, if fainted, tp back
+                            // TODO, if fainted, go back to nexus at same column
 
                             continue;
                         }
@@ -179,6 +179,7 @@ public class LegendsOfValor extends RPGGame {
 
         while (true) {
             System.out.println("Options: ");
+            // TODO, if monster inRange() and the in range monster at same line, cannot use W, move foward
             System.out.println("    [W]: Move Up");
             System.out.println("    [A]: Move Left");
             System.out.println("    [S]: Move Down");
@@ -191,6 +192,7 @@ public class LegendsOfValor extends RPGGame {
             System.out.println("    [T]: Use Potion");
             System.out.println("    [V]: Teleport");
             System.out.println("    [B]: Back to Nexus");
+            // TODO, if monster inRange(), add attack option
             if (this.getBoard().getCell(curPlayerPos).isNexus()) {
                 System.out.println("-------In--Nexus---------");
                 System.out.println("    [P]: Purchase");
