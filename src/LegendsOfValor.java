@@ -202,12 +202,9 @@ public class LegendsOfValor extends RPGGame {
                 System.out.println("-------In--Nexus---------");
                 System.out.println("    [P]: Purchase");
             }
-            for(MonsterObject mon: this.getMonsterObjects()){
-                if(inRange(this.getCurPlayer().getPos(), mon.getPos())){
-                    System.out.println("-------In--Range---------");
-                    System.out.println("    [Y]: Attack");
-                    break;
-                }
+            if (playerHasMonsterInRange(this.getCurPlayer())) {
+                System.out.println("------MOnster-In--Range---------");
+                System.out.println("    [Y]: Attack");
             }
 
             ArrayList<Character> options = new ArrayList<Character>();
@@ -223,11 +220,8 @@ public class LegendsOfValor extends RPGGame {
             options.add('T');
             options.add('V');
             options.add('B');
-            for(MonsterObject mon: this.getMonsterObjects()){
-                if(inRange(this.getCurPlayer().getPos(), mon.getPos())){
-                    options.add('Y');
-                    break;
-                }
+            if (playerHasMonsterInRange(this.getCurPlayer())) {
+                options.add('Y');
             }
             if (this.getBoard().getCell(curPlayerPos).isNexus()) {
                 options.add('P');
