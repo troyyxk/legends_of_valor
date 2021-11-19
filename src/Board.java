@@ -121,6 +121,15 @@ public class Board {
         movable.setPos(newPos);
     }
 
+    public void removeHero(int[] pos) {
+        this.cells[pos[0]][pos[1]].removeHero();
+    }
+
+    public void setHero(Player player) {
+        int[] pos = player.getPos();
+        this.cells[pos[0]][pos[1]].setHeroObject(player);
+    }
+
     public void moveMonster(Movable movable, int[] oldPos, int[] newPos) {
         this.cells[oldPos[0]][oldPos[1]].removeMonster();
         this.cells[newPos[0]][newPos[1]].setMonsterObject(movable);

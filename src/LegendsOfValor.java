@@ -127,16 +127,31 @@ public class LegendsOfValor extends RPGGame {
             if (round_number % monster_spawn_round == 0) {
                 spawnMonster();
             }
+            // revise heroes
+            this.getCurTeam().reviseHeroes();
+            for (Player player : this.getCurTeam().getPlayers()) {
+                this.getBoard().setHero(player);
+            }
 
             // hero's turn
-            for (int i = 0; i < this.getCurTeam().getPlayerCount(); i++) {
-                this.setCurPlayerIndex(i);
-                System.out.println("It's Hero" + i + "'s turn!");
+            int j = 0;
+            for (Player player : this.getCurTeam().getPlayers()) {
+                int i = player.getId();
+                this.setCurPlayerIndex(j);
+                System.out.println("It's Hero" + player.getId() + "'s turn!");
                 this.drawBoard();
+                if (this.getCurTeam().getReadyToRevisePlayers().size() > 0) {
+                    System.out.print("<<< Hero will revise next round: ");
+                    for (Player readyToRevisePlayer: this.getCurTeam().getReadyToRevisePlayers()) {
+                        System.out.print(readyToRevisePlayer.getId());
+                        System.out.print(" >>>");
+                    }
+                    System.out.println("");
+                }
 
                 // other options
                 takeNormalOptions();
-
+                j++;
             }
 
             // monster's turn
@@ -155,8 +170,11 @@ public class LegendsOfValor extends RPGGame {
                             new Offense(player, monsterObject, getBoard().getCell(player.getPos())).monsterAttacks();
                             if(hero.isFainted()){
                                 this.getBoard().moveHero(player, player.getPos(), new int[]{getBoardHeight()-1, player.getId()*3});
-                                System.out.println("You fainted! You are back to your own starting nexus with full health.");
+                                this.getBoard().removeHero(new int[]{getBoardHeight()-1, player.getId()*3});
+
+                                System.out.println("You fainted! You are back to your own starting nexus with full health within 1 round.");
                                 hero.setHp(hero.getMaxHP());
+                                this.getCurTeam().faintHero(player);
                             }
 
                             break;

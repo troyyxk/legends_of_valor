@@ -124,14 +124,14 @@ public class RPGGame {
     }
 
 
-    public void moveTONextPlayer() {
-        this.teams.get(this.curTeamIdx).moveToNextPlayer();
-        if (this.teams.get(this.curTeamIdx).getCurPlayerIndex() == 0) {
-            this.curTeamIdx = (this.curTeamIdx + 1) % this.teams.size();
-        }
-        this.curPlayer = this.teams.get(this.curTeamIdx).getCurPlayer();
-
-    }
+//    public void moveTONextPlayer() {
+//        this.teams.get(this.curTeamIdx).moveToNextPlayer();
+//        if (this.teams.get(this.curTeamIdx).getCurPlayerIndex() == 0) {
+//            this.curTeamIdx = (this.curTeamIdx + 1) % this.teams.size();
+//        }
+//        this.curPlayer = this.teams.get(this.curTeamIdx).getCurPlayer();
+//
+//    }
 
     public MarketController getMarketController() {
         return marketController;
