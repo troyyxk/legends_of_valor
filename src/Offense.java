@@ -25,13 +25,13 @@ public class Offense {
             System.out.println("MISS! The monster dodged your attack!");
             return;
         }
-        int damage = (int) ((HeroStrength + (hero.getCurEquippedWeapon() != null ? hero.getCurEquippedWeapon().getDamage():0))*0.05)-monster.getDamageReduction();
+        int damage = (int) ((HeroStrength + (hero.getCurEquippedWeapon() != null ? hero.getCurEquippedWeapon().getDamage() : 0))*0.05)-monster.getDamageReduction();
         monster.takeHit(damage);
         System.out.println("Monster " + monster.getName() + " take damage: " + damage + ", remaining HP: " + monster.getHP());
     }
 
     public void monsterAttacks(){
-        boolean dodged = Utils.getDodged(HeroAgility*0.0002);
+        boolean dodged = Utils.getDodged(HeroAgility*0.002);
         if(dodged){
             System.out.println("MISS! Hero" +player.getId()+" dodged the attack!");
             return;
