@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Random;
 
 public class LegendsOfValor extends RPGGame {
@@ -385,6 +384,7 @@ public class LegendsOfValor extends RPGGame {
                 }
             }
             if (userInput == 'X'){ //use spell
+                //get hero and monster identity in spell casting
                 HeroObject hero = this.getCurPlayer().getFirstHeroObject();
                 MonsterObject monsterTarget = this.getMonsterObjects().get(0); // the target monster involved in the fight
                 for(MonsterObject mon: this.getMonsterObjects()) {
