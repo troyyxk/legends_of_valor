@@ -3,8 +3,7 @@ import java.util.Random;
 
 public class LegendsOfValor extends RPGGame {
 
-    private boolean continueGaming;
-    private Battle battle;
+    private boolean continueGaming, reachedDest;
     private final int monster_spawn_round = 8;
     private Integer monsterId;
 
@@ -24,6 +23,7 @@ public class LegendsOfValor extends RPGGame {
         initializePlayerPositions();
     }
 
+    //initalize the position of three heroes
     private void initializePlayerPositions() {
         // first hero
         this.getCurTeam().getPlayerAtIndex(0).setPos(new int[]{7, 0});
@@ -38,6 +38,7 @@ public class LegendsOfValor extends RPGGame {
         this.getBoard().addHero(new int[]{7, 6}, this.getCurTeam().getPlayerAtIndex(2));
     }
 
+    //randomly generates three monsters
     private void spawnMonster() {
         Random randomGenerator = new Random();
         ArrayList<MonsterModel> levelMonterModels;
@@ -45,6 +46,7 @@ public class LegendsOfValor extends RPGGame {
         int curLevel;
         MonsterModel curMonsterModel;
         ArrayList<int[]> monsterSpawnPos = new ArrayList<int[]>();
+        //place monster in their respective nexus
         monsterSpawnPos.add(new int[]{0, 0});
         monsterSpawnPos.add(new int[]{0, 3});
         monsterSpawnPos.add(new int[]{0, 6});
@@ -68,6 +70,7 @@ public class LegendsOfValor extends RPGGame {
         }
     }
 
+    //see if one position is adjacent or diagonal to another position
     public boolean inRange(int[] aPos, int[] bPos) {
         int aY = aPos[0];
         int aX = aPos[1];
@@ -90,8 +93,10 @@ public class LegendsOfValor extends RPGGame {
         return false;
     }
 
+    //check if a hero is next to a monster
     public boolean playerHasMonsterInRange(Player player) {
         for (MonsterObject monsterObject : this.getMonsterObjects()) {
+            //loop through the monster list and compare it against the given hero
             if (inRange(monsterObject.getPos(), player.getPos())) {
                 return true;
             }
@@ -99,7 +104,9 @@ public class LegendsOfValor extends RPGGame {
         return false;
     }
 
+    //check if a monster is next to a hero
     public boolean mosnterHasPlayerInRange(MonsterObject monsterObject) {
+        //loop through the hero list and compare it against the given monster
         for (Player player : this.getCurTeam().getPlayers()) {
             if (inRange(monsterObject.getPos(), player.getPos())) {
                 return true;
@@ -108,6 +115,7 @@ public class LegendsOfValor extends RPGGame {
         return false;
     }
 
+    //monster goes down each round unless there's another monster blocks it, in which case it stays
     public void moveMosnterAhead(MonsterObject monsterObject) {
         int[] oldPos = monsterObject.getPos();
         int[] newPos = new int[]{oldPos[0] + 1, oldPos[1]};
@@ -118,22 +126,23 @@ public class LegendsOfValor extends RPGGame {
         this.getBoard().moveMonster(monsterObject, oldPos, newPos);
     }
 
-
+    //game starts
     public int play() {
         boolean firstTime = true;
+        reachedDest = false;
         int round_number = 0;
         while (continueGaming) {
             // if at the monster spurning round, spurn monster
             if (round_number % monster_spawn_round == 0) {
                 spawnMonster();
             }
-            // revise heroes
+
+            // revive heroes
             this.getCurTeam().reviseHeroes();
             for (Player player : this.getCurTeam().getPlayers()) {
                 this.getBoard().setHero(player);
             }
-
-            // hero's turn
+            // hero's turn, takes in character as input and displays map
             int j = 0;
             for (Player player : this.getCurTeam().getPlayers()) {
                 int i = player.getId();
@@ -141,7 +150,7 @@ public class LegendsOfValor extends RPGGame {
                 System.out.println("It's Hero" + player.getId() + "'s turn!");
                 this.drawBoard();
                 if (this.getCurTeam().getReadyToRevisePlayers().size() > 0) {
-                    System.out.print("<<< Hero will revise next round: ");
+                    System.out.print("<<< Hero will revive next round: ");
                     for (Player readyToRevisePlayer: this.getCurTeam().getReadyToRevisePlayers()) {
                         System.out.print(readyToRevisePlayer.getId());
                         System.out.print(" >>>");
@@ -149,9 +158,10 @@ public class LegendsOfValor extends RPGGame {
                     System.out.println("");
                 }
 
-                // other options
+                // takes in options
                 takeNormalOptions();
                 j++;
+                if(reachedDest) return 0; //return 0 if last W reaches monster nexus
             }
 
             // monster's turn
@@ -159,16 +169,12 @@ public class LegendsOfValor extends RPGGame {
             for (MonsterObject monsterObject : this.getMonsterObjects()) {
                 // if able to attack
                 if (mosnterHasPlayerInRange(monsterObject)) {
+                    //loop through monsters to see if any of them is near a hero. attack if yes
                     for (Player player : this.getCurTeam().getPlayers()) {
-                        if (inRange(player.getPos(), monsterObject.getPos())) {
-                            HeroObject hero = player.getFirstHeroObject();
-//                            int damage = monsterObject.getDamage() - hero.getDamageReduction();
-//                            System.out.println("Hero"+hero.getHeroIndex());
-//                            hero.takeHit(damage);
-//                            System.out.println("Hero " + player.getId() + " take damage: " + damage + ", remaining HP: " + hero.getHp());
-//                            System.out.println("Hero"+hero.getHeroIndex());
-                            new Offense(player, monsterObject, getBoard().getCell(player.getPos())).monsterAttacks();
-                            if(hero.isFainted()){
+                        if (inRange(player.getPos(), monsterObject.getPos())) { //if able to attack
+                            HeroObject hero = player.getFirstHeroObject(); //get hero victim identity
+                            new Offense(player, monsterObject, getBoard().getCell(player.getPos())).monsterAttacks(); //attack hero
+                            if(hero.isFainted()){ // if faint, move hero back to nexus
                                 this.getBoard().moveHero(player, player.getPos(), new int[]{getBoardHeight()-1, player.getId()*3});
                                 this.getBoard().removeHero(new int[]{getBoardHeight()-1, player.getId()*3});
 
@@ -199,15 +205,13 @@ public class LegendsOfValor extends RPGGame {
         return -1;
     }
 
-
+    //takes in an option from user
     public void takeNormalOptions() {
-        int[] curPlayerPos = this.getCurPlayer().getPos();
-        int[] newPos = new int[2];
+        int[] curPlayerPos = this.getCurPlayer().getPos();//set current coord
+        int[] newPos = new int[2];//get ready for new coord
 
-        while (true) {
+        while (true) { //display options
             System.out.println("Options: ");
-            // TODO, if monster inRange() and the in range monster at same line, cannot use W, move foward
-
             System.out.println("    [W]: Move Up");
             System.out.println("    [A]: Move Left");
             System.out.println("    [S]: Move Down");
@@ -220,18 +224,19 @@ public class LegendsOfValor extends RPGGame {
             System.out.println("    [T]: Use Potion");
             System.out.println("    [V]: Teleport");
             System.out.println("    [B]: Back to Nexus");
-            if (this.getBoard().getCell(curPlayerPos).isNexus()) {
+            if (this.getBoard().getCell(curPlayerPos).isNexus()) {//only display below options if in nexus
                 System.out.println("-------In--Nexus---------");
                 System.out.println("    [P]: Purchase");
             }
-            if (playerHasMonsterInRange(this.getCurPlayer())) {
-                System.out.println("------MOnster-In--Range---------");
+            if (playerHasMonsterInRange(this.getCurPlayer())) {//only display below options if near monsters
+                System.out.println("------Monster-In--Range---------");
                 System.out.println("    [Y]: Attack");
                 System.out.println("    [X]: Use Spell");
                 System.out.println("    [G]: Show Monster Info");
             }
 
-            ArrayList<Character> options = new ArrayList<Character>();
+            //add valid options to a list to prevent invalid input
+            ArrayList<Character> options = new ArrayList<>();
             options.add('W');
             options.add('A');
             options.add('S');
@@ -244,23 +249,31 @@ public class LegendsOfValor extends RPGGame {
             options.add('T');
             options.add('V');
             options.add('B');
-            if (playerHasMonsterInRange(this.getCurPlayer())) {
+            if (playerHasMonsterInRange(this.getCurPlayer())) { //only add below options as valid if near monster
                 options.add('Y');
                 options.add('X');
                 options.add('G');
             }
-            if (this.getBoard().getCell(curPlayerPos).isNexus()) {
+            if (this.getBoard().getCell(curPlayerPos).isNexus()) { //only add below options as valid if in nexus
                 options.add('P');
             }
 
-            char userInput = Utils.takeOptionInput(options);
-            if (userInput == 'W') {
+            char userInput = Utils.takeOptionInput(options); //util class takes in input
+            if (userInput == 'W') { //move up
+                //check if entering an unoccupied monster nexus, win game if it does
+                if(curPlayerPos[0] == 1 && !this.getBoard().getCell(new int[]{0, curPlayerPos[1]}).hasMonster()){
+                    System.out.println("You won!");
+                    reachedDest = true;
+                    return;
+                }
                 newPos[0] = curPlayerPos[0] - 1;
                 newPos[1] = curPlayerPos[1];
+                //check if going beyond range
                 if (curPlayerPos[0] == 0 || !this.getBoard().getCell(newPos).isAvailable()) {
                     System.out.println("Invalid access, enter a new option!");
                     continue;
                 }
+                // cannot move foward if near a monster
                 boolean hasMonsterNearBy = false;
                 for(MonsterObject mon: this.getMonsterObjects()){
                     if(inRange(this.getCurPlayer().getPos(), mon.getPos())){
@@ -399,6 +412,7 @@ public class LegendsOfValor extends RPGGame {
                         break;
                     }
                 }
+                //hero attacks monster
                 new Offense(this.getCurPlayer(), monsterTarget, getBoard().getCell(this.getCurPlayer().getPos())).heroAttacks();
                 if(monsterTarget.isFainted()){
                     System.out.println("Monster fainted!");
@@ -416,7 +430,7 @@ public class LegendsOfValor extends RPGGame {
                         break;
                     }
                 }
-                if (this.getCurPlayer().getFirstHeroObject().getStockSpell().size() == 0) {
+                if (this.getCurPlayer().getFirstHeroObject().getStockSpell().size() == 0) { //no spell to use
                     System.out.println("No stocked spell.");
                     continue;
                 }
@@ -426,11 +440,13 @@ public class LegendsOfValor extends RPGGame {
                 if (hero.getMana() < hero.getStockSpell().get(playerSpellInput).getManaCost()) {
                     System.out.println("Not enough mana");
                 }
+                //check if dodged the spell
                 else if (Utils.getDodged(monsterTarget.getDodgePossiblity())) {
                     System.out.println("Monster dodges successfully!");
                 }
                 else { //spell not dodged
                     System.out.println("Spell successfully used!");
+                    //special effects for three different types of spells
                     if (hero.getStockSpell().get(playerSpellInput).isFireSpell()) {
                         monsterTarget.setDefense((int) (monsterTarget.getDefense() * 0.9));
                     }
@@ -452,7 +468,7 @@ public class LegendsOfValor extends RPGGame {
                 }
             }
             if(userInput =='G'){
-                for(MonsterObject mon: this.getMonsterObjects()) {
+                for(MonsterObject mon: this.getMonsterObjects()) {//loop thru monsters and diaplay their info
                     if (inRange(this.getCurPlayer().getPos(), mon.getPos())){
                         mon.printStatus();
                     }
