@@ -18,8 +18,9 @@ public class Offense {
         if(c.isCave()) HeroAgility *= 1.1;
         if(c.isKoulou()) HeroStrength *= 1.1;
     }
+
     public void heroAttacks(){
-        boolean dodged = new Random(System.currentTimeMillis()).nextInt(100) < monster.getDodgeChance();
+        boolean dodged = Utils.getDodged(hero.getDodgePossiblity());
         if(dodged){
             System.out.println("MISS! The monster dodged your attack!");
             return;
@@ -27,10 +28,10 @@ public class Offense {
         int damage = (int) ((HeroStrength + (hero.getCurEquippedWeapon() != null ? hero.getCurEquippedWeapon().getDamage():0))*0.05)-monster.getDamageReduction();
         monster.takeHit(damage);
         System.out.println("Monster " + monster.getName() + " take damage: " + damage + ", remaining HP: " + monster.getHP());
-
     }
+
     public void monsterAttacks(){
-        boolean dodged = new Random(System.currentTimeMillis()).nextInt(100) < HeroAgility;
+        boolean dodged = Utils.getDodged(HeroAgility*0.0002);
         if(dodged){
             System.out.println("MISS! Hero" +player.getId()+" dodged the attack!");
             return;

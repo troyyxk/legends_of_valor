@@ -207,6 +207,7 @@ public class LegendsOfValor extends RPGGame {
             if (playerHasMonsterInRange(this.getCurPlayer())) {
                 System.out.println("------MOnster-In--Range---------");
                 System.out.println("    [Y]: Attack");
+                System.out.println("    [X]: Use Spell");
             }
 
             ArrayList<Character> options = new ArrayList<Character>();
@@ -224,6 +225,7 @@ public class LegendsOfValor extends RPGGame {
             options.add('B');
             if (playerHasMonsterInRange(this.getCurPlayer())) {
                 options.add('Y');
+                options.add('X');
             }
             if (this.getBoard().getCell(curPlayerPos).isNexus()) {
                 options.add('P');
@@ -375,17 +377,56 @@ public class LegendsOfValor extends RPGGame {
                         break;
                     }
                 }
-                //attack
-//                int damage = this.getCurPlayer().getFirstHeroObject().getAttackDamage() - monsterTarget.getDamageReduction();
-//                monsterTarget.takeHit(damage);
-//                System.out.println("Monster " + monsterTarget.getName() + " take damage: " + damage + ", remaining HP: " + monsterTarget.getHP());
                 new Offense(this.getCurPlayer(), monsterTarget, getBoard().getCell(this.getCurPlayer().getPos())).heroAttacks();
                 if(monsterTarget.isFainted()){
                     System.out.println("Monster fainted!");
                     //removed if died
                     this.getBoard().getCell(monsterTarget.getPos()).removeMonster();
-
                 }
+            }
+            if (userInput == 'X'){ //use spell
+                HeroObject hero = this.getCurPlayer().getFirstHeroObject();
+                MonsterObject monsterTarget = this.getMonsterObjects().get(0); // the target monster involved in the fight
+                for(MonsterObject mon: this.getMonsterObjects()) {
+                    if (inRange(this.getCurPlayer().getPos(), mon.getPos())){
+                        monsterTarget = mon; //know which monster to attack
+                        break;
+                    }
+                }
+                    if (this.getCurPlayer().getFirstHeroObject().getStockSpell().size() == 0) {
+                        System.out.println("No stocked spell.");
+                        continue;
+                    }
+                    hero.getHeroObjectView().printSpell(hero);
+                    System.out.println("Which spell do you want to use?");
+                    int playerSpellInput = Utils.takeIntInput(0, hero.getStockSpell().size() - 1);
+                    if (hero.getMana() < hero.getStockSpell().get(playerSpellInput).getManaCost()) {
+                        System.out.println("Not enough mana");
+                    }
+                    else if (Utils.getDodged(monsterTarget.getDodgePossiblity())) {
+                        System.out.println("Monster dodges successfully!");
+                    }
+                    else {
+                        System.out.println("Spell successfully used!");
+                        if (hero.getStockSpell().get(playerSpellInput).isFireSpell()) {
+                            monsterTarget.setDefense((int) (monsterTarget.getDefense() * 0.9));
+                        }
+                        if (hero.getStockSpell().get(playerSpellInput).isIceSpell()) {
+                            monsterTarget.setDamage((int) (monsterTarget.getDamage() * 0.9));
+                        }
+                        if (hero.getStockSpell().get(playerSpellInput).isLightningSpell()) {
+                            monsterTarget.setDodgeChance((int) (monsterTarget.getDodgeChance() * 0.9));
+                        }
+                        int damage = hero.useSpell(playerSpellInput);
+                        monsterTarget.takeHit(damage);
+                        System.out.println("Monster take damage: " + damage + ", remaining HP: " + monsterTarget.getHP());
+                        if (monsterTarget.isFainted()) {
+                            System.out.println("Monster faints!");
+                            //removed if died
+                            this.getBoard().getCell(monsterTarget.getPos()).removeMonster();
+                        }
+                        break;
+                    }
             }
             return;
         }
