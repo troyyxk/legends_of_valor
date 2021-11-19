@@ -31,7 +31,7 @@ public abstract class HeroModel {
     }
 
     public int getAgility() {
-        return agility;
+        return agility/10;
     }
 
     public int getDexterity() {
