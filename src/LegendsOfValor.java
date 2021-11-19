@@ -145,10 +145,12 @@ public class LegendsOfValor extends RPGGame {
                     for (Player player : this.getCurTeam().getPlayers()) {
                         if (inRange(player.getPos(), monsterObject.getPos())) {
                             HeroObject hero = player.getFirstHeroObject();
-                            int damage = monsterObject.getDamage() - hero.getDamageReduction();
-                            hero.takeHit(damage);
-                            System.out.println("Hero " + player.getId() + " take damage: " + damage + ", remaining HP: " + hero.getHp());
-
+//                            int damage = monsterObject.getDamage() - hero.getDamageReduction();
+//                            System.out.println("Hero"+hero.getHeroIndex());
+//                            hero.takeHit(damage);
+//                            System.out.println("Hero " + player.getId() + " take damage: " + damage + ", remaining HP: " + hero.getHp());
+//                            System.out.println("Hero"+hero.getHeroIndex());
+                            new Offense(player, monsterObject, getBoard().getCell(player.getPos())).monsterAttacks();
                             if(hero.isFainted()){
                                 this.getBoard().moveHero(player, player.getPos(), new int[]{getBoardHeight()-1, player.getId()*3});
                                 System.out.println("You fainted! You are back to your own starting nexus with full health.");
@@ -374,10 +376,10 @@ public class LegendsOfValor extends RPGGame {
                     }
                 }
                 //attack
-                int damage = this.getCurPlayer().getFirstHeroObject().getAttackDamage() - monsterTarget.getDamageReduction();
-                monsterTarget.takeHit(damage);
-                System.out.println("Monster " + monsterTarget.getName() + " take damage: " + damage + ", remaining HP: " + monsterTarget.getHP());
-
+//                int damage = this.getCurPlayer().getFirstHeroObject().getAttackDamage() - monsterTarget.getDamageReduction();
+//                monsterTarget.takeHit(damage);
+//                System.out.println("Monster " + monsterTarget.getName() + " take damage: " + damage + ", remaining HP: " + monsterTarget.getHP());
+                new Offense(this.getCurPlayer(), monsterTarget, getBoard().getCell(this.getCurPlayer().getPos())).heroAttacks();
                 if(monsterTarget.isFainted()){
                     System.out.println("Monster fainted!");
                     //removed if died
