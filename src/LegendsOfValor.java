@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class LegendsOfValor extends RPGGame {
 
-    private boolean continueGaming;
+    private boolean continueGaming, reachedDest;
     private Battle battle;
     private final int monster_spawn_round = 8;
     private Integer monsterId;
@@ -119,6 +119,7 @@ public class LegendsOfValor extends RPGGame {
 
     public int play() {
         boolean firstTime = true;
+        reachedDest = false;
         int round_number = 0;
         while (continueGaming) {
             // if at the monster spurning round, spurn monster
@@ -134,7 +135,7 @@ public class LegendsOfValor extends RPGGame {
 
                 // other options
                 takeNormalOptions();
-
+                if(reachedDest) return 0;
             }
 
             // monster's turn
@@ -229,6 +230,11 @@ public class LegendsOfValor extends RPGGame {
 
             char userInput = Utils.takeOptionInput(options);
             if (userInput == 'W') {
+                if(curPlayerPos[0] == 1 && !this.getBoard().getCell(new int[]{0, curPlayerPos[1]}).hasMonster()){
+                    System.out.println("You won!");
+                    reachedDest = true;
+                    return;
+                }
                 newPos[0] = curPlayerPos[0] - 1;
                 newPos[1] = curPlayerPos[1];
                 if (curPlayerPos[0] == 0 || !this.getBoard().getCell(newPos).isAvailable()) {
