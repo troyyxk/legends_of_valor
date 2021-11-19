@@ -43,6 +43,19 @@ public class LegendsOfValor extends RPGGame {
         ArrayList<MonsterModel> levelMonterModels;
 
         int curLevel;
+        Player curPlayer = null;
+        if (this.getCurTeam().getPlayers().size() > 0) {
+            curPlayer = this.getCurTeam().getPlayers().get(0);
+        }
+        if (this.getCurTeam().getPlayers().size() > 0) {
+            curPlayer = this.getCurTeam().getPlayers().get(0);
+        }
+        if (this.getCurTeam().getPlayers().size() > 0) {
+            curPlayer = this.getCurTeam().getPlayers().get(0);
+        }
+        HeroObject heroObject = curPlayer.getHeroAtIndex(0);
+        curLevel = heroObject.getLevel();
+        
         MonsterModel curMonsterModel;
         ArrayList<int[]> monsterSpawnPos = new ArrayList<int[]>();
         monsterSpawnPos.add(new int[]{0, 0});
@@ -53,9 +66,7 @@ public class LegendsOfValor extends RPGGame {
         for (int i = 0; i < 3; i++) {
             int[] curPos = monsterSpawnPos.get(i);
             if (this.getBoard().posHasNoMonster(curPos)) {
-                Player curPlayer = this.getCurTeam().getPlayers().get(i);
-                HeroObject heroObject = curPlayer.getHeroAtIndex(0);
-                curLevel = heroObject.getLevel();
+
                 levelMonterModels = this.getLevelMonsterMap().get(curLevel);
                 curMonsterModel = levelMonterModels.get(randomGenerator.nextInt(levelMonterModels.size()));
 
@@ -144,9 +155,9 @@ public class LegendsOfValor extends RPGGame {
                     System.out.print("<<< Hero will revise next round: ");
                     for (Player readyToRevisePlayer: this.getCurTeam().getReadyToRevisePlayers()) {
                         System.out.print(readyToRevisePlayer.getId());
-                        System.out.print(" >>>");
+                        System.out.print(" ");
                     }
-                    System.out.println("");
+                    System.out.println(" >>>");
                 }
 
                 // other options
@@ -214,6 +225,7 @@ public class LegendsOfValor extends RPGGame {
             System.out.println("    [D]: Move Left");
             System.out.println("    [Q]: Quite Game");
             System.out.println("    [I]: Show Info");
+            System.out.println("    [L]: Monster Information");
             System.out.println("    [M]: Show Map");
             System.out.println("    [E]: Equip Weapon");
             System.out.println("    [R]: Equip Armory");
@@ -238,6 +250,7 @@ public class LegendsOfValor extends RPGGame {
             options.add('D');
             options.add('Q');
             options.add('I');
+            options.add('L');
             options.add('M');
             options.add('E');
             options.add('R');
@@ -315,6 +328,14 @@ public class LegendsOfValor extends RPGGame {
             if (userInput == 'I') { //info
                 System.out.println("Show info!");
                 this.getCurPlayer().printInfo();
+                continue;
+            }
+            if (userInput == 'L') { // monster info
+                System.out.println("Show Monster info!");
+                System.out.println("Monsters: ");
+                for (MonsterObject monsterObject : this.getMonsterObjects()) {
+                    monsterObject.printStatus();
+                }
                 continue;
             }
             if (userInput == 'M') { //map

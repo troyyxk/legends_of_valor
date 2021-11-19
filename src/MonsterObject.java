@@ -41,6 +41,7 @@ public class MonsterObject implements Movable {
         System.out.println("Damage : " + this.getDamage());
         System.out.println("Defense : " + this.getDefense());
         System.out.println("Dodge Chance : " + this.getDodgeChance());
+        System.out.println("Position: Y: " + posY + " X: " + posX);
 
         System.out.println("----------------------");
     }
