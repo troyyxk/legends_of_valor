@@ -1,10 +1,9 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class RPGGame {
+public class RPGGame extends Game {
 
-    private Board board;
-    private int boardHeight, boardWidth, teamCount, curTeamIdx, curPlayerIndex;
+    private int teamCount, curTeamIdx, curPlayerIndex;
     private ArrayList<Team> teams;
     private Player curPlayer;
     private MarketController marketController;
@@ -15,10 +14,6 @@ public class RPGGame {
     private ArrayList<MonsterObject> monsterObjects;
 
     public RPGGame() {
-        // initialize boardHeight and boardWidth, should set by child class
-        this.boardHeight = 0;
-        this.boardWidth = 0;
-        this.board = null;
         // this.getBoardHeightWidth();
         // this.setBoard();
         this.teams = new ArrayList<Team>();
@@ -43,9 +38,9 @@ public class RPGGame {
         int[] curPos;
         for (Team curTeam : this.teams) {
             for (Player curPlayer : curTeam.getPlayers()) {
-                curPos = this.board.getRandomInitialPosition();
+                curPos = this.getBoard().getRandomInitialPosition();
                 curPlayer.setPos(curPos);
-                this.board.addHero(curPos, curPlayer);
+                this.getBoard().addHero(curPos, curPlayer);
             }
         }
     }
@@ -61,11 +56,11 @@ public class RPGGame {
 
     // board is scalable to set to different width and length
     public void setBoard(){
-        this.board = new Board(this.boardWidth, this.boardHeight);
+        this.setBoard(new Board(this.getBoardWidth(), this.getBoardHeight()));
     }
 
     public void drawBoard() {
-        this.board.drawBoard();
+        this.getBoard().drawBoard();
     }
 
     private void addTeam() {
@@ -80,11 +75,7 @@ public class RPGGame {
 
     // getter and setter
     public int getBoardHeight() {
-        return boardHeight;
-    }
-
-    public Board getBoard() {
-        return board;
+        return super.getBoardWidth();
     }
 
     public int getTeamCount() {
@@ -104,15 +95,15 @@ public class RPGGame {
     }
 
     public void setBoardHeight(int boardHeight) {
-        this.boardHeight = boardHeight;
+        super.setBoardHeight(boardHeight);
     }
 
     public int getBoardWidth() {
-        return boardWidth;
+        return super.getBoardHeight();
     }
 
     public void setBoardWidth(int boardWidth) {
-        this.boardWidth = boardWidth;
+        super.setBoardWidth(boardWidth);
     }
 
     public Team getCurTeam() {

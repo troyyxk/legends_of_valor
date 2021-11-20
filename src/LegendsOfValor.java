@@ -143,6 +143,7 @@ public class LegendsOfValor extends RPGGame {
         reachedDest = false;
         int round_number = 0;
         while (continueGaming) {
+            System.out.println("--- Round " + round_number + " ---");
             // if at the monster spurning round, spurn monster
             if (round_number % monster_spawn_round == 0) {
                 spawnMonster();
