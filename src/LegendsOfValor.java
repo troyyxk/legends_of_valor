@@ -245,7 +245,7 @@ public class LegendsOfValor extends RPGGame {
                 System.out.println("------Monster-In--Range---------");
                 System.out.println("    [Y]: Attack");
                 System.out.println("    [X]: Use Spell");
-                System.out.println("    [G]: Show Monster Info");
+                System.out.println("    [G]: Show Nearby Monster Info");
             }
 
             //add valid options to a list to prevent invalid input
@@ -440,6 +440,7 @@ public class LegendsOfValor extends RPGGame {
                     System.out.println("Monster fainted!");
                     //removed if died
                     removeMonster(monsterTarget);
+                    heroGetsReward(this.getCurPlayer());
                 }
             }
             if (userInput == 'X'){ //use spell
@@ -485,6 +486,7 @@ public class LegendsOfValor extends RPGGame {
                         System.out.println("Monster faints!");
                         //removed if died
                         removeMonster(monsterTarget);
+                        heroGetsReward(this.getCurPlayer());
                     }
                     break;
                 }
@@ -502,6 +504,14 @@ public class LegendsOfValor extends RPGGame {
 
     }
 
+    //hero gets reward (money and exp) after killing a monster
+    public void heroGetsReward(Player p){
+        System.out.println("Hero " + p.getId() + " receives " + p.getFirstHeroObject().getLevel() * 100 + " gold, " + 2 + " experience.");
+        p.getFirstHeroObject().addMoney(p.getFirstHeroObject().getLevel() * 100);
+        p.getFirstHeroObject().addExp(2);
+    }
+
+    //remove monster from board and monster list
     public void removeMonster(MonsterObject monsterObject) {
         this.getBoard().getCell(monsterObject.getPos()).removeMonster();
         this.getMonsterObjects().remove(monsterObject);
