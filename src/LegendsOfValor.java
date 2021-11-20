@@ -1,6 +1,107 @@
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Predefined class RPGGame
+ * 
+ *  Variables:
+ * 
+ *      Board board:
+ * 
+ *      int boardHeight:
+ * 
+ *      int boardWidth:
+ * 
+ *      int teamCount:
+ * 
+ *      int curTeamIdx:
+ * 
+ *      int curPlayerIndex:
+ * 
+ *      ArrayList<Team> teams:
+ * 
+ *      Player curPlayer:
+ * 
+ *      MarketController marketController: Hero actions in market 
+ * 
+ *      MonsterGallary monsterGallary: a database for three kinds of monster, loaded all monsters from local file 
+ * 
+ *      ArrayList<MonsterModel> allMonsterModel: a collection of all  individual monsters , extracted from "monsterGallary"
+ * 
+ *      HashMap<Integer, ArrayList<MonsterModel>> levelMonsterMap: a map of the format < level , [Monster 1, Monster 2, Monster 3 ...]>
+ * 
+ *      ArrayList<MonsterObject> monsterObjects: the monsters actually be put on the map
+ * 
+ *  Constructors:
+ * 
+ *      RPGGame():
+ * 
+ *  Methods:
+ * 
+ *      void initializePlayerPositions() :
+ * 
+ *      void getBoardHeightWidth():
+ * 
+ *      void setBoard():
+ * 
+ *      void drawBoard() :
+ * 
+ *      void addTeam() :
+ * 
+ *      void addMonsterObject(MonsterObject monsterObject):
+ * 
+ *      // getter and setter
+ * 
+ *      int getBoardHeight()
+ * 
+ *      ......
+ * 
+ *  class LegendsOfValor:
+ * 
+ *  Variables:
+ * 
+ *              boolean continueGaming:
+ * 
+ *              Battle battle:
+ * 
+ *              final int monster_spawn_round = 8:
+ * 
+ *              Integer monsterId: keep track of the id that will be given to the next spawn monster
+ * 
+ *  Constructors:
+ *              
+ *              LegendsOfValor():
+ * 
+ *                                  empty constructor
+ * 
+ *              initializePlayerPositions():
+ * 
+ *                                  to initialize a game put three heroes onto the game map 
+ * 
+ *              void spawnMonster():
+ *          
+ *                                  spawn three monsters at nexus
+ * 
+ *              boolean inRange(int[] aPos, int[] bPos):
+ * 
+ *                                  if aPos and bPos are in attack range of each other
+ * 
+ *              boolean playerHasMonsterInRange(Player player):
+ * 
+ *              boolean mosnterHasPlayerInRange(MonsterObject monsterObject):
+ * 
+ *              void moveMosnterAhead(MonsterObject monsterObject):
+ * 
+ *                                          Monster will only move forward on the lane it is born 
+ * 
+ *              int play():
+ * 
+ *                                       high level game while loop
+ * 
+ *              void takeNormalOptions():
+ * 
+ *                                      prompt the user to take user control command on terminal 
+ */
 public class LegendsOfValor extends RPGGame {
 
     private boolean continueGaming, reachedDest;

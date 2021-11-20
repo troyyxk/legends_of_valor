@@ -1,3 +1,47 @@
+/**
+ * Predefined Interface Purchasable:
+ *  
+ *                  abstract boolean isPurchasable(HeroObject heroObject)
+ * 
+ * 
+ * Armory class 
+ * 
+ *      Variables:
+ * 
+ *                  String name : 
+ *          
+ *                  int cost:
+ * 
+ *                  int requiredLevel:
+ * 
+ *                  int damageReduction:
+ * 
+ *      Constructors:
+ *              
+ *                  Armory(String name, int cost, int requiredLevel, int damageReduction) :
+ *          
+ *      Methods:
+ *          
+ *                  boolean isPurchasable( HeroObject heroObject):
+ * 
+ *                                              return true if "heroObject" 's money and level are qualified for a Purchase
+ * 
+ *                  String getName():
+ * 
+ *                  void setName(String name):
+ * 
+ *                  int getCost():
+ *                              
+ *                  setCost(int cost) :
+ * 
+ *                  int getRequiredLevel():
+ * 
+ *                  void setRequiredLevel(int requiredLevel):
+ * 
+ *                  int getDamageReduction() :
+ * 
+ *                  void setDamageReduction(int damageReduction):
+ */
 public class Armory implements Purchasable{
     private String name;
     private int cost;

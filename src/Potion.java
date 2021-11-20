@@ -1,5 +1,40 @@
 import java.util.ArrayList;
 
+/**
+ * Predefined interface Purchasable:
+ * 
+ *       abstract boolean isPurchasable(HeroObject heroObject)
+ * 
+ *  class Potion:
+ * 
+ *      Variables:
+ *                  String name:
+ * 
+ *                  int cost:
+ * 
+ *                  int requiredLeve:
+ * 
+ *                  int attributeIncrease:
+ * 
+ *                  ArrayList<String> attributeAffected
+ *      Constructor:
+ * 
+ *                  Potion(String name, int cost, int requiredLevel, int attributeIncrease,
+            ArrayList<String> attributeAffected) :
+            
+ *           
+ *      Methods:
+ * 
+ *                  boolean isPurchasable(HeroObject heroObject):
+ * 
+ *                  void effectOn(HeroObject heroObject):
+ *                      
+ *                                      potion applies effect on hero
+ * 
+ *                  //getter and setter
+ * 
+ *                  ...
+ */
 public class Potion implements Purchasable {
     private String name;
     private int cost;

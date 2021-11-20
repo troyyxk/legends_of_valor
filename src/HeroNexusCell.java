@@ -1,3 +1,48 @@
+/**
+ * Predefined Interface Placeable:
+ * 
+ *  Abstract Methods:
+ *  
+ *          boolean isAccessible():
+ * 
+ *          boolean isHostile():
+ * 
+ *          boolean isNexus():
+ * 
+ *          boolean isEnermyNexus():
+ * 
+ *          boolean isPlain():
+ * 
+ *          boolean isCave():
+ * 
+ *          boolean isBush():
+ * 
+ *          boolean isKoulou():
+ * 
+ *          char getMarker():  return the char representing the cell
+ * 
+ *          void setMarker(char newMarker): set the cell's marker to be "newMarker"
+ * 
+ *  class HeroNexusCell :
+ * 
+ *  Variables:
+ * 
+ *          char marker:
+ * 
+ *          boolean accessible:
+ * 
+ *          boolean hostile:
+ * 
+ *  Constructors:
+ * 
+ *          HeroNexusCell():
+ * 
+ *                      empty constructor
+ * 
+ *  Methods:
+ * 
+ *          
+ */
 public class HeroNexusCell implements Placeable {
     private char marker;
     private boolean accessible, hostile;

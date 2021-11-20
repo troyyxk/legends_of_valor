@@ -1,3 +1,22 @@
+
+
+/**
+ *  class HeroObjectView
+ * 
+ *                      print hero's information
+ * 
+ *  Methods:
+ * 
+ *          void printStatus(HeroObject heroObject):
+ * 
+ *          void printWeapon(HeroObject heroObject):
+ * 
+ *          void printArmory(HeroObject heroObject):
+ * 
+ *          void printSpell(HeroObject heroObject):
+ * 
+ *          void printStock(HeroObject heroObject):
+ */
 public class HeroObjectView {
     public void printStatus(HeroObject heroObject) {
         System.out.println("[" + heroObject.getHeroIndex() + "] -----Hero-Info-----");

@@ -1,5 +1,32 @@
 import java.util.Random;
 
+/**
+ * class Offense
+ * 
+ *                      the implementation of an inividual attack started by a hero/monster againist a monster/hero
+ * 
+ *  Variables:
+ * 
+ *              Player player:
+ * 
+ *              HeroObject hero:
+ * 
+ *              MonsterObject monster:
+ * 
+ *              int HeroAgility, HeroDexterity, HeroStrength:
+ * 
+ *              Cell cell:
+ * 
+ *  Constructor:
+ * 
+ *              Offense(Player p, MonsterObject mo, Cell c)
+ * 
+ *  Methods:
+ * 
+ *              void heroAttacks():
+ * 
+ *              void monsterAttacks():
+ */
 public class Offense {
     private Player player;
     private HeroObject hero;

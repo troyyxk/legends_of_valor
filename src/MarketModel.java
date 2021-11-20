@@ -2,6 +2,49 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+
+/**
+ *  class MarketModel:
+ * 
+ *  Variables:
+ *              ArrayList<Weapon> weapons:
+ * 
+ *              ArrayList<Potion> potions:
+ * 
+ *              ArrayList<Armory> armories:
+ * 
+ *              ArrayList<FireSpell> fireSpells:
+ * 
+ *              ArrayList<IceSpell> iceSpells:
+ * 
+ *              ArrayList<LightningSpell> lightningSpells:
+ * 
+ *  Constructors:
+ * 
+ *              MarketModel():
+ * 
+ *                              empty constructor, initilize all arraylists of items based on local txt files.
+ *  Methods:
+ * 
+ *          void collectWeapons(String filePath):
+ * 
+ *          void collectPotions(String filePath):
+ * 
+ *          void collectArmory(String filePath) :
+ * 
+ *          void collectFireSpells(String filePath):
+ * 
+ *          void collectIceSpells(String filePath) :
+ * 
+ *          void collectLightningSpells(String filePath):
+ * 
+ *          // getters
+ *          
+ *          ArrayList<Weapon> getWeapons() 
+ * 
+ *          ......
+ *              
+ */
 public class MarketModel {
 
     private ArrayList<Weapon> weapons;

@@ -1,6 +1,40 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+/**
+ * class Team:
+ * 
+ *      Variables:
+ * 
+ *                   ArrayList<Player> players:
+ * 
+ *                   int curPlayerIndex: index to identify whoes turn it is when there are more than one player in a team ,
+ * 
+ *      
+ *                   int numOfPlayers
+ *  
+ *                   int teamIdx:
+ * 
+ *      Constructor:
+ * 
+ *                  Team(int teamIdx)
+ * 
+ *      Methods:
+ * 
+ *                  void addPlayer():
+ *          
+ *                                     add player to a team, a team can have multiple player
+ * 
+ *                  int getNumOfPlayers():
+ * 
+ *                  void moveToNextPlayer():
+ * 
+ *                              move to next player in a team
+ * 
+ *                  // getter and setter
+ * 
+ *                  ...
+ */
 public class Team {
     private ArrayList<Player> players, faintedPlayers, readyToRevisePlayers;
     private int curPlayerIndex, numOfPlayers, teamIdx;

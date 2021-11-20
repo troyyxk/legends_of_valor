@@ -1,5 +1,117 @@
 import java.util.ArrayList;
 
+/**
+ * Predefined abstract class HeroModel :
+ * 
+ *  Variables:
+ *          
+ *          String name:
+ * 
+ *          int mana:
+ * 
+ *          int strength:
+ * 
+ *          int agility:
+ * 
+ *          int dodgeChance:
+ * 
+ *          int dexterity:
+ * 
+ *          int startingMoney:
+ * 
+ *          int startingExperience:
+ * 
+ *          int  money :
+ * 
+ *          int exp:
+ * 
+ *          int level:
+ * 
+ *          int levelCap:
+ * 
+ *          int defence:
+ * 
+ *          int hp:
+ * 
+ *          int heroIndex:
+ * 
+ *          HeroObjectView heroObjectView:  a class with methods to print out hero stats
+ * 
+ *          Weapon curEquippedWeapon:
+ * 
+ *          Armory curEquippedArmory：
+ * 
+ *          ArrayList<Weapon> stockWeapons：
+ * 
+ *          ArrayList<Armory> stockArmory：
+ * 
+ *          ArrayList<Potion> stockPotion：
+ * 
+ *          ArrayList<Spell> stockSpell：
+ *  Constrcutor:
+ * 
+ *          HeroObject(int heroIndex, HeroModel heroModel, int levelCap) :
+ *                                  
+ *                                           empty constructor
+ * 
+ *  Methods:
+ * 
+ *          void takeDownWeapon():
+ * 
+ *          void takeDownArmory()):
+ * 
+ *          void putOnWeapon(int weaponIdx)):
+ * 
+ *          void putOnArmory(int armoryIdx):
+ * 
+ *          void takePotion(int potionIdx):
+ * 
+ *          void addMoney(int amount) :
+ * 
+ *          void printStatus()  :
+ *  
+ *          void getReadyForBatter() :
+ * 
+ *                                  set this.hp to MaxHP
+ * 
+ *          void takeHit(int damage) :
+ * 
+ *                                  reduce "damage" from this.hp
+ * 
+ *          void purchaseWeapon(Weapon weapon) :
+ * 
+ *                                  add weapon to this.stockWeapon and reduce money from this.money
+ * 
+ *          void purchaseArmory(Armory armory)：
+ * 
+ *          void purchasePotion(Potion potion)：
+ * 
+ *                                  add potion to this.stockPotion and reduce money from this.money
+ * 
+ *          void purchaseSpell(Spell spell) ：
+ * 
+ *                                  add spell to this.stockSpell, and reduce money from this.money
+ * 
+ *          boolean isFainted() ：
+ *
+ * 
+ *          void addExp(int newExp)：
+ * 
+ *          void levelUp() ：
+ * 
+ * // getter and setter
+ *          int getHeroIndex():
+ * 
+ *          double getDodgePossiblity() :
+ * 
+ *          int getDamageReduction() :
+ * 
+ *          HeroModel getHeroModel() :
+ * 
+ *          int getMaxHP() 
+ * 
+ *          ....
+ */
 public class HeroObject implements Fightable{
     private HeroModel heroModel;
     private String name;

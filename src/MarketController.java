@@ -1,5 +1,46 @@
 import java.util.ArrayList;
 
+/**
+ * class MarketController:
+ * 
+ *  Variables:
+ *              
+ *              MarketView marketView:
+ * 
+ *              MarketModel marketModel:
+ * 
+ *  Constructors:
+ *          
+ *              MarketController():
+ * 
+ *  Methods:
+ * 
+ *              void startPurchase(HeroObject heroObject):
+ * 
+ *                              show hero items availabe at the market
+ * 
+ *              void printProducts():
+ * 
+ *              void printWelcomeMessage(HeroObject heroObject):
+ * 
+ *              void startShopping(HeroObject heroObject):
+ *  
+ *                              prompt user to take an action at the market
+ *          
+ *              void sell(HeroObject heroObject) :
+ * 
+ *                              hero selling 
+ * 
+ *              void purchase(HeroObject heroObject) :
+ * 
+ *                                  hero purchasing
+ * 
+ *              
+ *          
+ *              
+ *              
+ *              
+ */
 public class MarketController {
 
     private MarketView marketView;

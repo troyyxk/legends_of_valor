@@ -1,3 +1,22 @@
+/**
+ * class HeroGalleryView:
+ * 
+ *  Variables:
+ * 
+ *  Methods:
+ * 
+ *          void show(HeroGalleryModel heroGalleryModel):
+ * 
+ *                              print out all the heroes candiates in "heroGalleryModel"
+ * 
+ *          void printHeroHeader():
+ * 
+ *                              print out the hearder which are names of all the hero stats
+ * 
+ *          printHero(int index, HeroModel heroModel):
+ * 
+ *                              print out the hero stats of "heroModel"
+ */
 public class HeroGalleryView {
     public void show(HeroGalleryModel heroGalleryModel) {
         System.out.println("--------------------------------------------------------");

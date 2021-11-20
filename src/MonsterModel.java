@@ -1,3 +1,37 @@
+
+/**
+ * abstract class MonsterModel:
+ * 
+ *  Variables:
+ * 
+ *          String name:
+ * 
+ *          int level :
+ * 
+ *          int damage:
+ * 
+ *          int defense:
+ * 
+ *          int dodgeChance:
+ * 
+ *  Constructor:
+ * 
+ *          MonsterModel(String name, int level, int damage, int defense, int dodgeChance):
+ * 
+ *  Methods:
+ * 
+ *          abstract boolean isDragon():
+ * 
+ *          abstract boolean isExoskeleton():
+ * 
+ *          abstract boolean isSpirit():
+ * 
+ *          // getter and setter
+ * 
+ *          String getName():
+ * 
+ *          ...
+ */
 public abstract class MonsterModel {
     private String name;
     private int level, damage, defense, dodgeChance;

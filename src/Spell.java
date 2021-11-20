@@ -1,3 +1,42 @@
+/**
+ * Predefined interface Purchasable:
+ * 
+ *       abstract boolean isPurchasable(HeroObject heroObject)
+ * 
+ *  abstract class Spell:
+ * 
+ *  Variables:
+ *  
+ *              String Name:
+ * 
+ *              int cost:
+ * 
+ *              int requiredLevel:
+ * 
+ *              int damage:
+ * 
+ *              int manaCost:
+ * 
+ *  Constructor:
+ * 
+ *          Spell(String name, int cost, int requiredLevel, int damage, int manaCost):
+ * 
+ *  Methods:
+ *          
+ *          abstract boolean isFireSpell():
+ * 
+ *          abstract boolean isIceSpell():
+ * 
+ *          abstract boolean isLightningSpell():
+ * 
+ *          abstract String getType():
+ * 
+ *          boolean isPurchasable(HeroObject heroObject):
+ * 
+ *    // getter and setter
+ * 
+ *          ....      
+ */
 public abstract class Spell implements Purchasable {
     private String Name;
     private int cost;

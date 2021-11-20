@@ -1,5 +1,60 @@
 import java.util.ArrayList;
 
+/**
+ * Predefined interface Movable:
+ * 
+ *  Methods:
+ * 
+ *          abstract char getMarker():
+ *              
+ *                          return the Marker which represents this Movable object
+ * 
+ *          abstract int[] getPos():
+ * 
+ *                          int [] x, y 
+ * 
+ *          abstract void setPos(int[] pos):
+ * 
+ * class Player:
+ * 
+ *  Variables:
+ * 
+ *              String name:
+ * 
+ *              char marker:
+ * 
+ *              ArrayList<HeroObject> heroObjects:
+ * 
+ *              int heroLevelCap, heroCount:
+ * 
+ *              HeroGallaryController heroGallaryController :     allow user to select a hero from the all hero collection   
+ * 
+ *              int posX, posY:
+ * 
+ *              int id   
+ * 
+ *  Constrcutors:
+ * 
+ *              Player(int id) :
+ * 
+ *              Player(String name):
+ * 
+ *              Player(String name, int heroLevelCap):
+ * 
+ *              void printInfo() :
+ * 
+ *              HeroObject getFirstHeroObject():
+ * 
+ *              void addHeroObjects() :
+ * 
+ *              ....
+ * 
+ *              //getter and setter
+ * 
+ *              ...
+ * 
+ *              
+ */
 public class Player implements Movable{
 
     private String name;

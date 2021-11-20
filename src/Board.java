@@ -1,6 +1,83 @@
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.*;
 
+/**
+ * class Board :
+ * 
+ *  Variables:
+ *          
+ *              int width:
+ * 
+ *              int height:
+ * 
+ *              Cell[][] cells:
+ * 
+ *              PlaceableFactory placeableFactory:  a class with only one method
+ *          
+ *                                                  Pleacable getPlaceable(String placeableType):
+ *                                          
+ *                                                              return a cell/Pleacable object speficed by "placeableType"
+ *  Constructor:
+ * 
+ *              Board(int width , int height):
+ * 
+ *  Methods:
+ *              void addHero( int [] pos, Movable hero):
+ * 
+ *                                  put player /"hero" at  this.cells[pos[0]][pos[1]]        
+ * 
+ *              boolean posHasNoMonster(int[] pos):
+ * 
+ *                                  return true if there is an monster at this.cells[pos[0]][pos[1]]              
+ * 
+ *              int[] getRandomInitialPosition():
+ * 
+ *                                  return random x, y 
+ * 
+ *              void getRandomMap() :
+ * 
+ *                                  set this.cells to different types of cells
+ *              
+ *              boolean containPosition(HashMap<Integer, ArrayList<Integer>> builtCells, int x, int y) :
+ * 
+ *  
+ *              void getBlankCells():
+ *      
+ *                                  set this.cells to the default type of cell
+ * 
+ *              Cell[][] getCells() :
+ * 
+ *                                  return this.cells
+ * 
+ *              Cell getCell(int[] pos) :
+ *                  
+ *                                  return Cell at this.cells[pos[0]][pos[1]]        
+ * 
+ *              void moveHero(Movable movable, int[] oldPos, int[] newPos) :
+ * 
+ *                                  move player/Movable from "oldPos" to "newPos"
+ * 
+ *              void moveMonster(Movable movable, int[] oldPos, int[] newPos):
+ * 
+ *                                  move monster from "oldPos" to "newPos"
+ * 
+ *              ArrayList<char[]> getBlankBoard():
+ * 
+ *              
+ *              void drawBoard():
+ *  
+ *                                  print the entire game board on terminal
+ * 
+ *              int getWidth():
+ * 
+ *                                  return this.width
+ * 
+ *              int getHeight():
+ * 
+ *                                  return this.height
+ * 
+ */
 // this is class for keep width and height of board and provide an empty board
 public class Board {
     private int width, height;

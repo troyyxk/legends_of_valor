@@ -1,5 +1,64 @@
 import java.util.ArrayList;
 
+/**
+ * Predefined class HeroGalleryModel:
+ * 
+ *  Variables:
+ *          ArrayList<Paladin> paladins:
+ * 
+ *          ArrayList<Sorcerer> sorcerers:
+ * 
+ *          ArrayList<Warrior> warriors:
+ * 
+ *          ArrayList<ArrayList<HeroModel>> heroCollections
+ * 
+ *  Methods:
+ * 
+ *          HeroGalleryModel():
+ * 
+ *                              read in data from local txt files to initilize "paladins", "sorcerers","warriors"
+ * 
+ *          void collectWarriors(String filePath):
+ *      
+ *                              read in data from "filePath" and store data into "this.warriors"
+ * 
+ *          void collectPaladins(String filePath):
+ * 
+ *          void collectPaladins(String filePath):
+ * 
+ *          ArrayList<Paladin> getPaladin():
+ * 
+ *                                      return "this.paladins"
+ * 
+ *          ArrayList<Sorcerer> getSorcerers():
+ * 
+ *                                      return "this.sorcerers"
+ * 
+ *          ArrayList<Warrior> getWarriors():
+ * 
+ *                                      return "this.warriors"
+ * class HeroGallaryController:
+ * 
+ *  Variables:
+ *          
+ *              HeroGalleryView heroGalleryView:    a class with methods to print out heroes of HeroGalleryModel object 
+ * 
+ *              HeroGalleryModel heroGalleryModel:  collection of hero candidates 
+ * 
+ *  Constructors:
+ *              
+ *              HeroGallaryController():
+ *          
+ *                                      empty constructor
+ * 
+ *  Methods:
+ * 
+ *              HeroModel selectHeroModel():
+ * 
+ *                                      return a HeroModel selected by player from the "this.heroGalleryModel"
+ *              
+ *                          
+ */
 public class HeroGallaryController {
     private HeroGalleryView heroGalleryView;
     private HeroGalleryModel heroGalleryModel;

@@ -1,3 +1,68 @@
+/**
+ * Predefined interface Movable:
+ * 
+ *  Methods:
+ * 
+ *          abstract char getMarker():
+ *              
+ *                          return the Marker which represents this Movable object
+ * 
+ *          abstract int[] getPos():
+ * 
+ *                          int [] x, y 
+ * 
+ *          abstract void setPos(int[] pos):
+ * 
+ * Class MonsterObject:
+ * 
+ *  Variables:
+ * 
+ *          String name:
+ *  
+ *          int level:
+ * 
+ *          int damage:
+ * 
+ *          int defense:
+ * 
+ *          int dodgeChance:
+ * 
+ *          MonsterModel monsterModel:
+ * 
+ *          int hp:
+ * 
+ *          int posX,posY:
+ * 
+ *          int id:
+ * 
+ *          char marker:
+ * 
+ *  Constructor:
+ * 
+ *          MonsterObject(int id, MonsterModel monsterModel) :
+ * 
+ *  Methods:
+ * 
+ *          void getReadyForBatter():
+ * 
+ *                              set hp to maximum value (based on level)
+ * 
+ *          void takeHit(int damage):
+ *          
+ *                              modify hp when take dmg
+ * 
+ *          boolean isFainted() :
+ * 
+ *          void printStatus():
+ * 
+ *          // getter and setter
+ * 
+ *          ...
+ * 
+ *          
+ * 
+ *          
+ */
 public class MonsterObject implements Movable, Fightable {
     private String name;
     private int level, damage, defense, dodgeChance;

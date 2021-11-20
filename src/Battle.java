@@ -1,7 +1,58 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Random;
-
+/**
+ * class Battle:
+ * 
+ *  Variables:
+ *          
+ *              ArrayList<HeroObject> heroObjects: consists of n hero objects
+ *  
+ *              ArrayList<MonsterModel> allMonsterModels: a collection of all kinds of Monsters 
+ * 
+ *              HashMap<Integer, ArrayList<MonsterModel>> levelMonsterMap: 
+ * 
+ *              ArrayList<int[]> hpManaBeforeBattle:  stores the HP and Mana of each hero before the Battle into an int[]. for each int [] , int [0] is HP, int [1] is Mana
+ * 
+ *              ArrayList<MonsterObject> monsterObjects: consists of n monster objects
+ *              
+ *  Constructor:
+ * 
+ *              Battle(ArrayList<HeroObject> heroObjects, ArrayList<MonsterModel> allMonsterModels) :
+ * 
+ *  Methods:
+ *              ArrayList<MonsterObject> getMonsterTeam():  
+ *              
+ *                                      for each hero in "this.heroObjects", randomly select a same level monster from "this.levelMonsterMap" . return an ArrayList<MonsterObject> which stores all the selected monsters
+ *              
+ *              HashMap<Integer, ArrayList<MonsterModel>> getLevelMonsterMap():
+ *      
+ *                                      sorted all the monsters from "this.allMonsterModels" in to a map , and return the map <level ,  ArrayList<MonsterModel> > 
+ * 
+ *              boolean heroWin() :
+ *  
+ *                                      iterate through  "this.monsterObjects", return true if all the monsters dead, otherwise false
+ * 
+ *              boolean monsterWin(): 
+ * 
+ *                                      iterate through  "this.heroObjects", return true if all the heroes dead, otherwise false
+ *              
+ *              MonsterObject getTargetMonster(int heroIndex):
+ *                  
+ *                                      return the monster at index "heroIndex" of "this.monsterObjects" if it is not fainted, otherwise iterate through "this.monsterObjects"  and return the first not fainted monster
+ *                                      
+ *              HeroObject getTargetHero(int monsterIndex):
+ * 
+ *                                       return the monster at index "monsterIndex" of "this.heroObjects" if it is not fainted, otherwise iterate through "this.heroObjects"  and return the first not fainted hero
+ *              void start() :
+ *                          
+ *                                       start a battle until one side wins, and for each fainted hero give back 1/2 HP and Mana
+ * 
+ *              boolean startBattle():
+ * 
+ *                                       while loop of a battle between monsters and heroes, return true if player win , otherwise false
+ *                         
+ */
 public class Battle {
     private ArrayList<HeroObject> heroObjects;
     private ArrayList<MonsterModel> allMonsterModels;

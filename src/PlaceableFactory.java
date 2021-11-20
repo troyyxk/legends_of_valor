@@ -1,3 +1,6 @@
+/**
+ * Factor design pattern
+ */
 public class PlaceableFactory {
     //use getPlaceable method to get object of type Placeable
     public Placeable getPlaceable(String placeableType){

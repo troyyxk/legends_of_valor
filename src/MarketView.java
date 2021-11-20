@@ -1,3 +1,23 @@
+
+/**
+ * class MarketView:
+ * 
+ *      Variables:
+ * 
+ *      Methods:
+ * 
+ *              void show(MarketModel marketModel):
+ * 
+ *                      print out items available at the market
+ * 
+ *              void printLightningSpellHeader():
+ * 
+ *              void printLightningSpell(int index, LightningSpell curLightningSpell):
+ * 
+ *              ...
+ *              
+ */
+
 public class MarketView {
     public void show(MarketModel marketModel) {
         System.out.println("--------------------------------------------------------");

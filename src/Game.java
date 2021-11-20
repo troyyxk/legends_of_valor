@@ -1,3 +1,7 @@
+
+/**
+ * class game
+ */
 public class Game {
     private Board board;
     private int boardHeight, boardWidth;

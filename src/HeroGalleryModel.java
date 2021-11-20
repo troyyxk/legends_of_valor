@@ -1,5 +1,43 @@
 import java.util.ArrayList;
 
+/**
+ * class HeroGalleryModel:
+ * 
+ *  Variables:
+ *          ArrayList<Paladin> paladins:
+ * 
+ *          ArrayList<Sorcerer> sorcerers:
+ * 
+ *          ArrayList<Warrior> warriors:
+ * 
+ *          ArrayList<ArrayList<HeroModel>> heroCollections
+ * 
+ *  Methods:
+ * 
+ *          HeroGalleryModel():
+ * 
+ *                              read in data from local txt files to initilize "paladins", "sorcerers","warriors"
+ * 
+ *          void collectWarriors(String filePath):
+ *      
+ *                              read in data from "filePath" and store data into "this.warriors"
+ * 
+ *          void collectPaladins(String filePath):
+ * 
+ *          void collectPaladins(String filePath):
+ * 
+ *          ArrayList<Paladin> getPaladin():
+ * 
+ *                                      return "this.paladins"
+ * 
+ *          ArrayList<Sorcerer> getSorcerers():
+ * 
+ *                                      return "this.sorcerers"
+ * 
+ *          ArrayList<Warrior> getWarriors():
+ * 
+ *                                      return "this.warriors"
+ */
 public class HeroGalleryModel {
     private ArrayList<Paladin> paladins;
     private ArrayList<Sorcerer> sorcerers;

@@ -11,6 +11,59 @@ import java.util.Random;
 
 /**
  * Class of utility methods. All methods are static
+ * 
+ *  Methods:
+ * 
+ *          static String takeInput():
+ * 
+ *                                          ask user to type in something
+ * 
+ *          static char takeOptionInput(ArrayList<Character> options) :
+ * 
+ *                                          limit the range of valid input
+ * 
+ *          static String takeName():
+ * 
+ *                                  ask user to type in a name
+ * 
+ *          
+ *          static char takeMarker():
+ * 
+ *                                  ask user to type a marker which is used to present its character and to be display on map
+ * 
+ *          static int takeIntInput(int lowerBound, int upperBound):
+ * 
+ * 
+ *          static boolean takeYesFromInput() :
+ * 
+ *                                      ask user to answer yes or no 
+ * 
+ *          static boolean isNum(String str):
+ * 
+ *                                      if the "str" can be convert to a number
+ *  
+ *          static boolean isValidCoord(int[] coord):
+ *      
+ *                                      check the input x y is within bound
+ * 
+ *          static int[] takeCoordFromInput():
+ * 
+ *                                      ask for x y 
+ * 
+ *          static ArrayList<ArrayList<String>> takeAttributeFromFile(String filePath) :
+ * 
+ *          
+ *          static boolean getRandomBollean(double p) :
+ * 
+ *                                  p is probability return boolean is true
+ * 
+ *                              
+ *          static boolean getDodged(double p) :
+ * 
+ * 
+ *          //printing methods
+ * 
+ *          ....
  */
 
 public class Utils {

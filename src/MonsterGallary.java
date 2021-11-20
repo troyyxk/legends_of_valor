@@ -1,5 +1,35 @@
 import java.util.ArrayList;
 
+/**
+ * class MonsterGallary:
+ * 
+ *  Variables:
+ * 
+ *      ArrayList<MonsterModel> allMonsterModels:
+ * 
+ *      ArrayList<Dragon> allDragons:
+ * 
+ *      ArrayList<Exoskeleton> allExoskeletons:
+ * 
+ *      ArrayList<Spirit> allSpirits:
+ * 
+ *  Constructor:
+ * 
+ *      MonsterGallary() :
+ *                      
+ *                          loaded monsters from local txt files
+ *  Methods:
+ * 
+ *      void getAllDragons(String filePath):
+ * 
+ *      void getAllExoskeletons(String filePath):
+ * 
+ *      void getAllSpirits(String filePath):
+ * 
+ *      // getter and setter
+ * 
+ *      ...
+ */
 public class MonsterGallary {
     private ArrayList<MonsterModel> allMonsterModels;
     private ArrayList<Dragon> allDragons;

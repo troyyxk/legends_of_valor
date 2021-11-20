@@ -1,3 +1,28 @@
+/**
+ * Interface Placeable:
+ * 
+ *  Methods:
+ *  
+ *          boolean isAccessible():
+ * 
+ *          boolean isHostile():
+ * 
+ *          boolean isNexus():
+ * 
+ *          boolean isEnermyNexus():
+ * 
+ *          boolean isPlain():
+ * 
+ *          boolean isCave():
+ * 
+ *          boolean isBush():
+ * 
+ *          boolean isKoulou():
+ * 
+ *          char getMarker():  return the char representing the cell
+ * 
+ *          void setMarker(char newMarker): set the cell's marker to be "newMarker"
+ */
 public interface Placeable {
     public abstract boolean isAccessible();
     public abstract boolean isHostile();

@@ -1,6 +1,61 @@
 import java.util.ArrayList;
 import java.util.HashMap;
 
+/**
+ * class RPGGame
+ * 
+ *  Variables:
+ * 
+ *      Board board:
+ * 
+ *      int boardHeight:
+ * 
+ *      int boardWidth:
+ * 
+ *      int teamCount:
+ * 
+ *      int curTeamIdx:
+ * 
+ *      int curPlayerIndex:
+ * 
+ *      ArrayList<Team> teams:
+ * 
+ *      Player curPlayer:
+ * 
+ *      MarketController marketController: Hero actions in market 
+ * 
+ *      MonsterGallary monsterGallary: a database for three kinds of monster, loaded all monsters from local file 
+ * 
+ *      ArrayList<MonsterModel> allMonsterModel: a collection of all  individual monsters , extracted from "monsterGallary"
+ * 
+ *      HashMap<Integer, ArrayList<MonsterModel>> levelMonsterMap: a map of the format < level , [Monster 1, Monster 2, Monster 3 ...]>
+ * 
+ *      ArrayList<MonsterObject> monsterObjects: the monsters actually be put on the map
+ * 
+ *  Constructors:
+ * 
+ *      RPGGame():
+ * 
+ *  Methods:
+ * 
+ *      void initializePlayerPositions() :
+ * 
+ *      void getBoardHeightWidth():
+ * 
+ *      void setBoard():
+ * 
+ *      void drawBoard() :
+ * 
+ *      void addTeam() :
+ * 
+ *      void addMonsterObject(MonsterObject monsterObject):
+ * 
+ *      // getter and setter
+ * 
+ *      int getBoardHeight()
+ * 
+ *      ......
+ */
 public class RPGGame extends Game {
 
     private int teamCount, curTeamIdx, curPlayerIndex;
