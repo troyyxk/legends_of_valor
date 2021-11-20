@@ -1,6 +1,6 @@
 public class EnermyNexusCell implements Placeable {
-    char marker;
-    boolean accessible, hostile;
+    private char marker;
+    private boolean accessible, hostile;
 
     public EnermyNexusCell() {
         this.marker = 'H';

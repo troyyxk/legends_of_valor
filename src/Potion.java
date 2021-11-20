@@ -1,11 +1,11 @@
 import java.util.ArrayList;
 
 public class Potion implements Purchasable {
-    String name;
-    int cost;
-    int requiredLevel;
-    int attributeIncrease;
-    ArrayList<String> attributeAffected;
+    private String name;
+    private int cost;
+    private int requiredLevel;
+    private int attributeIncrease;
+    private ArrayList<String> attributeAffected;
 
     public Potion(String name, int cost, int requiredLevel, int attributeIncrease, ArrayList<String> attributeAffected) {
         this.name = name;

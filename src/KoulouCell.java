@@ -1,6 +1,6 @@
 public class KoulouCell implements Placeable {
-    char marker;
-    boolean accessible, hostile;
+    private char marker;
+    private boolean accessible, hostile;
 
     public KoulouCell() {
         this.marker = 'K';

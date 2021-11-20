@@ -1,6 +1,6 @@
 public class NonAccessibleCell implements Placeable {
-    char marker;
-    boolean accessible, hostile;
+    private char marker;
+    private boolean accessible, hostile;
 
     public NonAccessibleCell() {
         this.marker = 'X';

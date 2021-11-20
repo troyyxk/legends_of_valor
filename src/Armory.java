@@ -1,8 +1,8 @@
 public class Armory implements Purchasable{
-    String name;
-    int cost;
-    int requiredLevel;
-    int damageReduction;
+    private String name;
+    private int cost;
+    private int requiredLevel;
+    private int damageReduction;
 
     public Armory(String name, int cost, int requiredLevel, int damageReduction) {
         this.name = name;

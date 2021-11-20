@@ -1,6 +1,6 @@
 public class BushCell implements Placeable {
-    char marker;
-    boolean accessible, hostile;
+    private char marker;
+    private boolean accessible, hostile;
 
     public BushCell() {
         this.marker = 'B';

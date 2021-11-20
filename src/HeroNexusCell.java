@@ -1,6 +1,6 @@
 public class HeroNexusCell implements Placeable {
-    char marker;
-    boolean accessible, hostile;
+    private char marker;
+    private boolean accessible, hostile;
 
     public HeroNexusCell() {
         this.marker = 'H';

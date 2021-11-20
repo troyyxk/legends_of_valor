@@ -1,6 +1,6 @@
 public class PlainCell implements Placeable {
-    char marker;
-    boolean accessible, hostile;
+    private char marker;
+    private boolean accessible, hostile;
 
     public PlainCell() {
         this.marker = ' ';
