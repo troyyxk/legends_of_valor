@@ -1,39 +1,3 @@
-# board_game
-Name: Xingkun Yin
-Email: yinxingk@bu.edu
-BU ID: U44255956
-
-## Compile and Execution Instrucitons
-
-Get into this fila and run:
-```
-javac BoardGame/*.java
-cd BoardGame
-java Main
-```
-This would compile and run the game.
-
-## Class Description
-
-Main
-- this is the class for the main function and that is its whole purpose
-
-GameRunner
-- main would call this the run() funciton in this class
-- it deal with the errant before and after running the game:
-    - grating the players
-    - take input of which game players want to play
-    - run the game
-    - save the winner record
-    - say goodbye to players
-
-## Extra
-1. Factory design pattern is use for generating placeable
-2. MVC for market, HeroGallary
-3. the board is able to be scalable to different width length
-4. this project enable add different number of players into teams
-5. it is able to add different numbers of teams
-
 # CS611-Legends
 
 Name
