@@ -328,7 +328,7 @@ public class LegendsOfValor extends RPGGame {
             if (userInput == 'D') { //move right
                 newPos[0] = curPlayerPos[0];
                 newPos[1] = curPlayerPos[1] + 1;
-                if (curPlayerPos[0] == this.getBoardWidth() - 1 || !this.getBoard().getCell(newPos).isAvailable()) {
+                if (curPlayerPos[1] == this.getBoardWidth() - 1 || !this.getBoard().getCell(newPos).isAvailable()) {
                     System.out.println("Invalid access, enter a new option!");
                     continue;
                 }
