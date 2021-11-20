@@ -1,4 +1,4 @@
-public class MonsterObject implements Movable {
+public class MonsterObject implements Movable, Fightable {
     private String name;
     private int level, damage, defense, dodgeChance;
     private MonsterModel monsterModel;

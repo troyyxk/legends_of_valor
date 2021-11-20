@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class HeroObject {
+public class HeroObject implements Fightable{
     private HeroModel heroModel;
     private String name;
     private int mana, strength, agility, dexterity, startingMoney, startingExperience;
@@ -198,6 +198,10 @@ public class HeroObject {
         this.dexterity = heroModel.getDexterity();
         this.money = heroModel.getStartingMoney();
         this.exp = heroModel.getStartingExperience();
+    }
+
+    public int getDamage() {
+        return this.getAttackDamage();
     }
 
     public int getAttackDamage() {
