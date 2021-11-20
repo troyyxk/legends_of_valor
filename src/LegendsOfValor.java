@@ -510,7 +510,7 @@ public class LegendsOfValor extends RPGGame {
                 continue;
             }
             if (userInput == 'V') { //teleport
-                System.out.println("Where do you want to teleport to? (X,Y)");
+                System.out.println("Where do you want to teleport to? Input format: Y,X");
                 newPos = Utils.takeCoordFromInput(); //gets a coord input that is within board range but not checked for other validities
                 Cell tp = this.getBoard().getCell(newPos);
                 if (!tp.isExplored() || !tp.isAccessible() || tp.isOccupied() || Math.abs(newPos[1]-curPlayerPos[1]) < 2) { //not a valid tp destination
@@ -521,9 +521,14 @@ public class LegendsOfValor extends RPGGame {
                 this.getBoard().moveHero(this.getCurPlayer(), curPlayerPos, newPos);
             }
             if (userInput == 'B') { //back to nexus
+                System.out.println("You are back to available Nexus!");
                 newPos[0] = this.getBoardHeight()-1;
                 newPos[1] = curPlayerPos[1];
-                System.out.println("You are back to your Nexus!");
+                while (!((this.getBoard().getCell(newPos).isAccessible()) && (!this.getBoard().getCell(newPos).hasHero()))) {
+                    newPos[1] = newPos[1] + 1;
+                    newPos[1] = newPos[1] % this.getBoardWidth();
+
+                }
                 this.getBoard().moveHero(this.getCurPlayer(), curPlayerPos, newPos);
                 this.getCurPlayer().getFirstHeroObject().setHp(this.getCurPlayer().getFirstHeroObject().getMaxHP());
             }
