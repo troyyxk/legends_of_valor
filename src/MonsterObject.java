@@ -161,7 +161,7 @@ public class MonsterObject implements Movable, Fightable {
     }
 
     public int getDamage() {
-        return (int) (damage * 0.1);
+        return (int) (damage * 0.2);
     }
 
     public void setDamage(int damage) {

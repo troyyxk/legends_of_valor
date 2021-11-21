@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Random;
 
+import static java.lang.Math.max;
+
 /**
  * Predefined class RPGGame
  * 
@@ -245,6 +247,15 @@ public class LegendsOfValor extends RPGGame {
         int round_number = 0;
         while (continueGaming) {
             System.out.println("--- Round " + round_number + " ---");
+
+            // start of round add hp and mana
+            for (Player player : this.getCurTeam().getPlayers()) {
+                System.out.println("At start of a round, gain 10% hp and mana, old hp: " + player.getFirstHeroObject().getHP() + " old mana: " + player.getFirstHeroObject().getMana());
+                player.getFirstHeroObject().setHp((int) (max(player.getFirstHeroObject().getHP() * 1.1, 10)));
+                player.getFirstHeroObject().setMana((int) (max(player.getFirstHeroObject().getMana() * 1.1, 10)));
+                System.out.println("new hp: " + player.getFirstHeroObject().getHP() + " new mana: " + player.getFirstHeroObject().getMana());
+            }
+
             // if at the monster spurning round, spurn monster
             if (round_number % monster_spawn_round == 0) {
                 spawnMonster();

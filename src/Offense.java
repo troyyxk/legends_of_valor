@@ -1,5 +1,7 @@
 import java.util.Random;
 
+import static java.lang.Math.max;
+
 /**
  * class Offense
  * 
@@ -53,6 +55,7 @@ public class Offense {
             return;
         }
         int damage = (int) ((HeroStrength + (hero.getCurEquippedWeapon() != null ? hero.getCurEquippedWeapon().getDamage() : 0))*0.05)-monster.getDamageReduction();
+        damage = max(damage, 10);
         monster.takeHit(damage);
         System.out.println("Monster " + monster.getName() + " take damage: " + damage + ", remaining HP: " + monster.getHP());
     }
@@ -64,6 +67,7 @@ public class Offense {
             return;
         }
         int damage = monster.getDamage() - hero.getDamageReduction();
+        damage = max(damage, 10);
         hero.takeHit(damage);
         System.out.println("Hero " + player.getId() + " take damage: " + damage + ", remaining HP: " + hero.getHp());
     }
