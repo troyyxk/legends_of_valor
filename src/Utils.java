@@ -220,7 +220,7 @@ public class Utils {
             e.printStackTrace();
         }
         for (String s : lines) {
-            ArrayList<String> attributes = new ArrayList<String>(Arrays.asList(s.split("/|\s|\t")));
+            ArrayList<String> attributes = new ArrayList<String>(Arrays.asList(s.split("/|\\s|\t")));
             attributes.removeIf(a -> a.length() == 0);
             // System.out.println(attributes.size());
             allAttributes.add(attributes);
