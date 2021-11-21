@@ -6,6 +6,13 @@ Name: Xingkun Yin
 Email: yinxingk@bu.edu
 BU ID: U44255956
 
+Name: Zimou Sun
+Email: zimousun@bu.edu
+BU ID:U48084222
+
+Name: Ze Yu
+Email: zey@bu.edu
+BU ID: U32088225
 
 Files
 -------------------------------------------------------------------------------------------------
@@ -184,16 +191,15 @@ How to run:
 1. Navigate to the directory after downloading the project
 2. Run the following instructions on command line in the src folder:
    javac *.java
-   java Main.java
+   java Main
 
 Code tested on Windows PowerShell locally.
 
 Bonus:
 -------------------------------------------------------------------------------------------------
-1. Music played at the beginning when selecting heroes
-2. Colorful output on terminal
-3. Factory design pattern is use for generating placeable
-2. MVC for market, HeroGallary
-3. the board is able to be scalable to different width length
-4. this project enable add different number of players into teams
-5. it is able to add different numbers of teams
+1. Colorful output on terminal
+2. Factory design pattern is use for generating placeable
+3. MVC for market, HeroGallary
+4. the board is able to be scalable to different width length
+5. this project enable add different number of players into teams
+6. it is able to add different numbers of teams

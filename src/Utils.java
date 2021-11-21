@@ -211,7 +211,7 @@ public class Utils {
 //
 //        Path pathToFile = Paths.get(filePath);
 //        System.out.println(pathToFile.toAbsolutePath());
-        filePath = System.getProperty("user.dir") + "/src/" + filePath;
+        filePath = System.getProperty("user.dir") + "/" + filePath;
         ArrayList<ArrayList<String>> allAttributes = new ArrayList<ArrayList<String>>();
         List<String> lines = null;
         try {
