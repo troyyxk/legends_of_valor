@@ -1,39 +1,3 @@
-# board_game
-Name: Xingkun Yin
-Email: yinxingk@bu.edu
-BU ID: U44255956
-
-## Compile and Execution Instrucitons
-
-Get into this fila and run:
-```
-javac BoardGame/*.java
-cd BoardGame
-java Main
-```
-This would compile and run the game.
-
-## Class Description
-
-Main
-- this is the class for the main function and that is its whole purpose
-
-GameRunner
-- main would call this the run() funciton in this class
-- it deal with the errant before and after running the game:
-    - grating the players
-    - take input of which game players want to play
-    - run the game
-    - save the winner record
-    - say goodbye to players
-
-## Extra
-1. Factory design pattern is use for generating placeable
-2. MVC for market, HeroGallary
-3. the board is able to be scalable to different width length
-4. this project enable add different number of players into teams
-5. it is able to add different numbers of teams
-
 # CS611-Legends
 
 Name
@@ -42,6 +6,11 @@ Name: Xingkun Yin
 Email: yinxingk@bu.edu
 BU ID: U44255956
 
+Name: Zimou Sun
+Email: zimousun@bu.edu
+BU ID:U48084222
+
+Name: Ze Yu
 
 Files
 -------------------------------------------------------------------------------------------------
@@ -56,6 +25,12 @@ Battle.java
 Board.java
 - board containing cells
 
+BushCell.java
+- implements Placeable
+
+CaveCell.java
+- implements Placeable
+
 Cell.java
 - abstract class
 - a Cell of the Board
@@ -64,13 +39,23 @@ Dragon.java
 - extends MonsterModel
 - a dragon monster model
 
+EnermyNexusCell.java
+- implements Placeable
+
 Exoskeleton.java
 - extends MonsterModel
 - an exoskeleton monster model
 
+Fightable
+- an interface
+- methods to calculate damage taken
+
 FireSpell.java
 - extends Spell
 - a fire spell spell type
+
+Game.java
+-
 
 GameRunner.java
 - the runner for the game
@@ -103,13 +88,13 @@ IceSpell.java
 - extends Spell
 - a ice spell spell type
 
+
 LegendsOfValor.java
 - child class of RPGGame
 - the actual game logic contain that use a lot of logic from RPGGame
 
-IceSpell.java
-- extends Spell
-- a lightning spell spell type
+KoulouCell.java
+- implements Placeable
 
 Main.java
 - the main class of the program that lunch the game runner
@@ -141,6 +126,9 @@ Movable.java
 
 NonAccessibleCell.java
 - the cell for cell that is no accessible
+
+Offense.java
+- implemention of attack procedure
 
 Paladin.java
 - model for paladin
@@ -204,3 +192,13 @@ How to run:
    java Main.java
 
 Code tested on Windows PowerShell locally.
+
+Bonus:
+-------------------------------------------------------------------------------------------------
+1. Music played at the beginning when selecting heroes
+2. Colorful output on terminal
+3. Factory design pattern is use for generating placeable
+2. MVC for market, HeroGallary
+3. the board is able to be scalable to different width length
+4. this project enable add different number of players into teams
+5. it is able to add different numbers of teams

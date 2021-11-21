@@ -1,0 +1,10 @@
+The design of Xingkun Yin's implementation is chosen for the following reasons:
+1. Hisimplementation has more design patterns that is more well use than the
+other 2 implementations.
+2. his implementation has more components and class that better define the 
+seperation of responsibilities. The modular design makes it easier to modify
+than the other 2 implementations
+
+The decisions turn out to be benificial for out development of Legends of
+Valor. We are able to finish the implementation in a short amount of time in
+an elegent way.
